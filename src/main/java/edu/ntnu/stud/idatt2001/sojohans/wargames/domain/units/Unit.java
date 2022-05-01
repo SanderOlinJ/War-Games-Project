@@ -97,6 +97,9 @@ public abstract class Unit {
      * @param health Health of the unit.
      */
     public void setHealth(int health) {
+        if (health <= 0){
+            throw new IllegalArgumentException("Health cannot be less than or equal to 0");
+        }
         this.health = health;
     }
 
