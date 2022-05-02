@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -210,5 +211,70 @@ class ArmyTest {
     public void testToSeeIfGetRandomThrowsExceptionIfArmysArrayListOfUnitsIsEmpty(){
         Army army = new Army("Army");
         assertThrows(IllegalArgumentException.class, army::getRandom);
+    }
+    @Nested
+    class lambdaReturnMethodsForSpecificUnitsTests{
+
+        @Test
+        @DisplayName("Does getInfantryUnits return all infantry units in list")
+        public void doesGetInfantryUnitsReturnAllInfantryUnitsInList(){
+            ArrayList<Unit> units = new ArrayList<>();
+            units.add(new InfantryUnit("Swordsman",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new InfantryUnit("Halberdier",100));
+            units.add(new CommanderUnit("Commander",180));
+            Army army = new Army("Army",units);
+
+            assertEquals(2, army.getInfantryUnits().size());
+        }
+
+        @Test
+        @DisplayName("Does getCavalryUnits return only cavalry units and not CommanderUnits")
+        public void doesGetCavalryUnitsReturnOnlyCavalryUnitsAndNotCommanderUnits(){
+            ArrayList<Unit> units = new ArrayList<>();
+            units.add(new CommanderUnit("Commander",100));
+            units.add(new InfantryUnit("Swordsman",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Halberdier",100));
+            units.add(new CommanderUnit("Commander",180));
+            Army army = new Army("Army",units);
+
+            assertEquals(3, army.getCavalryUnits().size());
+        }
+
+        @Test
+        @DisplayName("Does getRangedUnits return correct number of ranged units")
+        public void doesGetRangedUnitsReturnCorrectNumberOfRangedUnits(){
+            ArrayList<Unit> units = new ArrayList<>();
+            units.add(new CommanderUnit("Commander",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Halberdier",100));
+            units.add(new RangedUnit("Archer",180));
+            Army army = new Army("Army",units);
+
+            assertEquals(4, army.getRangedUnits().size());
+        }
+
+        @Test
+        @DisplayName("Does getCommanderUnits return correct number of commander units")
+        public void doesGetCommanderUnitsReturnCorrectNumberOfCommanderUnits(){
+            ArrayList<Unit> units = new ArrayList<>();
+            units.add(new CommanderUnit("Commander",100));
+            units.add(new InfantryUnit("Swordsman",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Halberdier",100));
+            units.add(new InfantryUnit("Swordsman",180));
+            Army army = new Army("Army",units);
+
+            assertEquals(1, army.getCommanderUnits().size());
+        }
     }
 }

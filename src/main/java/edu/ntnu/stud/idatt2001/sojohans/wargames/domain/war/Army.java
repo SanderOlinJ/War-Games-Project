@@ -4,6 +4,7 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Class for describing an Army.
@@ -174,5 +175,45 @@ public class Army {
     @Override
     public int hashCode() {
         return Objects.hash(name, units);
+    }
+
+
+    /**
+     * Method for getting an ArrayList of InfantryUnits in Army.
+     * @return An ArrayList of Units that are an instance of InfantryUnit
+     */
+    public ArrayList<Unit> getInfantryUnits(){
+        return units.stream().filter(unit -> unit instanceof InfantryUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Method for getting an ArrayList of RangedUnits in Army.
+     * @return An ArrayList of Units that are an instance of RangedUnit
+     */
+    public ArrayList<Unit> getRangedUnits(){
+        return units.stream().filter(unit -> unit instanceof RangedUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Method for getting an ArrayList of CavalryUnits in Army.
+     * @return An ArrayList of Units that are an instance of CavalryUnit
+     */
+    public ArrayList<Unit> getCavalryUnits(){
+        ArrayList<Unit> cavalryUnits = units.stream().filter(unit -> unit instanceof CavalryUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+        cavalryUnits.removeIf(unit -> unit instanceof CommanderUnit);
+
+        return cavalryUnits;
+    }
+
+    /**
+     * Method for getting an ArrayList of CommanderUnits in Army.
+     * @return An ArrayList of Units that are an instance of CommanderUnit
+     */
+    public ArrayList<Unit> getCommanderUnits(){
+        return units.stream().filter(unit -> unit instanceof CommanderUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
