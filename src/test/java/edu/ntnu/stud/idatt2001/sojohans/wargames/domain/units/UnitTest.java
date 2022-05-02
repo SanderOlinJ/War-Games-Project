@@ -12,7 +12,6 @@ class UnitTest {
     @Nested
     class InvalidAttributesInConstructorAndSetHealth{
 
-
         @Test
         @DisplayName("Constructor takes in invalid health value," +
                 "throws WarGamesException")
@@ -70,5 +69,14 @@ class UnitTest {
             assertThrows(WarGamesException.class, () -> infantryUnit.attack(rangedUnit));
         }
 
+        @Test
+        @DisplayName("Test to see if attack() returns correct health value")
+        public void testToSeeIfAttackReturnsCorrectHealthValue(){
+            CommanderUnit guardian = new CommanderUnit("Guardian",180);
+            CommanderUnit savathun = new CommanderUnit("Savathun",180);
+            guardian.attack(savathun);
+
+            assertEquals(165,savathun.getHealth());
+        }
     }
 }
