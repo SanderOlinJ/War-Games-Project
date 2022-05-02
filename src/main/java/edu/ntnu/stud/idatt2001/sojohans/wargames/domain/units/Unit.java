@@ -120,7 +120,7 @@ public abstract class Unit {
     }
 
     /**
-     * Method for getting Unit as a String
+     * Method for getting Unit as a String.
      * @return Unit as String.
      */
     @Override
@@ -136,7 +136,7 @@ public abstract class Unit {
     /**
      * Default method for comparing units.
      * @param o other unit for comparison.
-     * @return true if equals, false if not
+     * @return true if equals, false if not.
      */
     @Override
     public boolean equals(Object o) {
@@ -148,7 +148,7 @@ public abstract class Unit {
 
     /**
      * Default hashCode method for comparing units.
-     * @return hash code
+     * @return hash code.
      */
     @Override
     public int hashCode() {
