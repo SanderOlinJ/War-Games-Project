@@ -1,6 +1,6 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.WarGamesException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
 
 import java.util.Objects;
 
@@ -43,15 +43,15 @@ public abstract class Unit {
     /**
      * Method for attacking another unit.
      * @param opponentUnit Opponent getting attacked.
-     * @throws WarGamesException if either the health of the opponent or attacking unit,
+     * @throws UnitAttackException if either the health of the opponent or attacking unit,
      * is equal to or less than 0.
      */
-    public void attack(Unit opponentUnit){
+    public void attack(Unit opponentUnit) throws UnitAttackException{
         if (opponentUnit.health <= 0){
-            throw new WarGamesException(opponentUnit.name + " has 0 or less health left!");
+            throw new UnitAttackException(opponentUnit.name + " has 0 or less health left!");
         }
         if (this.health <= 0){
-            throw new WarGamesException(this.name + " has 0 or less health left!");
+            throw new UnitAttackException(this.name + " has 0 or less health left!");
         }
         else {
             /*
@@ -134,9 +134,9 @@ public abstract class Unit {
     }
 
     /**
-     * Default method for comparing units.
-     * @param o other unit for comparison.
-     * @return true if equals, false if not.
+     * Default equals-method for comparing units.
+     * @param o Other unit for comparison.
+     * @return True if equals, false if not.
      */
     @Override
     public boolean equals(Object o) {
@@ -148,7 +148,7 @@ public abstract class Unit {
 
     /**
      * Default hashCode method for comparing units.
-     * @return hash code.
+     * @return Hash code.
      */
     @Override
     public int hashCode() {
