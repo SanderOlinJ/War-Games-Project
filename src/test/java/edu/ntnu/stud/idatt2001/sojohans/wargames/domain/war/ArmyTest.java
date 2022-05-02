@@ -15,7 +15,7 @@ class ArmyTest {
     class InitiatingArmyClass {
 
         @Test
-        @DisplayName("Initiate Army with an ArrayList of units")
+        @DisplayName("Initiate Army with an ArrayList of Units")
         public void initiateArmyWithAnArrayListOfUnits(){
             ArrayList<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Garen",180));
@@ -43,7 +43,7 @@ class ArmyTest {
         class AddingValidUnitsToArmy {
 
             @Test
-            @DisplayName("Check if single unit is added to army's ArrayList of units")
+            @DisplayName("Check if single Unit is added to Army's ArrayList of Units")
             public void checkIfSingleUnitIsAddedToArmysArrayListOfUnits() {
                 Army guardians = new Army("Guardians");
                 assertFalse(guardians.hasUnits());
@@ -53,7 +53,7 @@ class ArmyTest {
             }
 
             @Test
-            @DisplayName("Check if am ArrayList of units is added to army's ArrayList of units")
+            @DisplayName("Check if an ArrayList of Units is added to Army's ArrayList of Units")
             public void checkIfAnArrayListOfUnitsIsAddedToArmysArrayListListOfUnits(){
                 Army guardians = new Army("Guardians");
                 ArrayList<Unit> units = new ArrayList<>();
@@ -66,8 +66,8 @@ class ArmyTest {
             }
 
             @Test
-            @DisplayName("Check if units added or instantiated with are in fact deep copied," +
-                    "and army's ArrayList of units is not coupled to the ArrayList it was instantiated with")
+            @DisplayName("Check if Units added or instantiated with are in fact deep copied," +
+                    "and Army's ArrayList of Units is not coupled to the ArrayList it was instantiated with")
             public void checkIfUnitsAreDeepCopiedAndArmysArrayListIsNotCoupled(){
                 ArrayList<Unit> units = new ArrayList<>();
                 units.add(new InfantryUnit("Swordsman",100));
@@ -98,14 +98,14 @@ class ArmyTest {
         class AddingInvalidUnitsToArmy{
 
             @Test
-            @DisplayName("Adding null unit to army, throws IllegalArgumentException")
+            @DisplayName("Adding null Unit to Army, throws IllegalArgumentException")
             public void addingNullUnitToArmyThrowsIllegalArgumentException(){
                 Army redania = new Army("Redania");
                 assertThrows(IllegalArgumentException.class, () -> redania.addUnit(null));
             }
 
             @Test
-            @DisplayName("Adding null and empty ArrayList to army, throws IllegalArgumentException")
+            @DisplayName("Adding null and empty ArrayList to Army, throws IllegalArgumentException")
             public void addingNullAndEmptyArrayListToArmyThrowsIllegalArgumentException(){
                 Army kaedwen = new Army("Kaedwen");
                 assertThrows(IllegalArgumentException.class, () -> kaedwen.addAllUnits(null));
@@ -115,7 +115,7 @@ class ArmyTest {
             }
 
             @Test
-            @DisplayName("Adding ArrayList with a null unit to army, throws IllegalArgumentException")
+            @DisplayName("Adding ArrayList with a null Unit to Army, throws IllegalArgumentException")
             void addingArrayListWithANullUnitToArmyThrowsIllegalArgumentException(){
                 ArrayList<Unit> listWithANullUnit = new ArrayList<>();
                 listWithANullUnit.add(null);
@@ -144,7 +144,7 @@ class ArmyTest {
             }
 
             @Test
-            @DisplayName("Remove unit that has not been instantiated first")
+            @DisplayName("Remove Unit that has not been instantiated first")
             public void removeUnitThatHasNotBeenInstantiatedFirst() {
                 Army army = new Army("Army");
                 army.addUnit(new InfantryUnit("Infantry", 100));
@@ -168,7 +168,7 @@ class ArmyTest {
     }
 
     @Test
-    @DisplayName("Does getRandom() return a unit from the Army")
+    @DisplayName("Does getRandom() return a Unit from the Army")
     public void doesGetRandomReturnAUnitFromTheArmy(){
         ArrayList<Unit> units = new ArrayList<>();
         units.add(new CavalryUnit("Knight 1",100));
@@ -180,7 +180,7 @@ class ArmyTest {
     }
 
     @Test
-    @DisplayName("Does the returned ArrayList from getUnits() let you change unit attributes")
+    @DisplayName("Does the returned ArrayList from getUnits() let you change Unit attributes")
     public void doesReturnedArrayListFromGetUnitsLetYouChangeUnitAttributes(){
         Army army = new Army("Army");
         army.addUnit(new InfantryUnit("Swordsman",100));
@@ -206,7 +206,7 @@ class ArmyTest {
     }
 
     @Test
-    @DisplayName("Test to see if getRandom throws exception if Army's ArrayList of units is empty")
+    @DisplayName("Test to see if getRandom throws exception if Army's ArrayList of Units is empty")
     public void testToSeeIfGetRandomThrowsExceptionIfArmysArrayListOfUnitsIsEmpty(){
         Army army = new Army("Army");
         assertThrows(IllegalArgumentException.class, army::getRandom);

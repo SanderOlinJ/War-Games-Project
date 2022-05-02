@@ -6,7 +6,7 @@ package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 public class RangedUnit extends Unit{
 
     /**
-     * nrOfAttacksWithstood is a variable that counts how many times this unit has been attacked
+     * numberOfAttacksWithstood is a variable that counts how many times this unit has been attacked
      * It is specifically used in the unit's getResistBonus method, where it determines how much
      * Resist Bonus it should get.
      */

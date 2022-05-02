@@ -1,7 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
 /**
- * Class for describing a RangedUnit.
+ * Class for describing a InfantryUnit.
  */
 public class InfantryUnit extends Unit{
 

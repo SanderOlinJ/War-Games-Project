@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * Class for describing an army.
+ * Class for describing an Army.
  */
 public class Army {
 
@@ -14,8 +14,8 @@ public class Army {
     private final ArrayList<Unit> units;
 
     /**
-     * Basic constructor for army class.
-     * @param name Name of the army.
+     * Basic constructor for Army class.
+     * @param name Name of the Army.
      */
     public Army(String name){
         this.name = name;
@@ -23,10 +23,10 @@ public class Army {
     }
 
     /**
-     * Constructor for army class, if its to be assigned with units at initialization.
-     * @param name Name of the army.
-     * @param newUnits ArrayList of units in the army, cannot be of size == 0 or null.
-     * Sends the ArrayList to addAllUnits() which deep-copies all units.
+     * Constructor for Army class, if its to be assigned with Units at initialization.
+     * @param name Name of the Army.
+     * @param newUnits ArrayList of Units in the Army, cannot be of size == 0 or null.
+     * Sends the ArrayList to addAllUnits() which deep-copies all Units.
      */
     public Army(String name, ArrayList<Unit> newUnits) {
         this.name = name;
@@ -35,27 +35,27 @@ public class Army {
     }
 
     /**
-     * Method for adding an ArrayList of units to an army.
-     * @param newUnits ArrayList of units to be added.
+     * Method for adding an ArrayList of Units to an Army.
+     * @param newUnits ArrayList of Units to be added.
      * @throws IllegalArgumentException If ArrayList is empty or null.
-     * or if the units in the list either are null or have invalid health.
+     * or if the Units in the ArrayList either are null or have invalid health.
      */
     public void addAllUnits(ArrayList<Unit> newUnits) throws IllegalArgumentException{
         if (newUnits == null || newUnits.size() == 0){
             throw new IllegalArgumentException("Unit list is empty or null!");
         }
         /*
-        Method sends each unit in the list to addUnit().
-        addUnit() then sends it to deepCopyUnit for deep-copying the unit,
-        before it's added to the army's ArrayList of units.
+        Method sends each Unit in the list to addUnit().
+        addUnit() then sends it to deepCopyUnit for deep-copying the Unit,
+        before it's added to the Army's ArrayList of Units.
          */
         newUnits.forEach(this::addUnit);
     }
 
     /**
-     * Method for adding a unit to an army.
+     * Method for adding a Unit to an Army.
      * @param unit Unit to be added.
-     * @throws IllegalArgumentException If unit is null or the unit's health is less than
+     * @throws IllegalArgumentException If Unit is null or the Unit's health is less than
      * or equals to 0.
      */
     public void addUnit(Unit unit) throws IllegalArgumentException{
@@ -66,18 +66,18 @@ public class Army {
             throw new IllegalArgumentException("Unit health must be higher than 0!");
         }
         /*
-        Method adds the unit to the army's ArrayList of units,
+        Method adds the Unit to the Army's ArrayList of Units,
         after it's been deep-copied, using deepCopyUnit();
          */
         this.units.add(deepCopyUnit(unit));
     }
 
     /**
-     * Method takes in a unit and deep-copies it.
+     * Method takes in a Unit and deep-copies it.
      * Has to be a subclass of Unit.
      * @param newUnit Unit wished to be deep-copied.
      * @return Deep-copied Unit.
-     * @throws IllegalArgumentException If the unit class is not recognised.
+     * @throws IllegalArgumentException If the Unit class is not recognised.
      */
     private Unit deepCopyUnit(Unit newUnit) throws IllegalArgumentException{
         return switch (newUnit.getClass().getSimpleName()) {
@@ -95,17 +95,17 @@ public class Army {
     }
 
     /**
-     * Method for getting name of the army.
-     * @return Name of the army.
+     * Method for getting name of the Army.
+     * @return Name of the Army.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Method removes unit from the army's ArrayList of units.
+     * Method removes Unit from the Army's ArrayList of Units.
      * @param unit Unit desired to be removed.
-     * @throws IllegalArgumentException If unit is not in the ArrayList.
+     * @throws IllegalArgumentException If Unit is not in the ArrayList.
      */
     public void remove(Unit unit) throws IllegalArgumentException{
         if (!this.units.remove(unit)){
@@ -114,29 +114,29 @@ public class Army {
     }
 
     /**
-     * Method checks if the Army has any units in its ArrayList of units.
-     * @return True or false, depending on whether it has units or not.
+     * Method checks if the Army has any Units in its ArrayList of Units.
+     * @return True or false, depending on whether it has Units or not.
      */
     public boolean hasUnits(){
         return this.units != null && this.units.size() != 0;
     }
 
     /**
-     * Method shallow-copies and returns an ArrayList of units.
-     * @return ArrayList of units in the army.
+     * Method shallow-copies and returns an ArrayList of Units.
+     * @return ArrayList of Units in the Army.
      */
     public ArrayList<Unit> getUnits() {
         return new ArrayList<>(this.units);
     }
 
     /**
-     * Method for returning a random unit from the ArrayList of units.
-     * @return A random unit.
-     * @throws IllegalArgumentException If there are no units in the ArrayList of units.
+     * Method for returning a random Unit from the ArrayList of Units.
+     * @return A random Unit.
+     * @throws IllegalArgumentException If there are no Units in the ArrayList of Units.
      */
     public Unit getRandom() throws IllegalArgumentException{
         if (this.units == null || this.units.size() == 0){
-            throw new IllegalArgumentException("There are no units in this army!");
+            throw new IllegalArgumentException("There are no Units in this Army!");
         }
         Random random = new Random();
         int index = random.nextInt(this.units.size());
@@ -144,7 +144,7 @@ public class Army {
     }
 
     /**
-     * Method for getting army as a String.
+     * Method for getting Army as a String.
      * @return Army as String
      */
     @Override
@@ -155,8 +155,8 @@ public class Army {
     }
 
     /**
-     * Default equals-method for comparing armies.
-     * @param o Other army for comparison.
+     * Default equals-method for comparing Armies.
+     * @param o Other Army for comparison.
      * @return True if equals, false if not.
      */
     @Override
@@ -168,7 +168,7 @@ public class Army {
     }
 
     /**
-     * Default hashCode method for comparing armies.
+     * Default hashCode method for comparing Armies.
      * @return Hash code.
      */
     @Override

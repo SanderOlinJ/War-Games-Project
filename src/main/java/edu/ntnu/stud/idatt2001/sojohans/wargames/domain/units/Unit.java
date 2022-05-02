@@ -17,11 +17,11 @@ public abstract class Unit {
     /**
      * The constructor method for a Unit object.
      * Neither Health nor Attack can be 0 or lower.
-     * Armor can however be 0, as full offensive unit might be developed later on.
-     * @param name Name of the unit.
-     * @param health Health of the unit.
-     * @param attack Attack-points of the unit.
-     * @param armor Armor-points of the unit.
+     * Armor can however be 0, as full offensive Unit might be developed later on.
+     * @param name Name of the Unit.
+     * @param health Health of the Unit.
+     * @param attack Attack-points of the Unit.
+     * @param armor Armor-points of the Unit.
      * @throws IllegalArgumentException if parameters are invalid.
      */
     public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException{
@@ -41,9 +41,9 @@ public abstract class Unit {
     }
 
     /**
-     * Method for attacking another unit.
+     * Method for attacking another Unit.
      * @param opponentUnit Opponent getting attacked.
-     * @throws UnitAttackException if either the health of the opponent or attacking unit,
+     * @throws UnitAttackException if either the health of the opponent or attacking Unit,
      * is equal to or less than 0.
      */
     public void attack(Unit opponentUnit) throws UnitAttackException{
@@ -64,37 +64,37 @@ public abstract class Unit {
     }
 
     /**
-     * Abstract method for getting the unit's attack bonus.
-     * @return Attack bonus of the unit.
+     * Abstract method for getting the Unit's attack bonus.
+     * @return Attack bonus of the Unit.
      */
     public abstract int getAttackBonus();
 
     /**
-     * Abstract method for getting the unit's resist bonus.
-     * @return Resist bonus of the unit.
+     * Abstract method for getting the Unit's resist bonus.
+     * @return Resist bonus of the Unit.
      */
     public abstract int getResistBonus();
 
 
     /**
-     * Method for getting the name of the unit.
-     * @return Name of the unit.
+     * Method for getting the name of the Unit.
+     * @return Name of the Unit.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Method for getting the health of the unit.
-     * @return Health of the unit.
+     * Method for getting the health of the Unit.
+     * @return Health of the Unit.
      */
     public int getHealth() {
         return health;
     }
 
     /**
-     * Method for setting the health of the unit.
-     * @param health Health of the unit.
+     * Method for setting the health of the Unit.
+     * @param health Health of the Unit.
      */
     public void setHealth(int health) {
         if (health <= 0){
@@ -104,16 +104,16 @@ public abstract class Unit {
     }
 
     /**
-     * Method for getting the attack-points of the unit.
-     * @return Health of the unit.
+     * Method for getting the attack-points of the Unit.
+     * @return Health of the Unit.
      */
     public int getAttack() {
         return attack;
     }
 
     /**
-     * Method for getting the armor-points of the unit.
-     * @return Armor-points of the unit.
+     * Method for getting the armor-points of the Unit.
+     * @return Armor-points of the Unit.
      */
     public int getArmor() {
         return armor;
@@ -134,8 +134,8 @@ public abstract class Unit {
     }
 
     /**
-     * Default equals-method for comparing units.
-     * @param o Other unit for comparison.
+     * Default equals-method for comparing Units.
+     * @param o Other Unit for comparison.
      * @return True if equals, false if not.
      */
     @Override
@@ -147,7 +147,7 @@ public abstract class Unit {
     }
 
     /**
-     * Default hashCode method for comparing units.
+     * Default hashCode method for comparing Units.
      * @return Hash code.
      */
     @Override
