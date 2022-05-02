@@ -30,6 +30,14 @@ class UnitTest {
         }
 
         @Test
+        @DisplayName("Constructor takes in invalid armor value," +
+                "throws WarGamesException")
+        public void constructorTakesInInvalidArmorValueThrowsWarGamesException(){
+            assertThrows(IllegalArgumentException.class, () ->
+                new CavalryUnit("Light Cavalry",100,20, -50));
+        }
+
+        @Test
         @DisplayName("setHealth() takes in invalid health value," +
                 "throws WarGamesException")
         public void setHealthTakesInInvalidHealthValueThrowsWarGamesException(){

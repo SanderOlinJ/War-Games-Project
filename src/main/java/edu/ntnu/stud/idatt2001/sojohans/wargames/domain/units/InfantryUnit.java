@@ -41,7 +41,7 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getResistBonus() {
-        return 2;
+        return 1;
     }
 
     /**

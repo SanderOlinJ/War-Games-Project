@@ -26,12 +26,12 @@ public class RangedUnit extends Unit{
 
     /**
      * The simplified constructor for RangedUnit.
-     * The RangedUnit's attack and armor-stat are set to its default (15 and 10).
+     * The RangedUnit's attack and armor-stat are set to its default (15 and 8).
      * @param name Name of the RangedUnit.
      * @param health Health of the RangedUnit, cannot be less than or equal to 0.
      */
     public RangedUnit(String name, int health){
-        super(name, health, 15, 10);
+        super(name, health, 15, 8);
         numberOfAttacksWithstood = 0;
     }
 
