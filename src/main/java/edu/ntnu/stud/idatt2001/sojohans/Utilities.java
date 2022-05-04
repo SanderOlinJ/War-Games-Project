@@ -6,7 +6,7 @@ public class Utilities {
 
     public static File convertStringToFile(String string){
         return new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/armyFiles/" +
-                string + ".csv");
+                shortenAndReplaceUnnecessarySymbolsInString(string) + ".csv");
     }
 
     public static String shortenAndReplaceUnnecessarySymbolsInString(String str){
@@ -19,4 +19,11 @@ public class Utilities {
         String newStr = new String(charArray);
         return newStr.replaceAll("[^A-Za-z0-9]","");
     }
+
+    public static boolean doesArmyFileExist(String nameOfFile){
+        File file = Utilities.convertStringToFile(nameOfFile);
+        return file.exists();
+    }
+
+
 }

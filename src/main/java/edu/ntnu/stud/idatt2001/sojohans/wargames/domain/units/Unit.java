@@ -22,9 +22,12 @@ public abstract class Unit {
      * @param health Health of the Unit.
      * @param attack Attack-points of the Unit.
      * @param armor Armor-points of the Unit.
-     * @throws IllegalArgumentException if parameters are invalid.
+     * @throws IllegalArgumentException If parameters are invalid.
      */
     public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException{
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Name of Unit cannot be null or empty!");
+        }
         if (health <= 0){
             throw new IllegalArgumentException("Health cannot be less than or equal to 0!");
         }

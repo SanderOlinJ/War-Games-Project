@@ -2,6 +2,7 @@ package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -12,13 +13,18 @@ import java.util.stream.Collectors;
 public class Army {
 
     private final String name;
-    private final ArrayList<Unit> units;
+    private final List<Unit> units;
 
     /**
      * Basic constructor for Army class.
      * @param name Name of the Army.
+     * @throws IllegalArgumentException If the name of the Army
+     * is either null or empty.
      */
     public Army(String name){
+        if (name == null || name.trim().isBlank()){
+            throw new IllegalArgumentException("Name of Army cannot be null or empty!");
+        }
         this.name = name;
         this.units = new ArrayList<>();
     }
@@ -26,29 +32,34 @@ public class Army {
     /**
      * Constructor for Army class, if its to be assigned with Units at initialization.
      * @param name Name of the Army.
-     * @param newUnits ArrayList of Units in the Army, cannot be of size == 0 or null.
-     * Sends the ArrayList to addAllUnits() which deep-copies all Units.
+     * @param newUnits List of Units in the Army, cannot be of size == 0 or null.
+     * Sends the List to addAllUnits() which deep-copies all Units.
+     * @throws IllegalArgumentException If the name of the Army
+     * is either null or empty.
      */
-    public Army(String name, ArrayList<Unit> newUnits) {
+    public Army(String name, List<Unit> newUnits) {
+        if (name == null || name.trim().isBlank()){
+            throw new IllegalArgumentException("Name of Army cannot be null or empty!");
+        }
         this.name = name;
         this.units = new ArrayList<>();
         addAllUnits(newUnits);
     }
 
     /**
-     * Method for adding an ArrayList of Units to an Army.
-     * @param newUnits ArrayList of Units to be added.
-     * @throws IllegalArgumentException If ArrayList is empty or null.
-     * or if the Units in the ArrayList either are null or have invalid health.
+     * Method for adding a List of Units to an Army.
+     * @param newUnits List of Units to be added.
+     * @throws IllegalArgumentException If List is empty or null.
+     * or if the Units in the List either are null or have invalid health.
      */
-    public void addAllUnits(ArrayList<Unit> newUnits) throws IllegalArgumentException{
+    public void addAllUnits(List<Unit> newUnits) throws IllegalArgumentException{
         if (newUnits == null || newUnits.size() == 0){
             throw new IllegalArgumentException("Unit list is empty or null!");
         }
         /*
         Method sends each Unit in the list to addUnit().
         addUnit() then sends it to deepCopyUnit for deep-copying the Unit,
-        before it's added to the Army's ArrayList of Units.
+        before it's added to the Army's List of Units.
          */
         newUnits.forEach(this::addUnit);
     }
@@ -67,7 +78,7 @@ public class Army {
             throw new IllegalArgumentException("Unit health must be higher than 0!");
         }
         /*
-        Method adds the Unit to the Army's ArrayList of Units,
+        Method adds the Unit to the Army's List of Units,
         after it's been deep-copied, using deepCopyUnit();
          */
         this.units.add(deepCopyUnit(unit));
@@ -104,18 +115,18 @@ public class Army {
     }
 
     /**
-     * Method removes Unit from the Army's ArrayList of Units.
+     * Method removes Unit from the Army's List of Units.
      * @param unit Unit desired to be removed.
-     * @throws IllegalArgumentException If Unit is not in the ArrayList.
+     * @throws IllegalArgumentException If Unit is not in the List.
      */
     public void remove(Unit unit) throws IllegalArgumentException{
         if (!this.units.remove(unit)){
-            throw new IllegalArgumentException("Unit not found in ArrayList!");
+            throw new IllegalArgumentException("Unit not found in List!");
         }
     }
 
     /**
-     * Method checks if the Army has any Units in its ArrayList of Units.
+     * Method checks if the Army has any Units in its List of Units.
      * @return True or false, depending on whether it has Units or not.
      */
     public boolean hasUnits(){
@@ -123,17 +134,17 @@ public class Army {
     }
 
     /**
-     * Method shallow-copies and returns an ArrayList of Units.
-     * @return ArrayList of Units in the Army.
+     * Method shallow-copies and returns a List of Units.
+     * @return List of Units in the Army.
      */
-    public ArrayList<Unit> getUnits() {
+    public List<Unit> getUnits() {
         return new ArrayList<>(this.units);
     }
 
     /**
-     * Method for returning a random Unit from the ArrayList of Units.
+     * Method for returning a random Unit from the List of Units.
      * @return A random Unit.
-     * @throws IllegalArgumentException If there are no Units in the ArrayList of Units.
+     * @throws IllegalArgumentException If there are no Units in the List of Units.
      */
     public Unit getRandom() throws IllegalArgumentException{
         if (this.units == null || this.units.size() == 0){
@@ -179,28 +190,28 @@ public class Army {
 
 
     /**
-     * Method for getting an ArrayList of InfantryUnits in Army.
-     * @return An ArrayList of Units that are an instance of InfantryUnit
+     * Method for getting a List of InfantryUnits in Army.
+     * @return A List of Units that are an instance of InfantryUnit
      */
-    public ArrayList<Unit> getInfantryUnits(){
+    public List<Unit> getInfantryUnits(){
         return units.stream().filter(unit -> unit instanceof InfantryUnit)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
-     * Method for getting an ArrayList of RangedUnits in Army.
-     * @return An ArrayList of Units that are an instance of RangedUnit
+     * Method for getting a List of RangedUnits in Army.
+     * @return A List of Units that are an instance of RangedUnit
      */
-    public ArrayList<Unit> getRangedUnits(){
+    public List<Unit> getRangedUnits(){
         return units.stream().filter(unit -> unit instanceof RangedUnit)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
-     * Method for getting an ArrayList of CavalryUnits in Army.
-     * @return An ArrayList of Units that are an instance of CavalryUnit
+     * Method for getting a List of CavalryUnits in Army.
+     * @return A List of Units that are an instance of CavalryUnit
      */
-    public ArrayList<Unit> getCavalryUnits(){
+    public List<Unit> getCavalryUnits(){
         ArrayList<Unit> cavalryUnits = units.stream().filter(unit -> unit instanceof CavalryUnit)
                 .collect(Collectors.toCollection(ArrayList::new));
         cavalryUnits.removeIf(unit -> unit instanceof CommanderUnit);
@@ -209,10 +220,10 @@ public class Army {
     }
 
     /**
-     * Method for getting an ArrayList of CommanderUnits in Army.
-     * @return An ArrayList of Units that are an instance of CommanderUnit
+     * Method for getting a List of CommanderUnits in Army.
+     * @return A List of Units that are an instance of CommanderUnit
      */
-    public ArrayList<Unit> getCommanderUnits(){
+    public List<Unit> getCommanderUnits(){
         return units.stream().filter(unit -> unit instanceof CommanderUnit)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
