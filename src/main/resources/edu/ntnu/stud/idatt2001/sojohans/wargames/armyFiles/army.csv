@@ -1,0 +1,7 @@
+Army
+7
+CommanderUnit,Archer,101,25,15,1
+RangedUnit,Archer,100,15,8,2
+RangedUnit,Archer,101,15,8,1
+InfantryUnit,Swordsman,100,15,10,2
+InfantryUnit,SwordsmaN,100,15,10,1
