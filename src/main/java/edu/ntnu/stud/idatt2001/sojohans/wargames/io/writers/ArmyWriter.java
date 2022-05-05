@@ -33,8 +33,7 @@ public class ArmyWriter {
             throw new IOException("File name cannot be null or empty!");
         }
         StringBuilder stringBuilder =  new StringBuilder();
-        stringBuilder.append(army.getName()).append(NEWLINE)
-                .append(army.getUnits().size()).append(NEWLINE);
+        stringBuilder.append(army.getName()).append(NEWLINE);
 
         String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(army.getUnits());
         stringBuilder.append(unitsToFile);
@@ -73,7 +72,7 @@ public class ArmyWriter {
 
     /**
      * Method for getting Units with number of occurrences as a String.
-     * Format: Class Name, Name, Health, Attack, Armor, Number of occurrence.
+     * Format: Class Name, Name, Number of occurrence.
      * @param units List of Units to be written to String.
      * @return String of Units to be written to File.
      * @throws IOException If List of Unit is null or empty.
@@ -95,9 +94,6 @@ public class ArmyWriter {
         unitsAndNumberOfOccurrences.forEach((unit, integer) ->
                 stringBuilder.append(unit.getClass().getSimpleName()).append(DELIMITER)
                         .append(unit.getName()).append(DELIMITER)
-                        .append(unit.getHealth()).append(DELIMITER)
-                        .append(unit.getAttack()).append(DELIMITER)
-                        .append(unit.getArmor()).append(DELIMITER)
                         .append(integer).append(NEWLINE));
 
         return stringBuilder.toString();

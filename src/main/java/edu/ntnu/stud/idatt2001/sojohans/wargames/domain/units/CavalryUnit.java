@@ -64,7 +64,7 @@ public class CavalryUnit extends Unit{
      */
     @Override
     public String toString() {
-        return "\nInfantry " + super.toString();
+        return "\nCavalry " + super.toString();
     }
 
 }

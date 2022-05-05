@@ -67,6 +67,6 @@ public class RangedUnit extends Unit{
      */
     @Override
     public String toString() {
-        return "\nInfantry " + super.toString();
+        return "\nRanged " + super.toString();
     }
 }

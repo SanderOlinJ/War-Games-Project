@@ -17,7 +17,7 @@ public class Utilities {
         charArray[0] = Character.toLowerCase(charArray[0]);
 
         String newStr = new String(charArray);
-        return newStr.replaceAll("[^A-Za-z0-9]","");
+        return newStr.replaceAll("[^A-ZÆØÅa-zæøå0-9]","");
     }
 
     public static boolean doesArmyFileExist(String nameOfFile){

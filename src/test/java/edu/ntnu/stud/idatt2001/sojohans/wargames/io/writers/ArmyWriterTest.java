@@ -35,11 +35,6 @@ class ArmyWriterTest {
         Army army = new Army("Army");
         army.addUnit(new InfantryUnit("Swordsman",100));
         army.addUnit(new InfantryUnit("Swordsman",100));
-        army.addUnit(new InfantryUnit("SwordsmaN",100));
-        army.addUnit(new RangedUnit("Archer",100));
-        army.addUnit(new RangedUnit("Archer",100));
-        army.addUnit(new RangedUnit("Archer",101));
-        army.addUnit(new CommanderUnit("Archer",101));
         String emptyString = "      ";
         assertThrows(IOException.class, () -> ArmyWriter.writeArmyToFile(army, emptyString));
     }

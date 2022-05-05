@@ -103,7 +103,6 @@ public class Army {
                     newUnit.getAttack(), newUnit.getArmor());
             default -> throw new IllegalArgumentException("Unit class not recognised!");
         };
-        
     }
 
     /**
