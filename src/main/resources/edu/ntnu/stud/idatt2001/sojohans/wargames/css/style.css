@@ -1,0 +1,197 @@
+.scroll-pane {
+    -fx-background-color: #282c34;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
+
+
+/**
+styling for combobox prompt text and text field
+ */
+.jfx-combo-box {
+    -fx-prompt-text-fill: white;
+    -fx-font: 18px "Arial";
+}
+
+.jfx-combo-box .cell {
+    -fx-text-fill: white;
+    -fx-border-radius: 10;
+    -fx-alignment: center-left;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+/*
+.combo-box .arrow-button {
+    -fx-background-color: #fa8f31;
+}
+ */
+
+
+.jfx-combo-box .scroll-bar{
+    -fx-background-color: #282c34;
+}
+
+.my-list-cell {
+    -fx-text-fill: white;
+    -fx-font: 16px "Arial";
+    -fx-background-color:  #282c34;
+
+}
+
+.text-field{
+    -fx-text-fill: white;
+    -fx-background-color:  #282c34;
+}
+
+* {
+    -fx-primary-color: #fa8f31;
+    -fx-secondary-color: #4B6EAF;
+    -fx-light-grey-color: #d1d1d1;
+
+    -fx-focus-color: -fx-secondary-color;
+}
+
+.date-picker .text-field {
+    -fx-font: 18px "Arial";
+    -fx-font-weight:  Bold;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: -fx-primary-color;
+    -fx-background-radius: 0;
+}
+.date-picker .arrow-button:hover {
+    -fx-background-color: -fx-secondary-color;
+}
+.date-picker .arrow-button .arrow {
+    -fx-background-color: white;
+}
+.date-picker .cell {
+    -fx-background-color: white;
+    -fx-font: 14px "Arial";
+}
+.date-picker .cell:hover {
+    -fx-background-color: -fx-light-grey-color;
+}
+.date-picker .cell:focused {
+    -fx-background-color: -fx-light-grey-color;
+}
+.date-picker .selected {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+.date-picker .selected:focused {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+.date-picker-popup  {
+    -fx-border-color: transparent;
+}
+.date-picker-popup .month-year-pane {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: black;
+}
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: black;
+}
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: -fx-secondary-color;
+}
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: black;
+}
+
+.text-area .content {
+    -fx-background-color:  #282c34 ;
+}
+.text-area {
+    -fx-text-fill: white;
+}
+
+.text-area:focused .content {
+    -fx-background-color:  #282c34;
+    -fx-text-fill: white;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+    -fx-highlight-fill: #7ecfff;
+}
+
+.jfx-button {
+    -fx-background-color: linear-gradient(#7C0707,#4F0000);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+.dialog-pane {
+    -fx-background-color:  #13161d;
+    -fx-font: 18px "Arial";
+    -fx-padding: 0;
+}
+
+.dialog-pane *.header-panel{
+    -fx-background-color:  #13161d;
+}
+
+.dialog-pane *.header-panel *.label{
+    -fx-font: 18px "Arial";
+    -fx-fill: white;
+    -fx-alignment: center;
+}
+.dialog-pane *.header-panel *.text{
+    -fx-fill: white;
+    -fx-font: 20px "Arial";
+    -fx-font-weight: Bold;
+    -fx-alignment: center;
+}
+
+.dialog-pane > *.content.label {
+    -fx-alignment: center;
+    -fx-fill: white;
+    -fx-padding: 1.333em 0.833em 0 0.833em;
+}
+.dialog-pane > .content *.text {
+    -fx-fill: white;
+    -fx-font: 14px "Arial";
+    -fx-alignment: center;
+}
+
+.dialog-pane .button{
+    -fx-background-color: linear-gradient(#fa8f31,#ff5400);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-weight: Bold;
+    -fx-cursor:hand;
+}

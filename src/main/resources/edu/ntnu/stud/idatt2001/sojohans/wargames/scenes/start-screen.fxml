@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.StartScreenController">
    <children>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: black;">
          <center>
-            <ImageView fitHeight="700.0" fitWidth="1700.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="1300.0" fitWidth="2400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/war-games-screen.png" />
+                  <Image url="@../images/start-screen-background.png" />
                </image>
             </ImageView>
          </center>
       </BorderPane>
+      <ImageView fitHeight="140.0" fitWidth="886.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/war-games-logo.png" />
+         </image>
+         <StackPane.margin>
+            <Insets top="-300.0" />
+         </StackPane.margin>
+      </ImageView>
+      <Button mnemonicParsing="false" prefHeight="21.0" prefWidth="194.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Start" textFill="WHITE">
+         <StackPane.margin>
+            <Insets bottom="-300.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="Arial Bold" size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect></Button>
    </children>
 </StackPane>
