@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.StartScreenController">
+   <children>
+      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;">
+         <center>
+            <ImageView fitHeight="1086.0" fitWidth="1922.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../../../../../../../../../../../Bilder/wargame.png" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

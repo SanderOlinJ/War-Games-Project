@@ -76,16 +76,16 @@ public class ArmyReader {
             String[] values = line.split(DELIMITER);
             if (values.length != 3) {
                 throw new IOException("Error: Line data '" + line + "' is invalid." +
-                        "Make sure each line is in the form of 'Unit type,name,health,attack,armor,'");
+                        "Make sure each line is in the form of 'Unit type,name,number of occurrences,'");
             }
 
             String unitType = values[0];
             String unitName = values[1];
             if (unitName.trim().isEmpty()){
-                throw new IOException("Army name cannot be empty");
+                throw new IOException("Unit name cannot be empty");
             }
             if (Utilities.doesStringContainAnyNonAlphaNumericSymbols(unitName)){
-                throw new IOException("Army name can only contain alphanumeric symbols and Æ,Ø,Å");
+                throw new IOException("Unit name can only contain alphanumeric symbols and Æ,Ø,Å");
             }
 
 

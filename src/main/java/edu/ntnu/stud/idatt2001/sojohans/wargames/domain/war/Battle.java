@@ -43,6 +43,7 @@ public class Battle{
 
     /**
      * Method for simulating a battle between two Armies.
+     * Method runs as long both Armies have Units
      * @return The victor of the Battle.
      */
     public Army simulate(){

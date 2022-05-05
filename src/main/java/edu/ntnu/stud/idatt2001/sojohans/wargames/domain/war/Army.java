@@ -65,7 +65,7 @@ public class Army {
     }
 
     /**
-     * Method for adding a Unit to an Army.
+     * Method for adding a single Unit to an Army.
      * @param unit Unit to be added.
      * @throws IllegalArgumentException If Unit is null or the Unit's health is less than
      * or equals to 0.
