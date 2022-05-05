@@ -1,0 +1,4 @@
+Army file with wrong unit data formatting
+Infantry.Unit,Swordsman,2
+RangedUnit,Archer,1
+CommanderUnit,Commander,1

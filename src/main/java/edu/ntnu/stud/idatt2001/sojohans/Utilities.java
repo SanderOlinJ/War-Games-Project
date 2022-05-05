@@ -5,19 +5,16 @@ import java.io.File;
 public class Utilities {
 
     public static File convertStringToFile(String string){
+        String newStr = convertStringToFileName(string);
         return new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/armyFiles/" +
-                shortenAndReplaceUnnecessarySymbolsInString(string) + ".csv");
+                shortenAndReplaceNonAlphaNumericSymbolsInString(newStr) + ".csv");
     }
 
-    public static String shortenAndReplaceUnnecessarySymbolsInString(String str){
+    public static String shortenAndReplaceNonAlphaNumericSymbolsInString(String str){
         if (str == null || str.length() == 0){
             return "";
         }
-        char[] charArray = str.toCharArray();
-        charArray[0] = Character.toLowerCase(charArray[0]);
-
-        String newStr = new String(charArray);
-        return newStr.replaceAll("[^A-ZÆØÅa-zæøå0-9]","");
+        return str.replaceAll("[^A-Za-z0-9]","");
     }
 
     public static boolean doesArmyFileExist(String nameOfFile){
@@ -25,5 +22,14 @@ public class Utilities {
         return file.exists();
     }
 
+    public static String convertStringToFileName(String string){
+        char[] charArray = string.toCharArray();
+        charArray[0] = Character.toLowerCase(charArray[0]);
+        return shortenAndReplaceNonAlphaNumericSymbolsInString(new String(charArray));
+    }
 
+    public static boolean doesStringContainAnyNonAlphaNumericSymbols(String str){
+        str = str.replaceAll(" ", "");
+        return str.length() < Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(str).length();
+    }
 }

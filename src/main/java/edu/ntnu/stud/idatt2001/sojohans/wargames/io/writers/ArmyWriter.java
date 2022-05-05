@@ -29,7 +29,7 @@ public class ArmyWriter {
         if (army == null){
             throw new IOException("Army cannot be null!");
         }
-        if (nameOfFile == null || Utilities.shortenAndReplaceUnnecessarySymbolsInString(nameOfFile).isEmpty()){
+        if (nameOfFile == null || Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile).isEmpty()){
             throw new IOException("File name cannot be null or empty!");
         }
         StringBuilder stringBuilder =  new StringBuilder();
@@ -39,7 +39,7 @@ public class ArmyWriter {
         stringBuilder.append(unitsToFile);
 
         try(FileWriter fileWriter = new FileWriter(Utilities.convertStringToFile
-                (Utilities.shortenAndReplaceUnnecessarySymbolsInString(nameOfFile)))){
+                (Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile)))){
             fileWriter.write(stringBuilder.toString());
 
         } catch (IOException exception){
@@ -58,7 +58,7 @@ public class ArmyWriter {
         if (units == null || units.size() == 0){
             throw new IOException("List of units cannot be null or empty!");
         }
-        if (nameOfFile == null || Utilities.shortenAndReplaceUnnecessarySymbolsInString(nameOfFile).isEmpty()){
+        if (nameOfFile == null || Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile).isEmpty()){
             throw new IOException("File name cannot be null or empty!");
         }
         String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(units);

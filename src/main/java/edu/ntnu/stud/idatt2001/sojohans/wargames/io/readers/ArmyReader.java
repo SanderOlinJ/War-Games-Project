@@ -15,7 +15,6 @@ import java.util.Scanner;
  */
 public class ArmyReader {
 
-    private static final String NEWLINE = "\n";
     private static final String DELIMITER = ",";
 
     public ArmyReader(){}
@@ -27,9 +26,15 @@ public class ArmyReader {
         if (!Utilities.doesArmyFileExist(nameOfFile)){
             throw new IOException("File does not exist!");
         }
-        if (nameOfFile == null || Utilities.shortenAndReplaceUnnecessarySymbolsInString(nameOfFile).isEmpty()){
+        if (nameOfFile == null || Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile).isEmpty()){
             throw new IOException("File name cannot be empty");
         }
+        String nameOfFileShortened = Utilities.convertStringToFileName(nameOfFile);
+        if (nameOfFileShortened.length() < nameOfFile.length()){
+            throw new IOException("File name can only contain alphanumeric symbols and Æ,Ø,Å");
+        }
+
+
         File file = Utilities.convertStringToFile(nameOfFile);
         List<String> armyInfoInFile = new ArrayList<>();
 
@@ -40,47 +45,57 @@ public class ArmyReader {
             while (scanner.hasNext()){
                 armyInfoInFile.add(scanner.nextLine());
             }
+
         } catch (IOException exception){
             throw new IOException("File could not be read: " + exception.getMessage());
         }
-
         if (armyInfoInFile.size() == 1){
             throw new IOException("File does not contain units!");
         }
 
-        String armyName = armyInfoInFile.get(0);
-        String armyNameShortened = Utilities.shortenAndReplaceUnnecessarySymbolsInString(armyName);
-        if (armyNameShortened.isEmpty()){
+
+
+        if (armyInfoInFile.get(0).trim().isEmpty()){
             throw new IOException("Army name cannot be empty");
         }
-        if (armyNameShortened.length() < armyName.length()){
-            throw new IOException("Army name can only contain alphanumeric symbols + Æ,Ø,Å");
+        if (Utilities.doesStringContainAnyNonAlphaNumericSymbols(armyInfoInFile.get(0))){
+            throw new IOException("Army name can only contain alphanumeric symbols and Æ,Ø,Å");
         }
-        Army army = new Army(armyNameShortened);
+
+        String armyName = armyInfoInFile.get(0);
+        Army army = new Army(armyName);
+
 
         for (int i = 1; i < armyInfoInFile.size(); i++) {
+
             String line = armyInfoInFile.get(i);
+            if (line.isEmpty()){
+                throw new IOException("Line empty at line " + i);
+            }
+
             String[] values = line.split(DELIMITER);
             if (values.length != 3) {
                 throw new IOException("Error: Line data '" + line + "' is invalid." +
                         "Make sure each line is in the form of 'Unit type,name,health,attack,armor,'");
             }
+
             String unitType = values[0];
             String unitName = values[1];
-            String unitNameShortened = Utilities.shortenAndReplaceUnnecessarySymbolsInString(unitName);
-            if (unitNameShortened.isEmpty()){
+            if (unitName.trim().isEmpty()){
                 throw new IOException("Army name cannot be empty");
             }
-            if (unitNameShortened.length() < unitName.length()){
-                throw new IOException("Army name can only contain alphanumeric symbols + Æ,Ø,Å");
+            if (Utilities.doesStringContainAnyNonAlphaNumericSymbols(unitName)){
+                throw new IOException("Army name can only contain alphanumeric symbols and Æ,Ø,Å");
             }
+
+
             int numberOfOccurrences;
             try {
                 numberOfOccurrences = Integer.parseInt(values[2]);
             } catch (NumberFormatException exception) {
                 throw new IOException("Error parsing number of occurrences for unit at line " + i);
             }
-            Unit unit = null;
+
             for (int j = 0; j < numberOfOccurrences; j++) {
                 switch (unitType) {
                     case "InfantryUnit" -> army.addUnit(new InfantryUnit(unitName, 100));
