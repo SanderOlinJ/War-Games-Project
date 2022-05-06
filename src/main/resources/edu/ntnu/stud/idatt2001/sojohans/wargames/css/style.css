@@ -63,7 +63,6 @@ styling for combobox prompt text and text field
 
 .text-field{
     -fx-text-fill: white;
-    -fx-background-color:  #282c34;
 }
 
 * {
@@ -181,6 +180,7 @@ styling for combobox prompt text and text field
     -fx-fill: white;
     -fx-padding: 1.333em 0.833em 0 0.833em;
 }
+
 .dialog-pane > .content *.text {
     -fx-fill: white;
     -fx-font: 14px "Arial";
@@ -194,4 +194,17 @@ styling for combobox prompt text and text field
     -fx-text-fill: white;
     -fx-font-weight: Bold;
     -fx-cursor:hand;
+}
+
+.HBox {
+    -fx-background-color: #4F0000;
+    -fx-stroke: black;
+    -fx-stroke-type: outside;
+    -fx-stroke-width: 10;
+}
+
+.Rectangle {
+    -fx-stroke: black;
+    -fx-stroke-type: outside;
+    -fx-stroke-width: 10;
 }

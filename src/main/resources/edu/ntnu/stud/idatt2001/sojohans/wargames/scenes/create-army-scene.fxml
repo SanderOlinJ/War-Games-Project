@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.CreateArmyController">
+   <center>
+      <VBox style="-fx-background-color: BBA88D;">
+         <children>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0" styleClass="HBox" stylesheets="@../css/style.css">
+                     <children>
+                        <ImageView fitHeight="128.0" fitWidth="397.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/war-games-logo.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Currency:" wrappingWidth="163.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="29.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="200.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="1842.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" maxWidth="1500.0" prefHeight="582.0" prefWidth="1000.0" stylesheets="@../css/style.css">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="1270.0" prefWidth="1000.0" style="-fx-background-color: D4C49C;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="1000.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create Army">
+                                       <font>
+                                          <Font name="Arial Bold" size="35.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="100.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="263.0" prefWidth="757.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="757.0" style="-fx-background-color: CCAC6C;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Infantry Units">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="160.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/spear.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighter">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="95.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="150.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Text fx:id="numberOfAvailableUnits1" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/sword.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsman">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="105.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="150.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Text fx:id="numberOfAvailableUnits11" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/axe.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axeman">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="146.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="150.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Text fx:id="numberOfAvailableUnits111" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="757.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="757.0" style="-fx-background-color: CCAC6C;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ranged Units">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="160.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/bowandarrow.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axeman">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="146.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="150.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Text fx:id="numberOfAvailableUnits1111" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="100.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="114.0" prefWidth="757.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="757.0" style="-fx-background-color: CCAC6C;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cavalry Units">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="162.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/light-cavalry.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="90.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="150.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Text fx:id="numberOfAvailableUnits11" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="100.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="757.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="757.0" style="-fx-background-color: CCAC6C;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Commander Units">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="102.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <children>
+                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/commander.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Commander">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="101.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="150.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Text fx:id="numberOfAvailableUnits11111" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="100.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

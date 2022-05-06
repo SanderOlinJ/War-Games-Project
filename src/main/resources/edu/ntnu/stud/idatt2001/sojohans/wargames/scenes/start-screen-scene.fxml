@@ -29,7 +29,7 @@
             <Insets top="-300.0" />
          </StackPane.margin>
       </ImageView>
-      <Button mnemonicParsing="false" prefHeight="21.0" prefWidth="194.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Start" textFill="WHITE">
+      <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="21.0" prefWidth="194.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Start" textFill="WHITE">
          <StackPane.margin>
             <Insets bottom="-300.0" />
          </StackPane.margin>
