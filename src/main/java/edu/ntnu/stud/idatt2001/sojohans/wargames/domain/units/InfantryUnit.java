@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+
 /**
  * Class for describing a InfantryUnit.
  */
@@ -32,6 +34,12 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
+        if (getTerrainType() == null){
+            return 2;
+        }
+        if (getTerrainType().equals(TerrainType.FOREST)){
+            return 6;
+        }
         return 2;
     }
 
@@ -41,6 +49,12 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getResistBonus() {
+        if (getTerrainType() == null){
+            return 1;
+        }
+        if (getTerrainType().equals(TerrainType.FOREST)){
+            return 3;
+        }
         return 1;
     }
 

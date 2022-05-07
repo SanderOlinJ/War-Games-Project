@@ -1,6 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 
 import java.util.Objects;
 
@@ -13,6 +14,8 @@ public abstract class Unit {
     private int health;
     private final int attack;
     private final int armor;
+
+    private TerrainType terrainType;
 
     /**
      * The constructor method for a Unit object.
@@ -120,6 +123,14 @@ public abstract class Unit {
      */
     public int getArmor() {
         return armor;
+    }
+
+    public TerrainType getTerrainType() {
+        return terrainType;
+    }
+
+    public void setTerrainType(TerrainType terrainType) {
+        this.terrainType = terrainType;
     }
 
     /**

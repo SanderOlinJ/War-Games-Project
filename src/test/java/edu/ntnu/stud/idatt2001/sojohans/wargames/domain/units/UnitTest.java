@@ -1,6 +1,8 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -77,6 +79,34 @@ class UnitTest {
             guardian.attack(savathun);
 
             assertEquals(165,savathun.getHealth());
+        }
+
+        @Test
+        void doesInfantryUnitGetTerrainBonusInForest(){
+            Army army = new Army("Army");
+
+            army.addUnit(new InfantryUnit("Infantry1",100));
+            army.addUnit(new InfantryUnit("Infantry2",100));
+            army.addUnit(new RangedUnit("Ranged1",100));
+
+            army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+
+            assertEquals(6, army.getUnits().get(0).getAttackBonus());
+        }
+
+        @Test
+        void doesInfantryUnitNotAttackingInForestStillGetBonus(){
+            Army army = new Army("Army");
+
+            army.addUnit(new InfantryUnit("Infantry1",100));
+            army.addUnit(new InfantryUnit("Infantry2",100));
+            army.addUnit(new RangedUnit("Ranged1",100));
+
+            army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+
+            InfantryUnit infantryUnit = new InfantryUnit("Infantry3",100);
+
+            assertEquals(2, infantryUnit.getAttackBonus());
         }
     }
 }
