@@ -1,6 +1,8 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.io.writers;
 
 import edu.ntnu.stud.idatt2001.sojohans.Utilities;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.InfantryUnit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import java.io.FileWriter;
@@ -92,9 +94,18 @@ public class ArmyWriter {
         }
         StringBuilder stringBuilder = new StringBuilder();
         unitsAndNumberOfOccurrences.forEach((unit, integer) ->
-                stringBuilder.append(unit.getClass().getSimpleName()).append(DELIMITER)
+                {
+                    UnitType unitType = null;
+                    switch (unit.getClass().getSimpleName()){
+                        case "InfantryUnit" -> unitType = UnitType.INFANTRY_UNIT;
+                        case "RangedUnit" -> unitType = UnitType.RANGED_UNIT;
+                        case "CavalryUnit" -> unitType = UnitType.CAVALRY_UNIT;
+                        case "CommanderUnit" -> unitType = UnitType.COMMANDER_UNIT;
+                    }
+                stringBuilder.append(unitType).append(DELIMITER)
                         .append(unit.getName()).append(DELIMITER)
-                        .append(integer).append(NEWLINE));
+                        .append(integer).append(NEWLINE);
+                });
 
         return stringBuilder.toString();
     }

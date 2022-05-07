@@ -1,7 +1,8 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers;
 
 import edu.ntnu.stud.idatt2001.sojohans.Utilities;
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.*;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitFactory;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 
 import java.io.File;
@@ -79,10 +80,17 @@ public class ArmyReader {
                         "Make sure each line is in the form of 'Unit type,name,number of occurrences,'");
             }
 
-            String unitType = values[0];
+            String unitTypeAsString = values[0];
             String unitName = values[1];
             if (unitName.trim().isEmpty()){
                 throw new IOException("Unit name cannot be empty");
+            }
+
+            UnitType unitType;
+            try{
+                unitType = UnitType.valueOf(unitTypeAsString);
+            } catch (IllegalArgumentException exception){
+                throw new IOException("Unit type not recognized");
             }
             if (Utilities.doesStringContainAnyNonAlphaNumericSymbols(unitName)){
                 throw new IOException("Unit name can only contain alphanumeric symbols and Æ,Ø,Å");
@@ -96,15 +104,7 @@ public class ArmyReader {
                 throw new IOException("Error parsing number of occurrences for unit at line " + i);
             }
 
-            for (int j = 0; j < numberOfOccurrences; j++) {
-                switch (unitType) {
-                    case "InfantryUnit" -> army.addUnit(new InfantryUnit(unitName, 100));
-                    case "RangedUnit" -> army.addUnit(new RangedUnit(unitName, 100));
-                    case "CavalryUnit" -> army.addUnit(new CavalryUnit(unitName, 100));
-                    case "CommanderUnit" -> army.addUnit(new CommanderUnit(unitName, 100));
-                    default -> throw new IOException("Could not instantiate units");
-                }
-            }
+            army.addAllUnits(UnitFactory.getCertainAmountUnits(unitType, unitName, numberOfOccurrences));
         }
         return army;
     }

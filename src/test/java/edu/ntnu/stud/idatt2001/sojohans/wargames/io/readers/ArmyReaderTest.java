@@ -14,7 +14,7 @@ class ArmyReaderTest {
     void checkIfReadArmyFromFileReturnsAnArmyWithCorrectValues() throws IOException {
         Army army = ArmyReader.readArmyFromFile("army");
 
-        System.out.println(army);
+        assertEquals(7, army.getUnits().size());
     }
 
     @Nested

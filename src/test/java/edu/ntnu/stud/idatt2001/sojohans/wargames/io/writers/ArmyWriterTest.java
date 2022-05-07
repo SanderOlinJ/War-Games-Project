@@ -11,14 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArmyWriterTest {
 
     @Test
-    void runWriteArmyToFile() throws IOException {
-        Army army = new Army("Human Army");
-
-        ArmyWriter.writeArmyToFile(army, army.getName());
-    }
-
-
-    @Test
     void runWriteArmyToFileButWithAnArmyThatIsNull(){
 
         assertThrows(IOException.class, () -> ArmyWriter.writeArmyToFile(null,"File"));

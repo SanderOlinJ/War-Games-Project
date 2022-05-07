@@ -31,7 +31,7 @@ class UnitFactoryTest {
     @Test
     void getNumberOfUnitsReturnCorrectAmountOfSameUnit(){
 
-        List<Unit> units = UnitFactory.getNumberOfUnits(UnitType.INFANTRY_UNIT,
+        List<Unit> units = UnitFactory.getCertainAmountUnits(UnitType.INFANTRY_UNIT,
                 "Swordsman", 100);
         assertEquals(100, units.size());
     }

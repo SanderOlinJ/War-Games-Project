@@ -24,8 +24,8 @@ public class UnitFactory {
         };
     }
 
-    public static List<Unit> getNumberOfUnits(UnitType unitType, String name,
-                                              int numberOfUnits){
+    public static List<Unit> getCertainAmountUnits(UnitType unitType, String name,
+                                                   int numberOfUnits){
         if (unitType == null){
             throw new FactoryException("UnitType cannot be null");
         }
