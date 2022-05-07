@@ -81,32 +81,67 @@ class UnitTest {
             assertEquals(165,savathun.getHealth());
         }
 
-        @Test
-        void doesInfantryUnitGetTerrainBonusInForest(){
-            Army army = new Army("Army");
+        @Nested
+        class doesTerrainAffectAttackAndResistBonusAsExpected {
+            @Test
+            void doesInfantryUnitGetIncreasedAttackBonusInForest() {
 
-            army.addUnit(new InfantryUnit("Infantry1",100));
-            army.addUnit(new InfantryUnit("Infantry2",100));
-            army.addUnit(new RangedUnit("Ranged1",100));
+                Army army = new Army("Army");
+                army.addUnit(new InfantryUnit("Infantry", 100));
 
-            army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+                army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+                assertEquals(6, army.getUnits().get(0).getAttackBonus());
+            }
 
-            assertEquals(6, army.getUnits().get(0).getAttackBonus());
-        }
+            @Test
+            void doesInfantryUnitGetIncreasedResistBonusInForest() {
 
-        @Test
-        void doesInfantryUnitNotAttackingInForestStillGetBonus(){
-            Army army = new Army("Army");
+                Army army = new Army("Army");
+                army.addUnit(new InfantryUnit("Infantry", 100));
 
-            army.addUnit(new InfantryUnit("Infantry1",100));
-            army.addUnit(new InfantryUnit("Infantry2",100));
-            army.addUnit(new RangedUnit("Ranged1",100));
+                army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+                assertEquals(3, army.getUnits().get(0).getResistBonus());
+            }
 
-            army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+            @Test
+            void doesRangedUnitGetIncreasedAttackBonusOnHill() {
 
-            InfantryUnit infantryUnit = new InfantryUnit("Infantry3",100);
+                Army army = new Army("Army");
+                army.addUnit(new RangedUnit("Ranged", 100));
 
-            assertEquals(2, infantryUnit.getAttackBonus());
+                army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.HILL));
+                assertEquals(6, army.getUnits().get(0).getAttackBonus());
+            }
+
+            @Test
+            void doesRangedUnitGetDecreasedAttackBonusInForest() {
+
+                Army army = new Army("Army");
+                army.addUnit(new RangedUnit("Ranged", 100));
+
+                army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+                assertEquals(1, army.getUnits().get(0).getAttackBonus());
+            }
+
+            @Test
+            void doesCavalryUnitGetIncreasedAttackBonusOnPlains() {
+
+                Army army = new Army("Army");
+                army.addUnit(new CavalryUnit("Cavalry", 100));
+
+                army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.PLAINS));
+                assertEquals(9, army.getUnits().get(0).getAttackBonus());
+            }
+
+            @Test
+            void doesCavalryUnitGetNoAttackBonusInForest() {
+
+                Army army = new Army("Army");
+                army.addUnit(new CavalryUnit("Cavalry", 100));
+
+                army.getUnits().forEach(unit -> unit.setTerrainType(TerrainType.FOREST));
+                assertEquals(0, army.getUnits().get(0).getResistBonus());
+            }
         }
     }
 }

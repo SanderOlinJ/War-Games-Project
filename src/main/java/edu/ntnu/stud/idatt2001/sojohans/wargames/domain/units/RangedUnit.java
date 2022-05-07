@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+
 /**
  * Class for describing a RangedUnit.
  */
@@ -41,7 +43,17 @@ public class RangedUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
-        return 3;
+        int attackBonus = 3;
+        if (getTerrainType() == null){
+            return attackBonus;
+        }
+        if (getTerrainType().equals(TerrainType.HILL)){
+            attackBonus += 3;
+        }
+        else if (getTerrainType().equals(TerrainType.FOREST)){
+            attackBonus -= 2;
+        }
+        return attackBonus;
     }
 
     /**

@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+
 /**
  * Class for describing a CavalryUnit.
  */
@@ -42,12 +44,18 @@ public class CavalryUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
+        int attackBonus = 2;
         if (!this.chargedAttack){
             chargedAttack = true;
-            return 6;
-        }else {
-            return 2;
+            attackBonus = 6;
         }
+        if (getTerrainType() == null){
+            return attackBonus;
+        }
+        if (getTerrainType().equals(TerrainType.PLAINS)){
+            attackBonus += 3;
+        }
+        return attackBonus;
     }
     /**
      * Method for retrieving the CavalryUnit's resist bonus.
@@ -55,7 +63,14 @@ public class CavalryUnit extends Unit{
      */
     @Override
     public int getResistBonus() {
-        return 1;
+        int resistBonus = 1;
+        if (getTerrainType() == null){
+            return resistBonus;
+        }
+        if (getTerrainType().equals(TerrainType.FOREST)){
+            resistBonus -= 1;
+        }
+        return resistBonus;
     }
 
     /**

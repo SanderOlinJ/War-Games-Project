@@ -34,13 +34,14 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
+        int attackBonus = 2;
         if (getTerrainType() == null){
-            return 2;
+            return attackBonus;
         }
         if (getTerrainType().equals(TerrainType.FOREST)){
-            return 6;
+            attackBonus += 4;
         }
-        return 2;
+        return attackBonus;
     }
 
     /**
@@ -49,13 +50,14 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getResistBonus() {
+        int resistBonus = 1;
         if (getTerrainType() == null){
-            return 1;
+            return resistBonus;
         }
         if (getTerrainType().equals(TerrainType.FOREST)){
-            return 3;
+            resistBonus += 2;
         }
-        return 1;
+        return resistBonus;
     }
 
     /**
