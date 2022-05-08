@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public class Army {
 
-    private final String name;
+    private String name;
     private final List<Unit> units;
 
     /**
@@ -44,6 +44,22 @@ public class Army {
         this.name = name;
         this.units = new ArrayList<>();
         addAllUnits(newUnits);
+    }
+
+    /**
+     * Constructor for Army class with no parameters.
+     *
+     */
+    public Army(){
+        this.units = new ArrayList<>();
+    }
+
+    /**
+     * Method for setting the name of the Army.
+     * @param name Name of the Army.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

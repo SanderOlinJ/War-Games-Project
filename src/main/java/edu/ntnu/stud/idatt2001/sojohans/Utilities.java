@@ -32,4 +32,9 @@ public class Utilities {
         str = str.replaceAll(" ", "");
         return str.length() < Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(str).length();
     }
+
+    public static boolean doesStringContainSymbolsOtherThanNumbers(String str){
+        String newStr = str.replaceAll("[0-9]", "");
+        return str.length() < newStr.length();
+    }
 }

@@ -1,5 +1,5 @@
 .scroll-pane {
-    -fx-background-color: #282c34;
+    -fx-background-color: #D4C49C;
 }
 
 .scroll-bar:horizontal, .scroll-bar:vertical{
@@ -20,7 +20,7 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: white;
+    -fx-background-color: #111111;
     -fx-background-radius: 5em;
 }
 
@@ -62,7 +62,7 @@ styling for combobox prompt text and text field
 }
 
 .text-field{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 * {
@@ -71,57 +71,6 @@ styling for combobox prompt text and text field
     -fx-light-grey-color: #d1d1d1;
 
     -fx-focus-color: -fx-secondary-color;
-}
-
-.date-picker .text-field {
-    -fx-font: 18px "Arial";
-    -fx-font-weight:  Bold;
-}
-
-.date-picker .arrow-button {
-    -fx-background-color: -fx-primary-color;
-    -fx-background-radius: 0;
-}
-.date-picker .arrow-button:hover {
-    -fx-background-color: -fx-secondary-color;
-}
-.date-picker .arrow-button .arrow {
-    -fx-background-color: white;
-}
-.date-picker .cell {
-    -fx-background-color: white;
-    -fx-font: 14px "Arial";
-}
-.date-picker .cell:hover {
-    -fx-background-color: -fx-light-grey-color;
-}
-.date-picker .cell:focused {
-    -fx-background-color: -fx-light-grey-color;
-}
-.date-picker .selected {
-    -fx-background-color: -fx-primary-color;
-    -fx-text-fill: white;
-}
-.date-picker .selected:focused {
-    -fx-background-color: -fx-primary-color;
-    -fx-text-fill: white;
-}
-.date-picker-popup  {
-    -fx-border-color: transparent;
-}
-.date-picker-popup .month-year-pane {
-    -fx-background-color: -fx-primary-color;
-    -fx-text-fill: black;
-}
-.date-picker-popup .month-year-pane .label {
-    -fx-text-fill: black;
-}
-.date-picker-popup .week-number-cell {
-    -fx-text-fill: -fx-secondary-color;
-}
-.date-picker-popup .spinner .button .left-arrow,
-.date-picker-popup .spinner .button .right-arrow {
-    -fx-background-color: black;
 }
 
 .text-area .content {
@@ -149,6 +98,13 @@ styling for combobox prompt text and text field
 .jfx-button {
     -fx-background-color: linear-gradient(#7C0707,#4F0000);
     -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+.add-or-remove-button{
+    -fx-background-color: linear-gradient(#7C0707,#4F0000);
+    -fx-background-radius: 0;
     -fx-background-insets: 0;
     -fx-text-fill: white;
 }
@@ -196,15 +152,14 @@ styling for combobox prompt text and text field
     -fx-cursor:hand;
 }
 
-.HBox {
+.TopMenuBar {
     -fx-background-color: #4F0000;
     -fx-stroke: black;
     -fx-stroke-type: outside;
     -fx-stroke-width: 10;
 }
 
-.Rectangle {
-    -fx-stroke: black;
-    -fx-stroke-type: outside;
-    -fx-stroke-width: 10;
+.HBox2 {
+    -fx-background-color: #240000;
 }
+

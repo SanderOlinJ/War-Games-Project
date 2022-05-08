@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -18,26 +20,119 @@
          <children>
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0" styleClass="HBox" stylesheets="@../css/style.css">
+                  <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0" styleClass="TopMenuBar" stylesheets="@../css/style.css">
                      <children>
-                        <ImageView fitHeight="128.0" fitWidth="397.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="menuButton" fitHeight="96.0" fitWidth="234.0" onMouseClicked="#onMenuButtonClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/menu.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="96.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/create-army.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="89.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/war-games-logo.png" />
                            </image>
-                           <HBox.margin>
-                              <Insets left="20.0" top="5.0" />
-                           </HBox.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Currency:" wrappingWidth="163.13671875">
+                        <ImageView fitHeight="96.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/battle-history.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="96.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/simulate.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </VBox>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1200.0" style="-fx-background-color: black;" />
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="1200.0" styleClass="HBox2" stylesheets="@../css/style.css">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="warningText" fill="#ffec3c" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="827.13671875">
+                           <HBox.margin>
+                              <Insets right="60.0" />
+                           </HBox.margin>
                            <font>
-                              <Font name="Arial Bold" size="29.0" />
+                              <Font name="Arial Bold" size="21.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Resources:" wrappingWidth="123.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="22.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="200.0" />
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="numberOfGold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="numberOfGold1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="60.0" />
                            </HBox.margin>
                         </Text>
                      </children>
                   </HBox>
+               </children>
+            </VBox>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1200.0" style="-fx-background-color: black;" />
+            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="91.0" prefWidth="1200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create Army" wrappingWidth="219.3125">
+                     <font>
+                        <Font name="Arial Bold" size="32.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="-600.0" />
+                     </VBox.margin>
+                  </Text>
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="1842.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
@@ -46,16 +141,54 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="1270.0" prefWidth="1000.0" style="-fx-background-color: D4C49C;">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="1000.0">
+                              <HBox alignment="CENTER" prefHeight="112.0" prefWidth="1000.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create Army">
+                                    <Text fx:id="armyName" strokeType="OUTSIDE" strokeWidth="0.0">
+                                       <font>
+                                          <Font name="Arial Bold" size="35.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="armyNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Army name: ">
                                        <font>
                                           <Font name="Arial Bold" size="35.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="100.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </Text>
+                                    <TextField fx:id="textFieldArmyName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="325.0" styleClass="text-field" stylesheets="@../css/style.css">
+                                       <font>
+                                          <Font name="Arial Bold" size="21.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                       </effect>
+                                    </TextField>
+                                    <Button fx:id="setArmyNameButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSetArmyNameButtonClicked" prefHeight="34.0" prefWidth="173.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Set Army Name">
+                                       <font>
+                                          <Font name="Arial Bold" size="19.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                    <Button fx:id="editArmyNameButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEditArmyNameButtonClicked" prefHeight="34.0" prefWidth="0.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Edit Army Name" visible="false">
+                                       <font>
+                                          <Font name="Arial Bold" size="19.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
                                  </children>
                               </HBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="263.0" prefWidth="757.0">
@@ -81,6 +214,14 @@
                                                 <Insets left="160.0" />
                                              </HBox.margin>
                                           </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In army">
+                                             <font>
+                                                <Font name="Arial Bold" size="27.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="220.0" />
+                                             </HBox.margin>
+                                          </Text>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="757.0" style="-fx-background-color: F7ECDC;">
@@ -101,7 +242,7 @@
                                                 <Insets left="50.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                          <Text fx:id="costOfSpearFighter" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
@@ -109,9 +250,17 @@
                                                 <Insets left="95.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                          <Text fx:id="costOfSpearFighter1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
                                              <HBox.margin>
-                                                <Insets left="150.0" />
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldSpearFighter" alignment="CENTER" prefHeight="30.0" prefWidth="79.0" styleClass="text-field" stylesheets="@../css/style.css">
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -119,14 +268,52 @@
                                              <effect>
                                                 <DropShadow height="10.0" radius="4.5" width="10.0" />
                                              </effect>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
-                                          <Text fx:id="numberOfAvailableUnits1" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                          <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="addSpearFighterButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddSpearFighterButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="removeSpearFighterButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveSpearFighterButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Text fx:id="spearFighterNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="122.13671875">
                                              <font>
-                                                <Font name="Arial Bold" size="23.0" />
+                                                <Font name="Arial Bold" size="31.0" />
                                              </font>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
                                           </Text>
                                        </children>
                                     </HBox>
@@ -148,7 +335,7 @@
                                                 <Insets left="50.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                          <Text fx:id="costOfSwordsman" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
@@ -156,9 +343,17 @@
                                                 <Insets left="105.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                          <Text fx:id="costOfSwordsman1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
                                              <HBox.margin>
-                                                <Insets left="150.0" />
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldSwordsman" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -166,14 +361,49 @@
                                              <effect>
                                                 <DropShadow height="10.0" radius="4.5" width="10.0" />
                                              </effect>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
-                                          <Text fx:id="numberOfAvailableUnits11" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                          <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="addSwordsmanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddSwordsmanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="removeSwordsmanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveSwordsmanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Text fx:id="swordsmanNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="122.13671875">
                                              <font>
-                                                <Font name="Arial Bold" size="23.0" />
+                                                <Font name="Arial Bold" size="31.0" />
                                              </font>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
                                           </Text>
                                        </children>
                                        <VBox.margin>
@@ -198,7 +428,7 @@
                                                 <Insets left="50.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                          <Text fx:id="costOfAxeman" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
@@ -206,9 +436,17 @@
                                                 <Insets left="146.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                          <Text fx:id="costOfAxeman1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
                                              <HBox.margin>
-                                                <Insets left="150.0" />
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldAxeman" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -216,14 +454,49 @@
                                              <effect>
                                                 <DropShadow height="10.0" radius="4.5" width="10.0" />
                                              </effect>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
-                                          <Text fx:id="numberOfAvailableUnits111" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                          <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="addAxemanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddAxemanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="removeAxemanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveAxemanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Text fx:id="axemanNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="122.13671875">
                                              <font>
-                                                <Font name="Arial Bold" size="23.0" />
+                                                <Font name="Arial Bold" size="31.0" />
                                              </font>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
                                           </Text>
                                        </children>
                                        <VBox.margin>
@@ -232,7 +505,7 @@
                                     </HBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="10.0" />
                                  </VBox.margin>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="757.0">
@@ -270,7 +543,7 @@
                                                 <Image url="@../images/bowandarrow.png" />
                                              </image>
                                           </ImageView>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axeman">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archer">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
@@ -278,17 +551,25 @@
                                                 <Insets left="50.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                          <Text fx:id="costOfArcher" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets left="146.0" />
+                                                <Insets left="161.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                          <Text fx:id="costOfArcher1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
                                              <HBox.margin>
-                                                <Insets left="150.0" />
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldArcher" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -296,14 +577,49 @@
                                              <effect>
                                                 <DropShadow height="10.0" radius="4.5" width="10.0" />
                                              </effect>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
-                                          <Text fx:id="numberOfAvailableUnits1111" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                          <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="addArcherButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddArcherButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="removeArcherButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveArcherButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Text fx:id="archerNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="122.13671875">
                                              <font>
-                                                <Font name="Arial Bold" size="23.0" />
+                                                <Font name="Arial Bold" size="31.0" />
                                              </font>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
                                           </Text>
                                        </children>
                                        <VBox.margin>
@@ -312,7 +628,7 @@
                                     </HBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="100.0" />
+                                    <Insets top="70.0" />
                                  </VBox.margin>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="114.0" prefWidth="757.0">
@@ -358,7 +674,7 @@
                                                 <Insets left="50.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                          <Text fx:id="costOfLightCavalry" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
@@ -366,9 +682,17 @@
                                                 <Insets left="90.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                          <Text fx:id="costOfLightCavalry1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
                                              <HBox.margin>
-                                                <Insets left="150.0" />
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldLightCavalry" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -376,20 +700,55 @@
                                              <effect>
                                                 <DropShadow height="10.0" radius="4.5" width="10.0" />
                                              </effect>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
-                                          <Text fx:id="numberOfAvailableUnits11" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                          <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="addLightCavalryButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddLightCavalryButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="removeLightCavalryButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveLightCavalryButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Text fx:id="lightCavalryNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="122.13671875">
                                              <font>
-                                                <Font name="Arial Bold" size="23.0" />
+                                                <Font name="Arial Bold" size="31.0" />
                                              </font>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
                                           </Text>
                                        </children>
                                     </HBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="100.0" />
+                                    <Insets top="70.0" />
                                  </VBox.margin>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="757.0">
@@ -427,7 +786,7 @@
                                                 <Image url="@../images/commander.png" />
                                              </image>
                                           </ImageView>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Commander">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladin">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
@@ -435,17 +794,25 @@
                                                 <Insets left="50.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20 G">
+                                          <Text fx:id="costOfPaladin" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
                                              <font>
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets left="101.0" />
+                                                <Insets left="154.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                          <Text fx:id="costOfPaladin1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
                                              <HBox.margin>
-                                                <Insets left="150.0" />
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldPaladin" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
+                                             <HBox.margin>
+                                                <Insets left="50.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -453,14 +820,49 @@
                                              <effect>
                                                 <DropShadow height="10.0" radius="4.5" width="10.0" />
                                              </effect>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
-                                          <Text fx:id="numberOfAvailableUnits11111" onMouseClicked="#onNumberOfAvailableUnits1Clicked" strokeType="OUTSIDE" strokeWidth="0.0" text="(20)" wrappingWidth="68.13671875">
+                                          <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
+                                             <children>
+                                                <Button fx:id="addPaladinButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddPaladinButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="removePaladinButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemovePaladinButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="-10.0" top="-10.0" />
+                                                   </padding>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Text fx:id="paladinNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="122.13671875">
                                              <font>
-                                                <Font name="Arial Bold" size="23.0" />
+                                                <Font name="Arial Bold" size="31.0" />
                                              </font>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
                                           </Text>
                                        </children>
                                        <VBox.margin>
@@ -469,12 +871,33 @@
                                     </HBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="100.0" />
+                                    <Insets top="70.0" />
                                  </VBox.margin>
                               </VBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="1000.0">
+                                 <children>
+                                    <Button fx:id="instantiateArmy" mnemonicParsing="false" onAction="#onInstantiateArmyButtonClicked" prefHeight="42.0" prefWidth="184.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Instantiate army">
+                                       <font>
+                                          <Font name="Arial Bold" size="17.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="120.0" />
+                                       </HBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </content>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </ScrollPane>
                </children>
             </HBox>
