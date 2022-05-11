@@ -28,13 +28,13 @@ public class Utilities {
         return shortenAndReplaceNonAlphaNumericSymbolsInString(new String(charArray));
     }
 
-    public static boolean doesStringContainAnyNonAlphaNumericSymbols(String str){
+    public static boolean stringDoesNotContainAnyNonAlphaNumericSymbols(String str){
         str = str.replaceAll(" ", "");
-        return str.length() < Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(str).length();
+        return str.length() != Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(str).length();
     }
 
-    public static boolean doesStringContainSymbolsOtherThanNumbers(String str){
-        String newStr = str.replaceAll("[0-9]", "");
-        return str.length() < newStr.length();
+    public static boolean stringDoesNotContainSymbolsOtherThanNumbers(String str){
+        String newStr = str.replaceAll("[^0-9]", "");
+        return str.length() != newStr.length();
     }
 }

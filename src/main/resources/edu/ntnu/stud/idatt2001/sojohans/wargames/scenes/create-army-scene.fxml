@@ -123,14 +123,14 @@
                </children>
             </VBox>
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1200.0" style="-fx-background-color: black;" />
-            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="91.0" prefWidth="1200.0">
+            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create Army" wrappingWidth="219.3125">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create Army" wrappingWidth="298.3125">
                      <font>
-                        <Font name="Arial Bold" size="32.0" />
+                        <Font name="Arial Bold" size="50.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="-600.0" />
+                        <Insets />
                      </VBox.margin>
                   </Text>
                </children>

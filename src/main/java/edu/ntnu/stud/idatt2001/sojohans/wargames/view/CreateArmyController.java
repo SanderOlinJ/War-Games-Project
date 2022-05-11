@@ -56,34 +56,17 @@ public class CreateArmyController {
     @FXML private Button editArmyNameButton;
 
     private Army army;
+    private int[] nrOfSpecificUnits;
+
+
     @FXML
     public void initialize(){
         army = new Army();
         numberOfGold.setText("1000000");
         numberOfGold1.setVisible(true);
+        nrOfSpecificUnits = new int[6];
     }
 
-    private void checkIfTextFieldValuesAreValid(TextField textField, Text text) throws IOException {
-        if (army == null){
-            warningText.setText("Error: Name of Army needs to be set first");
-            throw new IOException("Error: Name of Army needs to be set first");
-        }
-
-        if (Utilities.doesStringContainSymbolsOtherThanNumbers(textField.getText())){
-            warningText.setText("Error: Number of 'Spear fighters' has to be a positive integer");
-            throw new IOException("Error: Number of 'Spear fighters' has to be a positive integer");
-        }
-
-        int numberOfUnits = Integer.parseInt(textField.getText());
-        int costPerUnit = Integer.parseInt(text.getText());
-        int goldLeft = Integer.parseInt(numberOfGold.getText());
-        int totalSum = numberOfUnits*costPerUnit;
-
-        if (totalSum > goldLeft){
-            warningText.setText("Error: Cannot add " + numberOfUnits + " units, not enough Gold");
-            throw new IOException("Error: Cannot add " + numberOfUnits + " units, not enough Gold");
-        }
-    }
 
     @FXML
     void onSetArmyNameButtonClicked() throws IOException{
@@ -91,13 +74,12 @@ public class CreateArmyController {
             warningText.setText("Error: Name of Army is empty!");
             throw new IOException("Error: Name of Army is empty!");
         }
-        if (Utilities.doesStringContainAnyNonAlphaNumericSymbols(textFieldArmyName.getText())){
+        if (Utilities.stringDoesNotContainAnyNonAlphaNumericSymbols(textFieldArmyName.getText())){
             warningText.setText("Error: Army name can only contain alpha-numeric symbols");
             throw new IOException("Error: Army name can only contain alpha-numeric symbols");
         }
         army.setName(textFieldArmyName.getText());
         editNameTextSwap();
-
     }
 
     @FXML
@@ -152,53 +134,134 @@ public class CreateArmyController {
         editArmyNameButton.setPrefWidth(173);
 
     }
+
+    private void checkIfTextFieldValuesAreValid(TextField textField, Text text) throws IOException {
+        if (army == null){
+            warningText.setText("Error: Name of Army needs to be set first!");
+            throw new IOException("Error: Name of Army needs to be set first!");
+        }
+        if (textField.getText().trim().isEmpty()){
+            warningText.setText("Error: Number of units is empty!");
+            throw new IOException("Error: Number of units is empty!");
+        }
+        if (Utilities.stringDoesNotContainSymbolsOtherThanNumbers(textField.getText())){
+            warningText.setText("Error: Number of units has to be a positive integer!");
+            throw new IOException("Error: Number of units has to be a positive integer!");
+        }
+    }
+
+    private void checkIfEnoughCurrencyForMoreUnits(TextField textField, Text text) throws IOException{
+        int numberOfUnits = Integer.parseInt(textField.getText());
+        int costPerUnit = Integer.parseInt(text.getText());
+        int goldLeft = Integer.parseInt(numberOfGold.getText());
+        int totalSum = numberOfUnits*costPerUnit;
+
+        if (totalSum > goldLeft){
+            warningText.setText("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
+            throw new IOException("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
+        }
+    }
+
+    private void checkIfMoreUnitsAreRemovedThanAlreadyAdded(TextField textField, Text text, int n) throws IOException{
+        int numberOfUnits = Integer.parseInt(textField.getText());
+        if (nrOfSpecificUnits[n] - numberOfUnits < 0){
+            warningText.setText("Error: Cannot remove " + numberOfUnits +
+                    " units of this type, more than registered!");
+            throw new IOException("Error: Cannot remove " + numberOfUnits +
+                    " units of this type, more than registered!");
+        }
+    }
+
+
+    private void onUnitAddButton(TextField textField, Text text, int n) throws IOException{
+
+        checkIfEnoughCurrencyForMoreUnits(textField, text);
+
+        int numberOfUnitsToBeAdded = Integer.parseInt(textField.getText());
+        nrOfSpecificUnits[n] += numberOfUnitsToBeAdded;
+
+        text.setText("" + nrOfSpecificUnits[n ]);
+
+        textField.setText("");
+    }
+
+    private void onUnitRemoveButton(TextField textField, Text text, int n) throws IOException{
+
+        checkIfMoreUnitsAreRemovedThanAlreadyAdded(textField, text, n);
+
+        int numberOfUnitsToBeRemoved = Integer.parseInt(textField.getText());
+        nrOfSpecificUnits[n] -= numberOfUnitsToBeRemoved;
+
+        text.setText("" + nrOfSpecificUnits[n]);
+
+        textField.setText("");
+    }
+
     @FXML
     void onAddSpearFighterButtonClicked() throws IOException{
         checkIfTextFieldValuesAreValid(textFieldSpearFighter, costOfSpearFighter);
+        onUnitAddButton(textFieldSpearFighter, spearFighterNumber, 0);
+    }
+
+    @FXML
+    void onRemoveSpearFighterButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldSpearFighter, costOfSpearFighter);
+        onUnitRemoveButton(textFieldSpearFighter, spearFighterNumber, 0);
+    }
+
+    @FXML
+    void onAddSwordsmanButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldSwordsman, costOfSwordsman);
+        onUnitAddButton(textFieldSwordsman, swordsmanNumber, 1);
+    }
+
+    @FXML
+    void onRemoveSwordsmanButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldSwordsman, costOfSwordsman);
+        onUnitRemoveButton(textFieldSwordsman, swordsmanNumber, 1);
+    }
+
+    @FXML
+    void onAddAxemanButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldAxeman, costOfAxeman);
+        onUnitAddButton(textFieldAxeman, axemanNumber, 2);
+    }
+
+    @FXML
+    void onRemoveAxemanButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldAxeman, costOfAxeman);
+        onUnitRemoveButton(textFieldAxeman, axemanNumber, 2);
+    }
+
+    @FXML
+    void onAddArcherButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldArcher, costOfArcher);
+        onUnitAddButton(textFieldArcher, archerNumber, 3);
     }
     @FXML
-    void onRemoveSpearFighterButtonClicked(){
-
+    void onRemoveArcherButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldArcher, costOfArcher);
+        onUnitRemoveButton(textFieldArcher, archerNumber, 3);
     }
     @FXML
-    void onAddSwordsmanButtonClicked(){
-
+    void onAddLightCavalryButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldLightCavalry, costOfLightCavalry);
+        onUnitAddButton(textFieldLightCavalry, lightCavalryNumber, 4);
     }
     @FXML
-    void onRemoveSwordsmanButtonClicked(){
-
+    void onRemoveLightCavalryButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldLightCavalry, costOfLightCavalry);
+        onUnitRemoveButton(textFieldLightCavalry, lightCavalryNumber, 4);
     }
     @FXML
-    void onAddAxemanButtonClicked(){
-
+    void onAddPaladinButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldPaladin, costOfPaladin);
+        onUnitAddButton(textFieldPaladin, lightCavalryNumber, 5);
     }
     @FXML
-    void onRemoveAxemanButtonClicked(){
-
-    }
-    @FXML
-    void onAddArcherButtonClicked(){
-
-    }
-    @FXML
-    void onRemoveArcherButtonClicked(){
-
-    }
-    @FXML
-    void onAddLightCavalryButtonClicked(){
-
-    }
-    @FXML
-    void onRemoveLightCavalryButtonClicked(){
-
-    }
-    @FXML
-    void onAddPaladinButtonClicked(){
-
-    }
-    @FXML
-    void onRemovePaladinButtonClicked(){
-
+    void onRemovePaladinButtonClicked() throws IOException{
+        checkIfTextFieldValuesAreValid(textFieldPaladin, costOfPaladin);
+        onUnitRemoveButton(textFieldPaladin, lightCavalryNumber, 5);
     }
 
     @FXML
