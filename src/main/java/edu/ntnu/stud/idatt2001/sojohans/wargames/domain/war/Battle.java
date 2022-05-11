@@ -1,6 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 
 import java.util.Random;
@@ -17,6 +18,8 @@ public class Battle{
     private int armyOneAttacks;
     private int armyTwoAttacks;
 
+    private TerrainType terrainType;
+
     /**
      * Constructor for Battle.
      * @param armyOne Army One fighting in the battle.
@@ -29,6 +32,9 @@ public class Battle{
         }
         if (armyTwo == null){
             throw new IllegalArgumentException("Army 2 cannot be null");
+        }
+        if (armyOne.equals(armyTwo)){
+            throw new IllegalArgumentException("Army cannot fight itself");
         }
         if (!armyOne.hasUnits()){
             throw new IllegalArgumentException(armyOne.getName() + " needs to have Units to fight in a battle");
@@ -67,13 +73,13 @@ public class Battle{
                 Unit unitFromArmyTwo = this.armyTwo.getRandom();
 
                 if (randomNumber == 0){
-                    unitFromArmyOne.attack(unitFromArmyTwo);
+                    unitFromArmyOne.attack(unitFromArmyTwo, terrainType);
                     armyOneAttacks++;
                     if (unitFromArmyTwo.getHealth() <= 0){
                         this.armyTwo.remove(unitFromArmyTwo);
                     }
                 } else{
-                    unitFromArmyTwo.attack(unitFromArmyOne);
+                    unitFromArmyTwo.attack(unitFromArmyOne, terrainType);
                     armyTwoAttacks++;
                     if (unitFromArmyOne.getHealth() <= 0){
                         this.armyOne.remove(unitFromArmyOne);
@@ -136,5 +142,13 @@ public class Battle{
      */
     public int getArmyTwoAttacks() {
         return armyTwoAttacks;
+    }
+
+    public TerrainType getTerrainType() {
+        return terrainType;
+    }
+
+    public void setTerrainType(TerrainType terrainType) {
+        this.terrainType = terrainType;
     }
 }

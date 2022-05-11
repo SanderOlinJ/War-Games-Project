@@ -30,15 +30,16 @@ public class InfantryUnit extends Unit{
 
     /**
      * Method for retrieving the InfantryUnit's attack bonus.
+     * @param terrainType Terrain, affects the bonus outcome.
      * @return Attack bonus of the InfantryUnit.
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
         int attackBonus = 2;
-        if (getTerrainType() == null){
+        if (terrainType == null){
             return attackBonus;
         }
-        if (getTerrainType().equals(TerrainType.FOREST)){
+        if (terrainType.equals(TerrainType.FOREST)){
             attackBonus += 4;
         }
         return attackBonus;
@@ -46,15 +47,16 @@ public class InfantryUnit extends Unit{
 
     /**
      * Method for retrieving the InfantryUnit's resist bonus.
+     * @param terrainType Terrain, affects the bonus outcome.
      * @return Resist bonus of the InfantryUnit.
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
         int resistBonus = 1;
-        if (getTerrainType() == null){
+        if (terrainType == null){
             return resistBonus;
         }
-        if (getTerrainType().equals(TerrainType.FOREST)){
+        if (terrainType.equals(TerrainType.FOREST)){
             resistBonus += 2;
         }
         return resistBonus;

@@ -39,18 +39,19 @@ public class RangedUnit extends Unit{
 
     /**
      * Method for retrieving the RangedUnit's attack bonus.
+     * @param terrainType Terrain, affects the bonus outcome.
      * @return Attack bonus of the RangedUnit.
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
         int attackBonus = 3;
-        if (getTerrainType() == null){
+        if (terrainType == null){
             return attackBonus;
         }
-        if (getTerrainType().equals(TerrainType.HILL)){
+        if (terrainType.equals(TerrainType.HILL)){
             attackBonus += 3;
         }
-        else if (getTerrainType().equals(TerrainType.FOREST)){
+        else if (terrainType.equals(TerrainType.FOREST)){
             attackBonus -= 2;
         }
         return attackBonus;
@@ -58,10 +59,11 @@ public class RangedUnit extends Unit{
 
     /**
      * Method for retrieving the RangedUnit's resist bonus.
+     * @param terrainType Terrain, doesn't affect ResistBonus.
      * @return Resist bonus of the RangedUnit.
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
         if (this.numberOfAttacksWithstood == 0){
             this.numberOfAttacksWithstood++;
             return 6;

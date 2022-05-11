@@ -15,7 +15,6 @@ public abstract class Unit {
     private final int attack;
     private final int armor;
 
-    private TerrainType terrainType;
 
     /**
      * The constructor method for a Unit object.
@@ -49,10 +48,11 @@ public abstract class Unit {
     /**
      * Method for attacking another Unit.
      * @param opponentUnit Opponent getting attacked.
+     * @param terrainType Which terrain the attack takes place in (affects damage and armor outcome).
      * @throws UnitAttackException if either the health of the opponent or attacking Unit,
      * is equal to or less than 0.
      */
-    public void attack(Unit opponentUnit) throws UnitAttackException{
+    public void attack(Unit opponentUnit, TerrainType terrainType) throws UnitAttackException{
         if (opponentUnit.health <= 0){
             throw new UnitAttackException(opponentUnit.name + " has 0 or less health left!");
         }
@@ -64,22 +64,24 @@ public abstract class Unit {
             Method gives the opponent new health, depending on attacker's attack and attack bonus,
             as well as the opponent's armor and resist bonus
              */
-            opponentUnit.health = opponentUnit.health - (this.attack + this.getAttackBonus())
-                    + (opponentUnit.armor + opponentUnit.getResistBonus());
+            opponentUnit.health = opponentUnit.health - (this.attack + this.getAttackBonus(terrainType))
+                    + (opponentUnit.armor + opponentUnit.getResistBonus(terrainType));
         }
     }
 
     /**
      * Abstract method for getting the Unit's attack bonus.
+     * @param terrainType Terrain, each terrain affects certain bonuses per units.
      * @return Attack bonus of the Unit.
      */
-    public abstract int getAttackBonus();
+    public abstract int getAttackBonus(TerrainType terrainType);
 
     /**
      * Abstract method for getting the Unit's resist bonus.
+     * @param terrainType Terrain, each terrain affects certain bonuses per units.
      * @return Resist bonus of the Unit.
      */
-    public abstract int getResistBonus();
+    public abstract int getResistBonus(TerrainType terrainType);
 
 
     /**
@@ -125,13 +127,6 @@ public abstract class Unit {
         return armor;
     }
 
-    public TerrainType getTerrainType() {
-        return terrainType;
-    }
-
-    public void setTerrainType(TerrainType terrainType) {
-        this.terrainType = terrainType;
-    }
 
     /**
      * Method for getting Unit as a String.

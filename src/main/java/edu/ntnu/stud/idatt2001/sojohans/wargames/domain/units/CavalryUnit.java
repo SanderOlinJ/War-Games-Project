@@ -40,34 +40,36 @@ public class CavalryUnit extends Unit{
     /**
      * Method for retrieving the CavalryUnit's attack bonus.
      * Varies depending on if the unit has used its charged attack.
+     * @param terrainType Terrain, affects the bonus outcome.
      * @return the Attack bonus for CavalryUnit, 6 and 2.
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
         int attackBonus = 2;
         if (!this.chargedAttack){
             chargedAttack = true;
             attackBonus = 6;
         }
-        if (getTerrainType() == null){
+        if (terrainType == null){
             return attackBonus;
         }
-        if (getTerrainType().equals(TerrainType.PLAINS)){
+        if (terrainType.equals(TerrainType.PLAINS)){
             attackBonus += 3;
         }
         return attackBonus;
     }
     /**
      * Method for retrieving the CavalryUnit's resist bonus.
+     * @param terrainType Terrain, affects the bonus outcome.
      * @return Resist bonus of the CavalryUnit.
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
         int resistBonus = 1;
-        if (getTerrainType() == null){
+        if (terrainType == null){
             return resistBonus;
         }
-        if (getTerrainType().equals(TerrainType.FOREST)){
+        if (terrainType.equals(TerrainType.FOREST)){
             resistBonus -= 1;
         }
         return resistBonus;

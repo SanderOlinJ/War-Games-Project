@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+
 /**
  * Class for describing a CommanderUnit.
  */
@@ -35,28 +37,6 @@ public class CommanderUnit extends CavalryUnit{
         chargedAttack = false;
     }
 
-    /**
-     * Method for retrieving the CommanderUnit's attack bonus.
-     * Varies depending on if the unit has used its charged attack.
-     * @return the Attack bonus for CommanderUnit, 6 and 2.
-     */
-    @Override
-    public int getAttackBonus() {
-        if (!this.chargedAttack){
-            chargedAttack = true;
-            return 6;
-        }else {
-            return 2;
-        }
-    }
-    /**
-     * Method for retrieving the CommanderUnit's resist bonus.
-     * @return Resist bonus of the CommanderUnit.
-     */
-    @Override
-    public int getResistBonus() {
-        return 1;
-    }
 
     /**
      * Method for getting CommanderUnit as a String.
