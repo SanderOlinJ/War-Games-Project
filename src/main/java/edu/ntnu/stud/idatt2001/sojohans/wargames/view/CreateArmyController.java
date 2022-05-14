@@ -1,6 +1,10 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.view;
 
 import edu.ntnu.stud.idatt2001.sojohans.Utilities;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitFactory;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.InfantryUnit;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
@@ -10,10 +14,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class CreateArmyController {
+
     @FXML private Text numberOfGold;
     @FXML private Text numberOfGold1;
     @FXML private TextField textFieldArmyName;
@@ -49,44 +56,68 @@ public class CreateArmyController {
     @FXML private Button removeLightCavalryButton;
     @FXML private Button addPaladinButton;
     @FXML private Button removePaladinButton;
-
     @FXML private Text armyNameText;
     @FXML private Text armyName;
     @FXML private Button setArmyNameButton;
     @FXML private Button editArmyNameButton;
 
+    private int[] costPerUnit;
     private Army army;
     private int[] nrOfSpecificUnits;
 
+    private int gold;
 
     @FXML
     public void initialize(){
-        army = new Army();
-        numberOfGold.setText("1000000");
+        gold = 1000;
+        numberOfGold.setText(String.valueOf(gold));
         numberOfGold1.setVisible(true);
         nrOfSpecificUnits = new int[6];
+
+        costPerUnit = new int[6];
+        fillCostsPerUnit();
+        showCostOfUnitInGUI();
     }
 
+    private void fillCostsPerUnit(){
+        costPerUnit[0] = 10;
+        costPerUnit[1] = 15;
+        costPerUnit[2] = 20;
+        costPerUnit[3] = 15;
+        costPerUnit[4] = 30;
+        costPerUnit[5] = 100;
+    }
+
+
+    private void showCostOfUnitInGUI(){
+        costOfSpearFighter.setText(costPerUnit[0] + "");
+        costOfSwordsman.setText(costPerUnit[1] + "");
+        costOfAxeman.setText(costPerUnit[2] + "");
+        costOfArcher.setText(costPerUnit[3] + "");
+        costOfLightCavalry.setText(costPerUnit[4] + "");
+        costOfPaladin.setText(costPerUnit[5] + "");
+    }
 
     @FXML
     void onSetArmyNameButtonClicked() throws IOException{
         if (textFieldArmyName.getText() == null || textFieldArmyName.getText().trim().isEmpty()){
-            warningText.setText("Error: Name of Army is empty!");
+            printTextToErrorMessage("Error: Name of Army is empty!");
             throw new IOException("Error: Name of Army is empty!");
         }
         if (Utilities.stringDoesNotContainAnyNonAlphaNumericSymbols(textFieldArmyName.getText())){
-            warningText.setText("Error: Army name can only contain alpha-numeric symbols");
+            printTextToErrorMessage("Error: Army name can only contain alpha-numeric symbols");
             throw new IOException("Error: Army name can only contain alpha-numeric symbols");
         }
-        army.setName(textFieldArmyName.getText());
+        army = new Army(textFieldArmyName.getText());
         editNameTextSwap();
+        removeWarningLabel();
     }
 
     @FXML
     void onEditArmyNameButtonClicked(){
         setNameSwap();
-
-        army.setName("");
+        army = null;
+        removeWarningLabel();
     }
 
     private void setNameSwap(){
@@ -135,37 +166,36 @@ public class CreateArmyController {
 
     }
 
-    private void checkIfTextFieldValuesAreValid(TextField textField, Text text) throws IOException {
+    private void checkIfTextFieldValuesAreValid(TextField textField) throws IOException {
         if (army == null){
-            warningText.setText("Error: Name of Army needs to be set first!");
+            printTextToErrorMessage("Error: Name of Army needs to be set first!");
             throw new IOException("Error: Name of Army needs to be set first!");
         }
         if (textField.getText().trim().isEmpty()){
-            warningText.setText("Error: Number of units is empty!");
+            printTextToErrorMessage("Error: Number of units is empty!");
             throw new IOException("Error: Number of units is empty!");
         }
-        if (Utilities.stringDoesNotContainSymbolsOtherThanNumbers(textField.getText())){
-            warningText.setText("Error: Number of units has to be a positive integer!");
+        if (Utilities.stringDoesNotContainSymbolsOtherThanNumbers(textField.getText().trim())){
+            printTextToErrorMessage("Error: Number of units has to be a positive integer!");
             throw new IOException("Error: Number of units has to be a positive integer!");
         }
     }
 
-    private void checkIfEnoughCurrencyForMoreUnits(TextField textField, Text text) throws IOException{
-        int numberOfUnits = Integer.parseInt(textField.getText());
-        int costPerUnit = Integer.parseInt(text.getText());
-        int goldLeft = Integer.parseInt(numberOfGold.getText());
-        int totalSum = numberOfUnits*costPerUnit;
+    private void checkIfEnoughCurrencyForMoreUnits(TextField textField, int indexOfUnitsInList) throws IOException{
+        int numberOfUnits = Integer.parseInt(textField.getText().trim());
+        int cost = costPerUnit[indexOfUnitsInList];
+        int totalSum = numberOfUnits*cost;
 
-        if (totalSum > goldLeft){
-            warningText.setText("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
+        if ((gold - totalSum) < 0){
+            printTextToErrorMessage("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
             throw new IOException("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
         }
     }
 
-    private void checkIfMoreUnitsAreRemovedThanAlreadyAdded(TextField textField, Text text, int n) throws IOException{
-        int numberOfUnits = Integer.parseInt(textField.getText());
+    private void checkIfMoreUnitsAreRemovedThanAlreadyAdded(TextField textField, int n) throws IOException{
+        int numberOfUnits = Integer.parseInt(textField.getText().trim());
         if (nrOfSpecificUnits[n] - numberOfUnits < 0){
-            warningText.setText("Error: Cannot remove " + numberOfUnits +
+            printTextToErrorMessage("Error: Cannot remove " + numberOfUnits +
                     " units of this type, more than registered!");
             throw new IOException("Error: Cannot remove " + numberOfUnits +
                     " units of this type, more than registered!");
@@ -173,100 +203,142 @@ public class CreateArmyController {
     }
 
 
-    private void onUnitAddButton(TextField textField, Text text, int n) throws IOException{
+    private void onUnitAddButton(TextField unitsToBeAdded, Text unitsAdded, int indexOfUnitsInList)
+            throws IOException{
+        checkIfEnoughCurrencyForMoreUnits(unitsToBeAdded, indexOfUnitsInList);
+        int numberOfUnitsToBeAdded = Integer.parseInt(unitsToBeAdded.getText().trim());
+        nrOfSpecificUnits[indexOfUnitsInList] += numberOfUnitsToBeAdded;
 
-        checkIfEnoughCurrencyForMoreUnits(textField, text);
+        unitsAdded.setText("" + nrOfSpecificUnits[indexOfUnitsInList]);
+        unitsToBeAdded.setText("");
 
-        int numberOfUnitsToBeAdded = Integer.parseInt(textField.getText());
-        nrOfSpecificUnits[n] += numberOfUnitsToBeAdded;
-
-        text.setText("" + nrOfSpecificUnits[n ]);
-
-        textField.setText("");
+        updateGold(numberOfUnitsToBeAdded, indexOfUnitsInList);
     }
 
-    private void onUnitRemoveButton(TextField textField, Text text, int n) throws IOException{
+    private void onUnitRemoveButton(TextField unitsToBeAdded, Text unitsAdded, int indexOfUnitsInList)
+            throws IOException{
+        checkIfMoreUnitsAreRemovedThanAlreadyAdded(unitsToBeAdded, indexOfUnitsInList);
+        int numberOfUnitsToBeRemoved = Integer.parseInt(unitsToBeAdded.getText().trim());
+        nrOfSpecificUnits[indexOfUnitsInList] -= numberOfUnitsToBeRemoved;
 
-        checkIfMoreUnitsAreRemovedThanAlreadyAdded(textField, text, n);
+        unitsAdded.setText("" + nrOfSpecificUnits[indexOfUnitsInList]);
+        unitsToBeAdded.setText("");
 
-        int numberOfUnitsToBeRemoved = Integer.parseInt(textField.getText());
-        nrOfSpecificUnits[n] -= numberOfUnitsToBeRemoved;
-
-        text.setText("" + nrOfSpecificUnits[n]);
-
-        textField.setText("");
+        updateGold(-numberOfUnitsToBeRemoved, indexOfUnitsInList);
     }
 
     @FXML
     void onAddSpearFighterButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldSpearFighter, costOfSpearFighter);
+        checkIfTextFieldValuesAreValid(textFieldSpearFighter);
         onUnitAddButton(textFieldSpearFighter, spearFighterNumber, 0);
+        removeWarningLabel();
     }
 
     @FXML
     void onRemoveSpearFighterButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldSpearFighter, costOfSpearFighter);
+        checkIfTextFieldValuesAreValid(textFieldSpearFighter);
         onUnitRemoveButton(textFieldSpearFighter, spearFighterNumber, 0);
+        removeWarningLabel();
     }
 
     @FXML
     void onAddSwordsmanButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldSwordsman, costOfSwordsman);
+        checkIfTextFieldValuesAreValid(textFieldSwordsman);
         onUnitAddButton(textFieldSwordsman, swordsmanNumber, 1);
+        removeWarningLabel();
     }
 
     @FXML
     void onRemoveSwordsmanButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldSwordsman, costOfSwordsman);
+        checkIfTextFieldValuesAreValid(textFieldSwordsman);
         onUnitRemoveButton(textFieldSwordsman, swordsmanNumber, 1);
+        removeWarningLabel();
     }
 
     @FXML
     void onAddAxemanButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldAxeman, costOfAxeman);
+        checkIfTextFieldValuesAreValid(textFieldAxeman);
         onUnitAddButton(textFieldAxeman, axemanNumber, 2);
+        removeWarningLabel();
     }
 
     @FXML
     void onRemoveAxemanButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldAxeman, costOfAxeman);
+        checkIfTextFieldValuesAreValid(textFieldAxeman);
         onUnitRemoveButton(textFieldAxeman, axemanNumber, 2);
+        removeWarningLabel();
     }
 
     @FXML
     void onAddArcherButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldArcher, costOfArcher);
+        checkIfTextFieldValuesAreValid(textFieldArcher);
         onUnitAddButton(textFieldArcher, archerNumber, 3);
+        removeWarningLabel();
     }
+
     @FXML
     void onRemoveArcherButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldArcher, costOfArcher);
+        checkIfTextFieldValuesAreValid(textFieldArcher);
         onUnitRemoveButton(textFieldArcher, archerNumber, 3);
+        removeWarningLabel();
     }
+
     @FXML
     void onAddLightCavalryButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldLightCavalry, costOfLightCavalry);
+        checkIfTextFieldValuesAreValid(textFieldLightCavalry);
         onUnitAddButton(textFieldLightCavalry, lightCavalryNumber, 4);
+        removeWarningLabel();
     }
+
     @FXML
     void onRemoveLightCavalryButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldLightCavalry, costOfLightCavalry);
+        checkIfTextFieldValuesAreValid(textFieldLightCavalry);
         onUnitRemoveButton(textFieldLightCavalry, lightCavalryNumber, 4);
+        removeWarningLabel();
     }
+
     @FXML
     void onAddPaladinButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldPaladin, costOfPaladin);
-        onUnitAddButton(textFieldPaladin, lightCavalryNumber, 5);
+        checkIfTextFieldValuesAreValid(textFieldPaladin);
+        onUnitAddButton(textFieldPaladin, paladinNumber, 5);
+        removeWarningLabel();
     }
+
     @FXML
     void onRemovePaladinButtonClicked() throws IOException{
-        checkIfTextFieldValuesAreValid(textFieldPaladin, costOfPaladin);
-        onUnitRemoveButton(textFieldPaladin, lightCavalryNumber, 5);
+        checkIfTextFieldValuesAreValid(textFieldPaladin);
+        onUnitRemoveButton(textFieldPaladin, paladinNumber, 5);
+        removeWarningLabel();
     }
 
     @FXML
-    void onInstantiateArmyButtonClicked(ActionEvent event) {
+    void onInstantiateArmyButtonClicked() throws IOException{
+        if (army == null){
+            printTextToErrorMessage("Error: Name of Army needs to be set first!");
+            throw new IOException("Error: Name of Army needs to be set first!");
+        }
+        List<Unit> units = new ArrayList<>();
+        if (nrOfSpecificUnits[0] > 0) {
+            units.addAll(UnitFactory
+                    .getCertainAmountUnits(UnitType.INFANTRY_UNIT, "Infantry Units", nrOfSpecificUnits[0]));
+        } if (nrOfSpecificUnits[1] > 0) {
+            units.addAll(UnitFactory
+                    .getCertainAmountUnits(UnitType.RANGED_UNIT, "Ranged Units", nrOfSpecificUnits[1]));
+        } if (nrOfSpecificUnits[2] > 0) {
+            units.addAll(UnitFactory
+                    .getCertainAmountUnits(UnitType.CAVALRY_UNIT, "Cavalry Units", nrOfSpecificUnits[2]));
+        } if (nrOfSpecificUnits[3] > 0) {
+            units.addAll(UnitFactory
+                    .getCertainAmountUnits(UnitType.COMMANDER_UNIT, "Commander Units", nrOfSpecificUnits[4]));
+        }
 
+        if (units.isEmpty()){
+            printTextToErrorMessage("Error: Army needs units before instantiation!");
+            throw new IOException("Error: Army needs units before instantiation!");
+        }
+        army.addAllUnits(units);
+
+        ViewSwitcher.switchTo(View.START);
     }
 
     @FXML
@@ -274,4 +346,18 @@ public class CreateArmyController {
         ViewSwitcher.switchTo(View.MAIN_PAGE);
     }
 
+    private void updateGold(int amountOfUnits, int unitIndex){
+        int costOfUnit = costPerUnit[unitIndex];
+        int totalAmount = amountOfUnits * costOfUnit;
+        gold -= totalAmount;
+        numberOfGold.setText(String.valueOf(gold));
+    }
+
+    private void removeWarningLabel(){
+        warningText.setText("");
+    }
+
+    private void printTextToErrorMessage(String errorMessage){
+        warningText.setText(errorMessage);
+    }
 }

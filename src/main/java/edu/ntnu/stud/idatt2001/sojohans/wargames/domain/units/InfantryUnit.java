@@ -1,11 +1,13 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsAttack;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsDefense;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 
 /**
  * Class for describing a InfantryUnit.
  */
-public class InfantryUnit extends Unit{
+public class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense {
 
     /**
      * The default constructor for InfantryUnit.
@@ -35,14 +37,7 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getAttackBonus(TerrainType terrainType) {
-        int attackBonus = 2;
-        if (terrainType == null){
-            return attackBonus;
-        }
-        if (terrainType.equals(TerrainType.FOREST)){
-            attackBonus += 4;
-        }
-        return attackBonus;
+        return 2 + getTerrainAttackBonus(terrainType);
     }
 
     /**
@@ -52,14 +47,7 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getResistBonus(TerrainType terrainType) {
-        int resistBonus = 1;
-        if (terrainType == null){
-            return resistBonus;
-        }
-        if (terrainType.equals(TerrainType.FOREST)){
-            resistBonus += 2;
-        }
-        return resistBonus;
+        return 1 + getTerrainDefenseBonus(terrainType);
     }
 
     /**
@@ -69,5 +57,29 @@ public class InfantryUnit extends Unit{
     @Override
     public String toString() {
         return "\nInfantry " + super.toString();
+    }
+
+
+    @Override
+    public int getTerrainAttackBonus(TerrainType terrainType) {
+        if (terrainType == null){
+            throw new IllegalArgumentException("TerrainType cannot be null!");
+        }
+        if (terrainType.equals(TerrainType.FOREST)){
+            return 4;
+        }
+        return 0;
+    }
+
+
+    @Override
+    public int getTerrainDefenseBonus(TerrainType terrainType) {
+        if (terrainType == null){
+            throw new IllegalArgumentException("TerrainType cannot be null!");
+        }
+        if (terrainType.equals(TerrainType.FOREST)){
+            return 2;
+        }
+        return 0;
     }
 }

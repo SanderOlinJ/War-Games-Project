@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CavalryUnitTest {
 
     @Test
-    @DisplayName("Does getAttackBonus() return correct values depending on number of calls to method")
-    public void doesGetAttackBonusReturnCorrectValuesDependingOnNumberOfCalls(){
+    @DisplayName("Does getAttackBonus() for CavalryUnit return correct values depending on number of calls to method")
+    public void doesGetAttackBonusForCavalryUnitReturnCorrectValuesDependingOnNumberOfCalls(){
         CavalryUnit lightCavalry = new CavalryUnit("Light Cavalry", 100);
         assertEquals(6, lightCavalry.getAttackBonus(TerrainType.HILL));
         assertEquals(2, lightCavalry.getAttackBonus(TerrainType.HILL));

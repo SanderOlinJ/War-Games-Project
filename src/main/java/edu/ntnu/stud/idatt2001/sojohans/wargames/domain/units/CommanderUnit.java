@@ -8,13 +8,6 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 public class CommanderUnit extends CavalryUnit{
 
     /**
-     * chargedAttack is a variable that tells if the unit has used its charge attack (the first attack).
-     * It is specifically used in the unit's getAttackBonus method, where it determines how much
-     * Attack Bonus it should get.
-     */
-    private boolean chargedAttack;
-
-    /**
      * The default constructor for CommanderUnit.
      * @param name Name of the CommanderUnit.
      * @param health Health of the CommanderUnit, cannot be less than or equal to 0.
@@ -23,7 +16,6 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health, int attack,int armor){
         super(name, health, attack, armor);
-        chargedAttack = false;
     }
 
     /**
@@ -34,7 +26,6 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health){
         super(name, health, 25, 15);
-        chargedAttack = false;
     }
 
 

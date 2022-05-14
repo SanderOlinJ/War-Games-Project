@@ -1,11 +1,13 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsAttack;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsDefense;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 
 /**
  * Class for describing a CavalryUnit.
  */
-public class CavalryUnit extends Unit{
+public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense {
 
     /**
      * chargedAttack is a variable that tells if the unit has used its charge attack (the first attack).
@@ -50,13 +52,7 @@ public class CavalryUnit extends Unit{
             chargedAttack = true;
             attackBonus = 6;
         }
-        if (terrainType == null){
-            return attackBonus;
-        }
-        if (terrainType.equals(TerrainType.PLAINS)){
-            attackBonus += 3;
-        }
-        return attackBonus;
+        return attackBonus + getTerrainAttackBonus(terrainType);
     }
     /**
      * Method for retrieving the CavalryUnit's resist bonus.
@@ -65,14 +61,29 @@ public class CavalryUnit extends Unit{
      */
     @Override
     public int getResistBonus(TerrainType terrainType) {
-        int resistBonus = 1;
+        return 1 + getTerrainDefenseBonus(terrainType);
+    }
+
+    @Override
+    public int getTerrainAttackBonus(TerrainType terrainType) {
         if (terrainType == null){
-            return resistBonus;
+            throw new IllegalArgumentException("TerrainType cannot be null!");
+        }
+        if (terrainType.equals(TerrainType.PLAINS)){
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTerrainDefenseBonus(TerrainType terrainType) {
+        if (terrainType == null){
+            throw new IllegalArgumentException("TerrainType cannot be null!");
         }
         if (terrainType.equals(TerrainType.FOREST)){
-            resistBonus -= 1;
+            return -1;
         }
-        return resistBonus;
+        return 0;
     }
 
     /**

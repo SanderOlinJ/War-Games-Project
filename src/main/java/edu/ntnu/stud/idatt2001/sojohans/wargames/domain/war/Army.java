@@ -59,6 +59,9 @@ public class Army {
      * @param name Name of the Army.
      */
     public void setName(String name) {
+        if (name == null || name.trim().isBlank()){
+            throw new IllegalArgumentException("Name of Army cannot be null or empty!");
+        }
         this.name = name;
     }
 

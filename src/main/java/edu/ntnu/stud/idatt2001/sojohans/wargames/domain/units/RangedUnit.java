@@ -1,11 +1,12 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsAttack;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 
 /**
  * Class for describing a RangedUnit.
  */
-public class RangedUnit extends Unit{
+public class RangedUnit extends Unit implements TerrainImpactsAttack {
 
     /**
      * numberOfAttacksWithstood is a variable that counts how many times this unit has been attacked
@@ -44,17 +45,7 @@ public class RangedUnit extends Unit{
      */
     @Override
     public int getAttackBonus(TerrainType terrainType) {
-        int attackBonus = 3;
-        if (terrainType == null){
-            return attackBonus;
-        }
-        if (terrainType.equals(TerrainType.HILL)){
-            attackBonus += 3;
-        }
-        else if (terrainType.equals(TerrainType.FOREST)){
-            attackBonus -= 2;
-        }
-        return attackBonus;
+        return 3 + getTerrainAttackBonus(terrainType);
     }
 
     /**
@@ -73,6 +64,18 @@ public class RangedUnit extends Unit{
         }else {
             return 2;
         }
+    }
+
+    @Override
+    public int getTerrainAttackBonus(TerrainType terrainType) {
+        if (terrainType == null){
+            throw new IllegalArgumentException("TerrainType cannot be null!");
+        } if (terrainType.equals(TerrainType.HILL)){
+            return 3;
+        } else if (terrainType.equals(TerrainType.FOREST)){
+            return -2;
+        }
+        return 0;
     }
 
     /**
