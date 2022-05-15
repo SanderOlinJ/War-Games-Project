@@ -274,7 +274,7 @@
                                           </TextField>
                                           <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
                                              <children>
-                                                <Button fx:id="addSpearFighterButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddSpearFighterButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                <Button fx:id="addSpearFighterButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -291,7 +291,7 @@
                                                       <DropShadow height="10.0" radius="4.5" width="10.0" />
                                                    </effect>
                                                 </Button>
-                                                <Button fx:id="removeSpearFighterButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveSpearFighterButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                <Button fx:id="removeSpearFighterButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -367,7 +367,7 @@
                                           </TextField>
                                           <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
                                              <children>
-                                                <Button fx:id="addSwordsmanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddSwordsmanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                <Button fx:id="addSwordsmanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -381,7 +381,7 @@
                                                       <DropShadow height="10.0" radius="4.5" width="10.0" />
                                                    </effect>
                                                 </Button>
-                                                <Button fx:id="removeSwordsmanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveSwordsmanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                <Button fx:id="removeSwordsmanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -460,7 +460,7 @@
                                           </TextField>
                                           <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
                                              <children>
-                                                <Button fx:id="addAxemanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddAxemanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                <Button fx:id="addAxemanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -474,7 +474,7 @@
                                                       <DropShadow height="10.0" radius="4.5" width="10.0" />
                                                    </effect>
                                                 </Button>
-                                                <Button fx:id="removeAxemanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveAxemanButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                <Button fx:id="removeAxemanButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -583,7 +583,7 @@
                                           </TextField>
                                           <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
                                              <children>
-                                                <Button fx:id="addArcherButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddArcherButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                <Button fx:id="addArcherButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -597,7 +597,7 @@
                                                       <DropShadow height="10.0" radius="4.5" width="10.0" />
                                                    </effect>
                                                 </Button>
-                                                <Button fx:id="removeArcherButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveArcherButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                <Button fx:id="removeArcherButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -706,7 +706,7 @@
                                           </TextField>
                                           <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
                                              <children>
-                                                <Button fx:id="addLightCavalryButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddLightCavalryButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                <Button fx:id="addLightCavalryButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -720,7 +720,7 @@
                                                       <DropShadow height="10.0" radius="4.5" width="10.0" />
                                                    </effect>
                                                 </Button>
-                                                <Button fx:id="removeLightCavalryButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveLightCavalryButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                <Button fx:id="removeLightCavalryButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -826,7 +826,7 @@
                                           </TextField>
                                           <VBox alignment="CENTER" prefHeight="74.0" prefWidth="80.0">
                                              <children>
-                                                <Button fx:id="addPaladinButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddPaladinButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
+                                                <Button fx:id="addPaladinButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="+">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -840,7 +840,7 @@
                                                       <DropShadow height="10.0" radius="4.5" width="10.0" />
                                                    </effect>
                                                 </Button>
-                                                <Button fx:id="removePaladinButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemovePaladinButtonClicked" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
+                                                <Button fx:id="removePaladinButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="-" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
