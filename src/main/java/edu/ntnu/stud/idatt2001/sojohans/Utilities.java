@@ -14,7 +14,9 @@ public class Utilities {
         if (str == null || str.length() == 0){
             return "";
         }
-        return str.replaceAll("[^A-Za-z0-9]","");
+        str = str.trim();
+        str = str.replaceAll("[^A-Za-z0-9]","");
+        return str;
     }
 
     public static boolean doesArmyFileExist(String nameOfFile){
@@ -28,12 +30,13 @@ public class Utilities {
         return shortenAndReplaceNonAlphaNumericSymbolsInString(new String(charArray));
     }
 
-    public static boolean stringDoesNotContainAnyNonAlphaNumericSymbols(String str){
-        str = str.replaceAll(" ", "");
+    public static boolean checkIfStringContainsAnyNonAlphaNumericSymbols(String str){
+        str = str.trim();
         return str.length() != Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(str).length();
     }
 
-    public static boolean stringDoesNotContainSymbolsOtherThanNumbers(String str){
+    public static boolean checkIfStringContainsSymbolsOtherThanNumbers(String str){
+        str = str.trim();
         String newStr = str.replaceAll("[^0-9]", "");
         return str.length() != newStr.length();
     }

@@ -29,12 +29,12 @@
 styling for combobox prompt text and text field
  */
 .jfx-combo-box {
-    -fx-prompt-text-fill: white;
+    -fx-prompt-text-fill: black;
     -fx-font: 18px "Arial";
 }
 
 .jfx-combo-box .cell {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-border-radius: 10;
     -fx-alignment: center-left;
 }

@@ -59,7 +59,7 @@ public class ArmyReader {
         if (armyInfoInFile.get(0).trim().isEmpty()){
             throw new IOException("Army name cannot be empty");
         }
-        if (Utilities.stringDoesNotContainAnyNonAlphaNumericSymbols(armyInfoInFile.get(0))){
+        if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(armyInfoInFile.get(0))){
             throw new IOException("Army name can only contain alphanumeric symbols and Æ,Ø,Å");
         }
 
@@ -92,7 +92,7 @@ public class ArmyReader {
             } catch (IllegalArgumentException exception){
                 throw new IOException("Unit type not recognized");
             }
-            if (Utilities.stringDoesNotContainAnyNonAlphaNumericSymbols(unitName)){
+            if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(unitName)){
                 throw new IOException("Unit name can only contain alphanumeric symbols and Æ,Ø,Å");
             }
 
