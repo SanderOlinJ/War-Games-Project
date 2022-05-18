@@ -128,15 +128,15 @@ public class CreateArmyController {
     public void onSetArmyNameButtonClicked(){
         // Checks if anything was typed into the text field.
         if (textFieldArmyName.getText() == null || textFieldArmyName.getText().trim().isEmpty()){
-            printTextToErrorMessage("Error: Name of Army is empty!");
+            printErrorMessage("Error: Name of Army is empty!");
         }
         // Checks if any non-alphanumeric symbols where typed into the text field.
         else if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(textFieldArmyName.getText())){
-            printTextToErrorMessage("Error: Army name can only contain alpha-numeric symbols!");
+            printErrorMessage("Error: Army name can only contain alpha-numeric symbols!");
         }
         // Checks if there already exists an army file under the name that was typed.
         else if (Utilities.doesArmyFileExist(textFieldArmyName.getText().trim())){
-            printTextToErrorMessage("Error: There already exists an army under this name!");
+            printErrorMessage("Error: There already exists an army under this name!");
         }
         /*
         If none of the checks were positive, then army name is set to the Army object.
@@ -305,11 +305,11 @@ public class CreateArmyController {
     private boolean checkIfTextFieldValuesAreValidBoolean(TextField textField){
         boolean bool = true;
         if (textField.getText().trim().isEmpty()){
-            printTextToErrorMessage("Error: Number of units is empty!"); //Prints error message to GUI
+            printErrorMessage("Error: Number of units is empty!"); //Prints error message to GUI
             bool = false;
         }
         else if (Utilities.checkIfStringContainsSymbolsOtherThanNumbers(textField.getText().trim())){
-            printTextToErrorMessage("Error: Number of units has to be a positive integer!");
+            printErrorMessage("Error: Number of units has to be a positive integer!");
             bool = false;
         }
         return bool;
@@ -327,7 +327,7 @@ public class CreateArmyController {
         int totalSum = numberOfUnits*cost;
 
         if ((gold - totalSum) < 0){
-            printTextToErrorMessage("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
+            printErrorMessage("Error: Cannot add " + numberOfUnits + " units, not enough Gold!");
             bool = false;
         }
 
@@ -343,7 +343,7 @@ public class CreateArmyController {
         boolean bool = true;
         int numberOfUnits = Integer.parseInt(nrOfUnitsToBeAddedOrRemovedTextFields.get(indexOfUnit).getText().trim());
         if (nrOfSpecificUnits[indexOfUnit] - numberOfUnits < 0){
-            printTextToErrorMessage("Error: Cannot remove " + numberOfUnits +
+            printErrorMessage("Error: Cannot remove " + numberOfUnits +
                     " units of this type, more than registered!");
             bool = false;
         }
@@ -383,7 +383,7 @@ public class CreateArmyController {
     void onInstantiateArmyButtonClicked(){
         List<Unit> units = new ArrayList<>();
         if (army == null){
-            printTextToErrorMessage("Error: Name of Army needs to be set first!");
+            printErrorMessage("Error: Name of Army needs to be set first!");
         }
         else {
             // Method uses factory to create units of requested type to be added to list.
@@ -406,7 +406,7 @@ public class CreateArmyController {
         }
 
         if (units.isEmpty()){
-            printTextToErrorMessage("Error: Army needs units before instantiation!");
+            printErrorMessage("Error: Army needs units before instantiation!");
         } else {
             army.addAllUnits(units);
             try {
@@ -419,13 +419,9 @@ public class CreateArmyController {
         }
     }
 
-    /**
-     * Method for switching to main page on "Main Page" button clicked.
-     */
+
     @FXML
-    void onMenuButtonClicked(){
-        ViewSwitcher.switchTo(View.MAIN_PAGE);
-    }
+    void onSimulateButtonClicked(){ViewSwitcher.switchTo(View.BATTLE_SIMULATION);}
 
     /**
      * Method for removing error message in GUI.
@@ -438,7 +434,7 @@ public class CreateArmyController {
      * Method for printing error message to GUI.
      * @param errorMessage error message to be displayed.
      */
-    private void printTextToErrorMessage(String errorMessage){
+    private void printErrorMessage(String errorMessage){
         warningText.setText(errorMessage);
     }
 

@@ -12,7 +12,7 @@ class ArmyReaderTest {
 
     @Test
     void checkIfReadArmyFromFileReturnsAnArmyWithCorrectValues() throws IOException {
-        Army army = ArmyReader.readArmyFromFile("army");
+        Army army = ArmyReader.readArmyFromLocalFileWithNameOfFile("army");
 
         assertEquals(7, army.getUnits().size());
     }
@@ -23,32 +23,32 @@ class ArmyReaderTest {
         @Test
         void isExceptionThrownWhenReadingFromFileThatDoesntExist(){
 
-            assertThrows(IOException.class, () -> ArmyReader.readArmyFromFile("nonExistingFile"));
+            assertThrows(IOException.class, () -> ArmyReader.readArmyFromLocalFileWithNameOfFile("nonExistingFile"));
         }
 
         @Test
         void isExceptionThrownWhenReadingAFileThatHasNoName(){
 
-            assertThrows(IOException.class, () -> ArmyReader.readArmyFromFile("     "));
+            assertThrows(IOException.class, () -> ArmyReader.readArmyFromLocalFileWithNameOfFile("     "));
         }
 
         @Test
         void isExceptionThrownWhenReadingFromAnEmptyFile(){
 
-            assertThrows(IOException.class, () -> ArmyReader.readArmyFromFile("emptyFile"));
+            assertThrows(IOException.class, () -> ArmyReader.readArmyFromLocalFileWithNameOfFile("emptyFile"));
         }
 
         @Test
         void isExceptionThrownWhenReadingFromAFileThatHasNoUnits(){
 
-            assertThrows(IOException.class, () -> ArmyReader.readArmyFromFile("armyFileWithNoUnits"));
+            assertThrows(IOException.class, () -> ArmyReader.readArmyFromLocalFileWithNameOfFile("armyFileWithNoUnits"));
         }
 
         @Test
         void isExceptionThrownWhenReadingFromAFileWithWrongUnitDataFormatting(){
 
             assertThrows(IOException.class, () -> ArmyReader
-                    .readArmyFromFile("armyFileWithWrongUnitDataFormatting"));
+                    .readArmyFromLocalFileWithNameOfFile("armyFileWithWrongUnitDataFormatting"));
         }
 
     }

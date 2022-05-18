@@ -53,6 +53,9 @@ public abstract class Unit {
      * is equal to or less than 0.
      */
     public void attack(Unit opponentUnit, TerrainType terrainType) throws UnitAttackException{
+        if (terrainType == null){
+            throw new UnitAttackException("Terrain type cannot be null!");
+        }
         if (opponentUnit.health <= 0){
             throw new UnitAttackException(opponentUnit.name + " has 0 or less health left!");
         }

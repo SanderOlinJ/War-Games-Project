@@ -1,10 +1,289 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.view;
 
+import edu.ntnu.stud.idatt2001.sojohans.Utilities;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.BattleException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class BattleSimulationController {
+    @FXML private Text archer1;
+    @FXML private Text archer2;
+    @FXML private Text army1Name;
+    @FXML private Text army2Name;
+    @FXML private Text axeman1;
+    @FXML private Text axeman2;
+    @FXML private ComboBox<String> chooseArmyComboBox1;
+    @FXML private ComboBox<String> chooseArmyComboBox2;
+    @FXML private Text filePath1;
+    @FXML private Text filePath2;
+    @FXML private Text filePathTitle1;
+    @FXML private Text filePathTitle2;
+    @FXML private Text lightCavalry1;
+    @FXML private Text lightCavalry2;
+    @FXML private Button loadFileButton1;
+    @FXML private Button loadFileButton2;
+    @FXML private ImageView menuButton;
+    @FXML private Text paladin1;
+    @FXML private Text paladin2;
+    @FXML private Button resetButton;
+    @FXML private Button simulateButton;
+    @FXML private Text spearFighter1;
+    @FXML private Text spearFighter2;
+    @FXML private Text swordsman1;
+    @FXML private Text swordsman2;
+    @FXML private ComboBox<String> terrainComboBox;
+    @FXML private ImageView terrainImageView;
+    @FXML private Text totalUnits1;
+    @FXML private Text totalUnits2;
+    @FXML private Text warningText;
+    @FXML private ImageView spearFighterLogo1;
+    @FXML private ImageView spearFighterLogo2;
+    @FXML private ImageView swordsmanLogo1;
+    @FXML private ImageView swordsmanLogo2;
+    @FXML private ImageView axemanLogo1;
+    @FXML private ImageView axemanLogo2;
+    @FXML private ImageView archerLogo1;
+    @FXML private ImageView archerLogo2;
+    @FXML private ImageView lightCavalryLogo1;
+    @FXML private ImageView lightCavalryLogo2;
+    @FXML private ImageView paladinLogo1;
+    @FXML private ImageView paladinLogo2;
 
+
+
+    private File fileArmy1;
+    private File fileArmy2;
+    private Army army1;
+    private Army army2;
+    private Battle battle;
+
+    private TerrainType terrainType;
 
     @FXML
-    void onMenuButtonClicked(){}
+    public void initialize(){
+        List<String> armiesInOverviewFile = new ArrayList<>();
+        try {
+            armiesInOverviewFile = ArmyReader.readArmyFileNamesFromOverviewFile();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        resetButton.setDisable(true);
+        setItemsAndListenerToTerrainComboBox();
+        setItemsListenerAndAddActionToChooseArmyComboBox1(armiesInOverviewFile);
+        setItemsListenerAndAddActionToChooseArmyComboBox2(armiesInOverviewFile);
+        setToolTipToUnitLogos();
+    }
+
+    @FXML
+    public void onSimulateButtonClicked(){
+        if (army1 == null || army2 == null){
+            printErrorMessage("Error: Battle cannot be started until both Armies have been chosen!");
+        }
+        else if (!army1.hasUnits() || !army2.hasUnits()){
+            printErrorMessage("Error: Armies need units to fight!");
+        }
+        else if (army1.equals(army2)){
+            printErrorMessage("Error: Battle cannot be fought between the same Army!");
+        }
+        else if (terrainComboBox.getValue() == null){
+            printErrorMessage("Error: Terrain must be chosen!");
+        }
+        else {
+            try {
+                battle = new Battle(army1, army2);
+                battle.setTerrainType(TerrainType.FOREST);
+                battle.addListener(this::updateUnitNumbers);
+                simulateButton.setDisable(true);
+                resetButton.setDisable(false);
+                new Thread(() -> {
+                    try {
+                        battle.simulate();
+                    } catch (BattleException exception) {
+                        printErrorMessage(exception.getMessage());
+                    }
+                    Platform.runLater(() -> {
+                        if (battle.getVictor().equals(army1)) {
+                            printUpdateMessage(army1.getName() + " won!");
+                        } else {
+                            printUpdateMessage(army2.getName() + " won!");
+                        }
+                    });
+
+                }).start();
+            } catch (BattleException exception){
+                printErrorMessage(exception.getMessage());
+            }
+
+        }
+    }
+
+    public void updateUnitNumbers(){
+        Platform.runLater(() -> {
+            fillArmy1WithInfo();
+            fillArmy2WithInfo();
+        });
+    }
+
+    @FXML
+    public void onResetButtonClicked(){
+        try {
+            army1 = ArmyReader.readArmyFileWithPath(fileArmy1);
+            army2 = ArmyReader.readArmyFileWithPath(fileArmy2);
+            fillArmy1WithInfo();
+            fillArmy2WithInfo();
+            simulateButton.setDisable(false);
+            resetButton.setDisable(true);
+        } catch (IOException exception){
+            printErrorMessage(exception.getMessage());
+        }
+    }
+
+    @FXML
+    public void onLoadFileButton1Clicked(){
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        try {
+            army1 = ArmyReader.readArmyFileWithPath(file);
+            fileArmy1 = file;
+            fillArmy1WithInfo();
+            filePathTitle1.setVisible(true);
+            filePath1.setText(fileArmy1.getAbsolutePath());
+        } catch (IOException exception){
+            printErrorMessage(exception.getMessage());
+        }
+    }
+
+    @FXML
+    public void onLoadFileButton2Clicked(){
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        try {
+            army2 = ArmyReader.readArmyFileWithPath(file);
+            fileArmy2 = file;
+            fillArmy2WithInfo();
+            filePathTitle2.setVisible(true);
+            filePath2.setText(file.getAbsolutePath());
+        } catch (IOException exception){
+            printErrorMessage(exception.getMessage());
+        }
+    }
+
+    private void setItemsAndListenerToTerrainComboBox(){
+        terrainComboBox.getItems().addAll("Forest", "Hill", "Plains");
+        terrainComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, newValue) -> terrainImageView.setImage(
+                        new Image(Utilities.getPathToTerrainImageFile(newValue))
+                ));
+    }
+
+    private void setItemsListenerAndAddActionToChooseArmyComboBox1(List<String> list){
+        list.forEach(s -> chooseArmyComboBox1.getItems().add(s));
+        chooseArmyComboBox1.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    try {
+                        army1 = ArmyReader.readArmyFromLocalFileWithNameOfFile(newValue);
+                        fileArmy1 = Utilities.convertStringToArmyFile(newValue);
+                        filePathTitle1.setVisible(true);
+                        filePath1.setText(fileArmy1.getAbsolutePath());
+                        fillArmy1WithInfo();
+                        removeErrorMessage();
+                    } catch (IOException exception) {
+                        printErrorMessage(exception.getMessage());
+                    }
+                }
+        );
+    }
+
+    private void setItemsListenerAndAddActionToChooseArmyComboBox2(List<String> list){
+        list.forEach(s -> chooseArmyComboBox2.getItems().add(s));
+        chooseArmyComboBox2.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    try {
+                        army2 = ArmyReader.readArmyFromLocalFileWithNameOfFile(newValue);
+                        fileArmy2 = Utilities.convertStringToArmyFile(newValue);
+                        filePathTitle2.setVisible(true);
+                        filePath2.setText(fileArmy2.getAbsolutePath());
+                        fillArmy2WithInfo();
+                        removeErrorMessage();
+                    } catch (IOException exception) {
+                        printErrorMessage(exception.getMessage());
+                    }
+                }
+        );
+    }
+
+    @FXML
+    public void onMenuButtonClicked(){}
+
+    private void fillArmy1WithInfo(){
+        setInfoToArmies(army1Name, totalUnits1, spearFighter1, archer1, lightCavalry1, paladin1, army1);
+    }
+
+    private void fillArmy2WithInfo(){
+        setInfoToArmies(army2Name, totalUnits2, spearFighter2, archer2, lightCavalry2, paladin2, army2);
+    }
+
+    private void setInfoToArmies(Text armyName, Text totalUnits, Text spearFighter, Text archer,
+                                 Text lightCavalry, Text paladin, Army army) {
+        armyName.setText(String.valueOf(army.getName()));
+        totalUnits.setText(String.valueOf(army.getUnits().size()));
+        spearFighter.setText(String.valueOf(army.getInfantryUnits().size()));
+        archer.setText(String.valueOf(army.getRangedUnits().size()));
+        lightCavalry.setText(String.valueOf(army.getCavalryUnits().size()));
+        paladin.setText(String.valueOf(army.getCommanderUnits().size()));
+    }
+
+    private void printErrorMessage(String errorMessage){
+        warningText.setText(errorMessage);
+    }
+
+    private void printUpdateMessage(String updateMessage){
+        warningText.setText(updateMessage);
+    }
+
+    private void removeErrorMessage(){
+        warningText.setText("");
+    }
+
+    private void setToolTipToUnitLogos(){
+
+        setToolTipToImageView(spearFighterLogo1, "Spear fighter; Attack: 15, Armor: 10");
+        setToolTipToImageView(spearFighterLogo2, "Spear fighter; Attack: 15, Armor: 10");
+        setToolTipToImageView(swordsmanLogo1, "Swordsman; Attack: 15, Armor: 10");
+        setToolTipToImageView(swordsmanLogo2, "Swordsman; Attack: 15, Armor: 10");
+        setToolTipToImageView(axemanLogo1, "Axeman; Attack: 15, Armor: 10");
+        setToolTipToImageView(axemanLogo2, "Axeman; Attack: 15, Armor: 10");
+        setToolTipToImageView(archerLogo1, "Archer; Attack: 15, Armor: 8");
+        setToolTipToImageView(archerLogo2, "Archer; Attack: 15, Armor: 10");
+        setToolTipToImageView(lightCavalryLogo1,"Light Cavalry; Attack: 20, Armor: 12");
+        setToolTipToImageView(lightCavalryLogo2, "Light Cavalry; Attack: 20, Armor: 12");
+        setToolTipToImageView(paladinLogo1, "Paladin; Attack: 25, Armor: 15");
+        setToolTipToImageView(paladinLogo2, "Paladin; Attack: 25, Armor: 15");
+    }
+    private void setToolTipToImageView(ImageView imageView, String str){
+        Tooltip tooltip = new Tooltip();
+        tooltip.setStyle("-fx-background-color: #240000; -fx-text-fill: white; -fx-font: 16px Arial;" +
+                "-fx-font-weight: Bold;");
+        tooltip.setText(str);
+
+        Tooltip.install(imageView, tooltip);
+    }
 }

@@ -34,23 +34,22 @@ styling for combobox prompt text and text field
     -fx-background-color: linear-gradient(#7C0707,#4F0000);
 }
 
+
+.jfx-combo-box .list-cell:hover{
+    -fx-background-color: #240000;
+}
+
 .jfx-combo-box .cell {
+    -fx-background-color: linear-gradient(#7C0707,#4F0000);
     -fx-text-fill: white;
     -fx-border-radius: 10;
     -fx-alignment: center;
     -fx-font-weight: Bold;
 }
 
-.combo-box .arrow {
+.jfx-combo-box .arrow {
     -fx-background-color: white;
 }
-
-/*
-.combo-box .arrow-button {
-    -fx-background-color: #fa8f31;
-}
- */
-
 
 .jfx-combo-box .scroll-bar{
     -fx-background-color: #282c34;
@@ -163,5 +162,11 @@ styling for combobox prompt text and text field
 
 .HBox2 {
     -fx-background-color: #240000;
+}
+
+.tooltip{
+    -fx-background-color: #240000;
+    -fx-text-fill: white;
+    -fx-font: 14px "Arial";
 }
 

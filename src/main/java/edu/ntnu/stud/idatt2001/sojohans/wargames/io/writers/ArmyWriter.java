@@ -4,6 +4,8 @@ import edu.ntnu.stud.idatt2001.sojohans.Utilities;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -39,9 +41,10 @@ public class ArmyWriter {
         String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(army.getUnits());
         stringBuilder.append(unitsToFile);
 
-        try(FileWriter fileWriter = new FileWriter(Utilities.convertStringToFile
+        try(FileWriter fileWriter = new FileWriter(Utilities.convertStringToArmyFile
                 (Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile)))){
             fileWriter.write(stringBuilder.toString());
+            writeArmyFileNameToOverviewFile(army.getName());
         } catch (IOException exception){
             throw new IOException("Unable to write Army to file: " + exception.getMessage());
         }
@@ -84,5 +87,17 @@ public class ArmyWriter {
                 });
 
         return stringBuilder.toString();
+    }
+
+    public static void writeArmyFileNameToOverviewFile(String armyFileName) throws IOException{
+        armyFileName = Utilities.convertStringToFileName(armyFileName);
+        File file = new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
+                "wargames/armyFiles/armyFilesOverview.csv");
+
+        try(FileWriter fileWriter = new FileWriter(file,true)){
+            fileWriter.write(armyFileName + NEWLINE);
+        } catch (IOException exception){
+            throw new IOException("Army file name could not be written to file: " + exception.getMessage());
+        }
     }
 }

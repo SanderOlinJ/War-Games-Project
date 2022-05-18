@@ -1,15 +1,26 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.BattleException;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Class for describing a Battle.
  */
 public class Battle{
+
+    public Army getArmyOne() {
+        return armyOne;
+    }
+
+    public Army getArmyTwo() {
+        return armyTwo;
+    }
 
     private final Army armyOne;
     private final Army armyTwo;
@@ -19,6 +30,9 @@ public class Battle{
     private int armyTwoAttacks;
 
     private TerrainType terrainType;
+
+    private final List<WarListener> warListeners = new ArrayList<>();
+
 
     /**
      * Constructor for Battle.
@@ -55,7 +69,6 @@ public class Battle{
     public Army simulate(){
         //As long as both Armies have Units left, the fight will continue. It will stop when one Army perishes.
         while (this.armyOne.hasUnits() && this.armyTwo.hasUnits()){
-
             /*
             The simulation is RNG-based (Random Number Generator), not turn-based.
             So which Army's turn it is to strike is purely decided on luck,
@@ -77,16 +90,28 @@ public class Battle{
                     armyOneAttacks++;
                     if (unitFromArmyTwo.getHealth() <= 0){
                         this.armyTwo.remove(unitFromArmyTwo);
+                        try{
+                            Thread.sleep(50);
+                        } catch (InterruptedException exception){
+                            throw new BattleException(exception.getMessage());
+                        }
+                        warListeners.forEach(WarListener::update);
                     }
                 } else{
                     unitFromArmyTwo.attack(unitFromArmyOne, terrainType);
                     armyTwoAttacks++;
                     if (unitFromArmyOne.getHealth() <= 0){
                         this.armyOne.remove(unitFromArmyOne);
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException exception){
+                            throw new BattleException(exception.getMessage());
+                        }
+                        warListeners.forEach(WarListener::update);
                     }
                 }
             } catch (IllegalArgumentException | UnitAttackException exception){
-                exception.printStackTrace();
+                throw new BattleException(exception.getMessage());
             }
         }
         //Method return whichever Army has Units left.
@@ -150,5 +175,12 @@ public class Battle{
 
     public void setTerrainType(TerrainType terrainType) {
         this.terrainType = terrainType;
+    }
+
+    public void addListener(WarListener warListener){
+        if (warListener == null){
+            throw new IllegalArgumentException("New WarListener cannot be null");
+        }
+        warListeners.add(warListener);
     }
 }

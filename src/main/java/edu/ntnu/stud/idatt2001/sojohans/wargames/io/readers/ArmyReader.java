@@ -21,7 +21,7 @@ public class ArmyReader {
     public ArmyReader(){}
 
 
-    public static Army readArmyFromFile(String nameOfFile)
+    public static Army readArmyFromLocalFileWithNameOfFile(String nameOfFile)
     throws IOException{
 
         if (!Utilities.doesArmyFileExist(nameOfFile)){
@@ -36,25 +36,27 @@ public class ArmyReader {
         }
 
 
-        File file = Utilities.convertStringToFile(nameOfFile);
+        File file = Utilities.convertStringToArmyFile(nameOfFile);
+        return readArmy(file);
+    }
+
+    public static Army readArmyFileWithPath(File file) throws IOException{
+        if (file == null){
+            throw new IOException("File cannot be null!");
+        }
+        if (!file.exists()){
+            throw new IOException("File does not exist!");
+        }
+        return readArmy(file);
+    }
+
+    private static Army readArmy(File file) throws IOException {
         List<String> armyInfoInFile = new ArrayList<>();
 
-        try(Scanner scanner = new Scanner(file)){
-            if (!scanner.hasNext()){
-                throw new IOException("File is empty!");
-            }
-            while (scanner.hasNext()){
-                armyInfoInFile.add(scanner.nextLine());
-            }
-
-        } catch (IOException exception){
-            throw new IOException("File could not be read: " + exception.getMessage());
-        }
+        readFromFileToList(file, armyInfoInFile);
         if (armyInfoInFile.size() == 1){
             throw new IOException("File does not contain units!");
         }
-
-
 
         if (armyInfoInFile.get(0).trim().isEmpty()){
             throw new IOException("Army name cannot be empty");
@@ -93,7 +95,7 @@ public class ArmyReader {
                 throw new IOException("Unit type not recognized");
             }
             if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(unitName)){
-                throw new IOException("Unit name can only contain alphanumeric symbols and Æ,Ø,Å");
+                throw new IOException("Unit name can only contain alphanumeric symbols");
             }
 
 
@@ -107,5 +109,29 @@ public class ArmyReader {
             army.addAllUnits(UnitFactory.getCertainAmountUnits(unitType, unitName, numberOfOccurrences));
         }
         return army;
+    }
+
+    private static void readFromFileToList(File file, List<String> armyInfoInFile) throws IOException {
+        try(Scanner scanner = new Scanner(file)){
+            if (!scanner.hasNext()){
+                throw new IOException("File is empty!");
+            }
+            while (scanner.hasNext()){
+                armyInfoInFile.add(scanner.nextLine());
+            }
+
+        } catch (IOException exception){
+            throw new IOException("File could not be read: " + exception.getMessage());
+        }
+    }
+
+    public static List<String> readArmyFileNamesFromOverviewFile() throws IOException{
+        List<String> armyFileNames = new ArrayList<>();
+        File file = new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
+                "wargames/armyFiles/armyFilesOverview.csv");
+
+        readFromFileToList(file, armyFileNames);
+
+        return armyFileNames;
     }
 }
