@@ -8,8 +8,18 @@ import javafx.fxml.FXML;
 public class StartScreenController {
 
     @FXML
-    void onStartButtonClicked(ActionEvent event) {
+    public void onBattleSimulationButtonClicked() {
+        ViewSwitcher.switchTo(View.BATTLE_SIMULATION);
+    }
+
+    @FXML
+    public void onCreateArmyButtonClicked(){
         ViewSwitcher.switchTo(View.CREATE_ARMY);
+    }
+
+    @FXML
+    public void onViewLocalArmiesButtonClicked(){
+        ViewSwitcher.switchTo(View.VIEW_OR_EDIT_LOCAL_ARMIES);
     }
 
 }

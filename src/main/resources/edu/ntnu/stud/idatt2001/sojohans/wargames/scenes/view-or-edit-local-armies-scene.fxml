@@ -1,0 +1,1913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.ViewOrEditLocalArmiesController">
+   <center>
+      <VBox style="-fx-background-color: BBA88D;">
+         <children>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0">
+               <children>
+                  <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0" styleClass="TopMenuBar" stylesheets="@../css/style.css">
+                     <children>
+                        <ImageView fx:id="menuButton" fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/menu.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/create-army.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="89.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/war-games-logo.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/battle-history.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="simulateBattleButton" fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onSimulateButtonClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/simulate.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </VBox>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1200.0" style="-fx-background-color: black;" />
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="1200.0" styleClass="HBox2" stylesheets="@../css/style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="warningText" fill="#ffec3c" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1183.34765625">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1200.0" style="-fx-background-color: black;" />
+            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View Local Armies" textAlignment="CENTER" wrappingWidth="495.3125">
+                     <font>
+                        <Font name="Arial Bold" size="50.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="1842.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" maxWidth="1500.0" prefHeight="582.0" prefWidth="1000.0" stylesheets="@../css/style.css">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="797.0" prefWidth="1000.0" style="-fx-background-color: D4C49C;">
+                           <children>
+                              <HBox fx:id="hBox1" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon1" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete1" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton1" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line1" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                              <HBox fx:id="hBox2" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon2" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete2" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton2" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line2" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                              <HBox fx:id="hBox3" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon3" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete3" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton3" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line3" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                              <HBox fx:id="hBox4" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon4" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete4" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton4" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line4" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                              <HBox fx:id="hBox5" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon5" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete5" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton5" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line5" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                              <HBox fx:id="hBox6" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon15" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete6" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton6" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line6" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                              <HBox fx:id="hBox7" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="armyIcon7" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Text fx:id="armyName7" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="168.509765625">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="227.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total units:" textAlignment="CENTER" wrappingWidth="109.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="totalUnits7" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.509765625">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/spear.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighters:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/sword.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsmen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/axe.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axemen:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="66.0">
+                                       <children>
+                                          <Text fx:id="spearFighters7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="swordsmen7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="65.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="axemen7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="174.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/bowandarrow.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archers:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/light-cavalry.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="174.0">
+                                             <children>
+                                                <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/commander.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladins:">
+                                                   <font>
+                                                      <Font name="Arial" size="19.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="63.0">
+                                       <children>
+                                          <Text fx:id="archers7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="64.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <Text fx:id="lightCavalry7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.166015625">
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="paladins7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="63.166015625">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="30.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="140.0">
+                                       <children>
+                                          <ImageView fx:id="delete7" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/trash-icon.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets left="60.0" top="10.0" />
+                                             </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Button fx:id="editArmyButton7" mnemonicParsing="false" styleClass="add-or-remove-button" stylesheets="@../css/style.css" text="Edit Army">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                             <VBox.margin>
+                                                <Insets right="4.0" top="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="line7" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
+                           </children>
+                        </VBox>
+                     </content>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

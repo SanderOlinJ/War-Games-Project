@@ -23,7 +23,7 @@ import java.util.List;
 /**
  Controller class for Create Army page
  */
-public class CreateArmyController {
+public class CreateArmyControllerCopy {
 
     @FXML private Text numberOfGold;
     @FXML private Text numberOfGold1;
@@ -73,6 +73,7 @@ public class CreateArmyController {
     private int[] nrOfSpecificUnits;
     private int gold;
     private Army army;
+    private Army newArmy;
     private static File armyFile;
 
     /**
@@ -83,13 +84,7 @@ public class CreateArmyController {
      */
     @FXML
     public void initialize(){
-        if (armyFile != null){
-            try {
-                army = ArmyReader.readArmyFileWithPath(armyFile);
-            } catch (IOException exception){
-                printErrorMessage(exception.getMessage());
-            }
-        }
+        addListenerToAddedUnitsAndUpdateGold();
         gold = 1000;  // Sets the amount of gold the user to 1000. In the future this would be an option.
         numberOfGold.setText(String.valueOf(gold));
         numberOfGold1.setVisible(true);
@@ -127,9 +122,67 @@ public class CreateArmyController {
 
         fillCostsPerUnit();  // Sets cost to the array with the costs of each unit.
         showCostOfUnitInGUI();  // Shows cost of each unit in GUI
-        disableButtons();  // Disables all add and remove buttons, as well as the instantiate army button.
+        disableButtons();  // Disables all add and remove buttons, as well as the "instantiate army" button.
+        if (armyFile != null){
+            try {
+                army = ArmyReader.readArmyFileWithPath(armyFile);
+                fillWithInfoIfArmyIsToBeEdited();
+            } catch (IOException exception){
+                printErrorMessage(exception.getMessage());
+            }
+        }
     }
 
+    private void fillWithInfoIfArmyIsToBeEdited(){
+        newArmy = new Army(army.getName());
+        editNameTextSwap();
+        enableButtons();
+        armyName.setText(army.getName());
+        spearFighterNumber.setText(String.valueOf(army.getInfantryUnits().size()));
+        archerNumber.setText(String.valueOf(army.getRangedUnits().size()));
+        lightCavalryNumber.setText(String.valueOf(army.getCavalryUnits().size()));
+        paladinNumber.setText(String.valueOf(army.getCommanderUnits().size()));
+    }
+
+    private void addListenerToAddedUnitsAndUpdateGold(){
+        spearFighterNumber.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    nrOfSpecificUnits[0] = Integer.parseInt(spearFighterNumber.getText());
+                    updateGold();
+                }
+        );
+        archerNumber.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    nrOfSpecificUnits[3] = Integer.parseInt(archerNumber.getText());
+                    updateGold();
+                }
+        );
+        lightCavalryNumber.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    nrOfSpecificUnits[4] = Integer.parseInt(lightCavalryNumber.getText());
+                    updateGold();
+                }
+        );
+        paladinNumber.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    nrOfSpecificUnits[5] = Integer.parseInt(paladinNumber.getText());
+                    updateGold();
+                }
+        );
+    }
+
+    private void updateGold(){
+        int totalCostOfSpearFighter = costPerUnit[0]*nrOfSpecificUnits[0];
+        int totalCostOfSwordsman = costPerUnit[1]*nrOfSpecificUnits[1];
+        int totalCostOfAxeman = costPerUnit[2]*nrOfSpecificUnits[2];
+        int totalCostOfArcher = costPerUnit[3]*nrOfSpecificUnits[3];
+        int totalCostOfLightCavalry = costPerUnit[4]*nrOfSpecificUnits[4];
+        int totalCostOfPaladin = costPerUnit[5]*nrOfSpecificUnits[5];
+        int totalCost = totalCostOfSpearFighter + totalCostOfSwordsman + totalCostOfAxeman + totalCostOfArcher
+                + totalCostOfLightCavalry + totalCostOfPaladin;
+        gold = 1000 - totalCost;
+        numberOfGold.setText(String.valueOf(gold));
+    }
 
     /**
      Method for setting army name in GUI.
@@ -157,7 +210,7 @@ public class CreateArmyController {
         Add and remove buttons, as well as the instantiate button is the activated for usage.
          */
         else {
-            army = new Army(textFieldArmyName.getText());
+            newArmy = new Army(textFieldArmyName.getText());
             editNameTextSwap();
             removeWarningLabel();
             enableButtons();
@@ -172,7 +225,7 @@ public class CreateArmyController {
     @FXML
     public void onEditArmyNameButtonClicked(){
         setNameSwap();
-        army = null;
+        newArmy = null;
         removeWarningLabel();
         disableButtons();
     }
@@ -235,7 +288,7 @@ public class CreateArmyController {
         // Shows the army name that has been set.
         armyName.setVisible(true);
         armyName.setDisable(false);
-        armyName.setText(army.getName());
+        armyName.setText(newArmy.getName());
 
         // Enables the "Edit Army Name" button and makes it visible.
         editArmyNameButton.setVisible(true);
@@ -257,12 +310,9 @@ public class CreateArmyController {
 
             int numberOfUnitsToBeAdded = Integer.parseInt(nrOfUnitsToBeAddedOrRemovedTextFields
                     .get(indexOfUnit).getText().trim());
-            nrOfSpecificUnits[indexOfUnit] += numberOfUnitsToBeAdded;
-
-            nrOfUnitsAddedTexts.get(indexOfUnit).setText("" + nrOfSpecificUnits[indexOfUnit]);
+            int unitsAddedInTotalOfThisType = nrOfSpecificUnits[indexOfUnit] + numberOfUnitsToBeAdded;
+            nrOfUnitsAddedTexts.get(indexOfUnit).setText(String.valueOf(unitsAddedInTotalOfThisType));
             nrOfUnitsToBeAddedOrRemovedTextFields.get(indexOfUnit).setText("");
-
-            updateGold(numberOfUnitsToBeAdded, indexOfUnit);
             removeWarningLabel();
         }
     }
@@ -278,36 +328,15 @@ public class CreateArmyController {
         if (checkIfTextFieldValuesAreValidBoolean(nrOfUnitsToBeAddedOrRemovedTextFields.get(indexOfUnit))
                 && checkIfMoreUnitsAreNotRemovedThanAlreadyAddedBoolean(indexOfUnit)){
 
-            int numberOfUnitsToBeRemoved = Integer
-                    .parseInt(nrOfUnitsToBeAddedOrRemovedTextFields.get(indexOfUnit).getText().trim());
-            nrOfSpecificUnits[indexOfUnit] -= numberOfUnitsToBeRemoved;
-
-            nrOfUnitsAddedTexts.get(indexOfUnit).setText("" + nrOfSpecificUnits[indexOfUnit]);
+            int numberOfUnitsToBeRemoved = Integer.parseInt(nrOfUnitsToBeAddedOrRemovedTextFields
+                    .get(indexOfUnit).getText().trim());
+            int unitsAddedInTotalOfThisType = nrOfSpecificUnits[indexOfUnit] - numberOfUnitsToBeRemoved;
+            nrOfUnitsAddedTexts.get(indexOfUnit).setText(String.valueOf(unitsAddedInTotalOfThisType));
             nrOfUnitsToBeAddedOrRemovedTextFields.get(indexOfUnit).setText("");
-
-            // Sends a negative number to updateGold, as we are not adding units.
-            updateGold(-numberOfUnitsToBeRemoved, indexOfUnit);
             removeWarningLabel();
         }
     }
 
-    /**
-     Method for updating gold balances.
-     * @param amountOfUnits amount of the respective unit type that is being added or removed
-     * @param unitIndex index of unit in the arrays concerning unit data.
-     */
-    private void updateGold(int amountOfUnits, int unitIndex){
-        // Retrieves the cost of the specific unit by using the index of the unit.
-        int costOfUnit = costPerUnit[unitIndex];
-        int totalAmount = amountOfUnits * costOfUnit;
-
-        /*
-        Default is set to removing gold, therefore a negative number has to be sent to this method
-        if units are to be removed from the army.
-         */
-        gold -= totalAmount;
-        numberOfGold.setText(String.valueOf(gold));
-    }
 
     /**
      Method for checking if the text fields regarding the adding and removing of units,
@@ -395,7 +424,7 @@ public class CreateArmyController {
     @FXML
     void onInstantiateArmyButtonClicked(){
         List<Unit> units = new ArrayList<>();
-        if (army == null){
+        if (newArmy == null){
             printErrorMessage("Error: Name of Army needs to be set first!");
         }
         else {
@@ -421,9 +450,15 @@ public class CreateArmyController {
         if (units.isEmpty()){
             printErrorMessage("Error: Army needs units before instantiation!");
         } else {
-            army.addAllUnits(units);
+            newArmy.addAllUnits(units);
             try {
-                ArmyWriter.writeArmyToFile(army, army.getName());
+                if (army != null){
+                    armyFile.delete();
+                    ArmyWriter.removeArmyFileNameFromOverviewFile(Utilities.convertStringToFileName(army.getName()));
+                    armyFile = null;
+                    army = null;
+                }
+                ArmyWriter.writeArmyToFile(newArmy, newArmy.getName());
             } catch (IOException exception){
                 exception.printStackTrace();
             } finally {
@@ -431,6 +466,7 @@ public class CreateArmyController {
             }
         }
     }
+
 
 
     @FXML
@@ -470,6 +506,6 @@ public class CreateArmyController {
     }
 
     public static void setArmyFile(File armyFile) {
-        CreateArmyController.armyFile = armyFile;
+        CreateArmyControllerCopy.armyFile = armyFile;
     }
 }

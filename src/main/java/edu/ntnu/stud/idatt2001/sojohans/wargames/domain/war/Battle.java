@@ -4,7 +4,6 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.BattleExcepti
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -91,11 +90,11 @@ public class Battle{
                     if (unitFromArmyTwo.getHealth() <= 0){
                         this.armyTwo.remove(unitFromArmyTwo);
                         try{
-                            Thread.sleep(50);
+                            warListeners.forEach(WarListener::update);
+                            Thread.sleep(30);
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
                         }
-                        warListeners.forEach(WarListener::update);
                     }
                 } else{
                     unitFromArmyTwo.attack(unitFromArmyOne, terrainType);
@@ -103,11 +102,11 @@ public class Battle{
                     if (unitFromArmyOne.getHealth() <= 0){
                         this.armyOne.remove(unitFromArmyOne);
                         try {
-                            Thread.sleep(50);
+                            warListeners.forEach(WarListener::update);
+                            Thread.sleep(30);
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
                         }
-                        warListeners.forEach(WarListener::update);
                     }
                 }
             } catch (IllegalArgumentException | UnitAttackException exception){

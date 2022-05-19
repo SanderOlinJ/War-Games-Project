@@ -1,6 +1,2 @@
 Army
-COMMANDER_UNIT,Archer,1
-RANGED_UNIT,Archer,2
-RANGED_UNIT,Archer,1
-INFANTRY_UNIT,Swordsman,2
-INFANTRY_UNIT,SwordsmaN,1
+INFANTRY_UNIT,Spear fighter,100

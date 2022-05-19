@@ -25,14 +25,14 @@ public class ArmyReader {
     throws IOException{
 
         if (!Utilities.doesArmyFileExist(nameOfFile)){
-            throw new IOException("File does not exist!");
+            throw new IOException(nameOfFile + " file does not exist!");
         }
         if (nameOfFile == null || Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile).isEmpty()){
             throw new IOException("File name cannot be empty");
         }
         String nameOfFileShortened = Utilities.convertStringToFileName(nameOfFile);
         if (nameOfFileShortened.length() < nameOfFile.length()){
-            throw new IOException("File name can only contain alphanumeric symbols and Æ,Ø,Å");
+            throw new IOException("File name can only contain alphanumeric symbols ");
         }
 
 
@@ -45,7 +45,7 @@ public class ArmyReader {
             throw new IOException("File cannot be null!");
         }
         if (!file.exists()){
-            throw new IOException("File does not exist!");
+            throw new IOException(file.getName() + "File does not exist!");
         }
         return readArmy(file);
     }
@@ -62,7 +62,7 @@ public class ArmyReader {
             throw new IOException("Army name cannot be empty");
         }
         if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(armyInfoInFile.get(0))){
-            throw new IOException("Army name can only contain alphanumeric symbols and Æ,Ø,Å");
+            throw new IOException("Army name can only contain alphanumeric symbols");
         }
 
         String armyName = armyInfoInFile.get(0);
@@ -78,8 +78,8 @@ public class ArmyReader {
 
             String[] values = line.split(DELIMITER);
             if (values.length != 3) {
-                throw new IOException("Error: Line data '" + line + "' is invalid." +
-                        "Make sure each line is in the form of 'Unit type,name,number of occurrences,'");
+                throw new IOException("Error: Line '" + line + "' is invalid." +
+                        "Make sure each line is in the form of 'Unit type,name,number of occurrence,'");
             }
 
             String unitTypeAsString = values[0];
@@ -134,4 +134,5 @@ public class ArmyReader {
 
         return armyFileNames;
     }
+
 }

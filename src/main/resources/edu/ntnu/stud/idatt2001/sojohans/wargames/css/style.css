@@ -164,9 +164,3 @@ styling for combobox prompt text and text field
     -fx-background-color: #240000;
 }
 
-.tooltip{
-    -fx-background-color: #240000;
-    -fx-text-fill: white;
-    -fx-font: 14px "Arial";
-}
-

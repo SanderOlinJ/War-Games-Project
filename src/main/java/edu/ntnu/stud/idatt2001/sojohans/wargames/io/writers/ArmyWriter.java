@@ -4,6 +4,7 @@ import edu.ntnu.stud.idatt2001.sojohans.Utilities;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -41,14 +42,19 @@ public class ArmyWriter {
         String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(army.getUnits());
         stringBuilder.append(unitsToFile);
 
+        boolean alreadyExists = Utilities.doesArmyFileExist(nameOfFile);
+
         try(FileWriter fileWriter = new FileWriter(Utilities.convertStringToArmyFile
                 (Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile)))){
             fileWriter.write(stringBuilder.toString());
-            writeArmyFileNameToOverviewFile(army.getName());
+            if (!alreadyExists){
+                writeArmyFileNameToOverviewFile(army.getName());
+            }
         } catch (IOException exception){
             throw new IOException("Unable to write Army to file: " + exception.getMessage());
         }
     }
+
 
 
     /**
@@ -98,6 +104,28 @@ public class ArmyWriter {
             fileWriter.write(armyFileName + NEWLINE);
         } catch (IOException exception){
             throw new IOException("Army file name could not be written to file: " + exception.getMessage());
+        }
+    }
+
+    public static void removeArmyFileNameFromOverviewFile(String armyFileName) throws IOException{
+        try {
+            List<String> armyFileNamesInOverview = ArmyReader.readArmyFileNamesFromOverviewFile();
+            File file = new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
+                    "wargames/armyFiles/armyFilesOverview.csv");
+
+            armyFileNamesInOverview.removeIf(s -> s.equals(armyFileName));
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String armyFileNameInOverview : armyFileNamesInOverview){
+                stringBuilder.append(armyFileNameInOverview).append(NEWLINE);
+            }
+            try (FileWriter fileWriter = new FileWriter(file)){
+                fileWriter.write(stringBuilder.toString());
+            } catch (IOException exception){
+                throw new IOException("Could not write army overview back to file: " + exception.getMessage());
+            }
+        } catch (IOException exception){
+            throw new IOException("Could not remove army from army overview file: " + exception.getMessage());
         }
     }
 }

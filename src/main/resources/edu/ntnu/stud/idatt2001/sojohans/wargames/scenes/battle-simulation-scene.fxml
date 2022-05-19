@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -91,7 +92,7 @@
                                         <Insets />
                                     </HBox.margin>
                                     <font>
-                                        <Font name="Arial Bold" size="21.0" />
+                                        <Font name="Arial Bold" size="24.0" />
                                     </font>
                                 </Text>
                             </children>
@@ -349,11 +350,23 @@
                                           <Insets top="20.0" />
                                        </HBox.margin>
                                        <children>
-                                          <ImageView fx:id="terrainImageView" fitHeight="320.0" fitWidth="569.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/forest.png" />
-                                             </image>
-                                          </ImageView>
+                                          <StackPane>
+                                             <children>
+                                                <ImageView fx:id="terrainImageView" fitHeight="320.0" fitWidth="569.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/forest.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fx:id="updateText" fill="#0cff14" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="567.13671875">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="35.0" />
+                                                   </font>
+                                                   <StackPane.margin>
+                                                      <Insets top="-365.0" />
+                                                   </StackPane.margin>
+                                                </Text>
+                                             </children>
+                                          </StackPane>
                                           <HBox alignment="CENTER" prefHeight="128.0" prefWidth="570.0">
                                              <children>
                                                 <Button fx:id="simulateButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSimulateButtonClicked" prefHeight="36.0" prefWidth="111.0" styleClass="add-or-remove-button" text="Simulate" textAlignment="CENTER">
@@ -619,7 +632,7 @@
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text fx:id="filePath1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="434.66778564453125">
+                                          <Text fx:id="filePath1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="434.66778564453125">
                                              <font>
                                                 <Font name="Arial" size="20.0" />
                                              </font>
@@ -660,7 +673,7 @@
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text fx:id="filePath2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="434.66778564453125">
+                                          <Text fx:id="filePath2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="434.66778564453125">
                                              <font>
                                                 <Font name="Arial" size="20.0" />
                                              </font>

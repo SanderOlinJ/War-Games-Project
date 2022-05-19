@@ -13,7 +13,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
@@ -21,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class BattleSimulationController {
     @FXML private Text archer1;
@@ -54,6 +52,7 @@ public class BattleSimulationController {
     @FXML private Text totalUnits1;
     @FXML private Text totalUnits2;
     @FXML private Text warningText;
+    @FXML private Text updateText;
     @FXML private ImageView spearFighterLogo1;
     @FXML private ImageView spearFighterLogo2;
     @FXML private ImageView swordsmanLogo1;
@@ -89,6 +88,7 @@ public class BattleSimulationController {
         setItemsAndListenerToTerrainComboBox();
         setItemsListenerAndAddActionToChooseArmyComboBox1(armiesInOverviewFile);
         setItemsListenerAndAddActionToChooseArmyComboBox2(armiesInOverviewFile);
+        addListenerToTerrainTypeComboBoxAndAssignTerrain();
         setToolTipToUnitLogos();
     }
 
@@ -103,7 +103,7 @@ public class BattleSimulationController {
         else if (army1.equals(army2)){
             printErrorMessage("Error: Battle cannot be fought between the same Army!");
         }
-        else if (terrainComboBox.getValue() == null){
+        else if (terrainType == null){
             printErrorMessage("Error: Terrain must be chosen!");
         }
         else {
@@ -111,8 +111,7 @@ public class BattleSimulationController {
                 battle = new Battle(army1, army2);
                 battle.setTerrainType(TerrainType.FOREST);
                 battle.addListener(this::updateUnitNumbers);
-                simulateButton.setDisable(true);
-                resetButton.setDisable(false);
+                disableButtonsDuringSimulation();
                 new Thread(() -> {
                     try {
                         battle.simulate();
@@ -122,17 +121,49 @@ public class BattleSimulationController {
                     Platform.runLater(() -> {
                         if (battle.getVictor().equals(army1)) {
                             printUpdateMessage(army1.getName() + " won!");
+                            enableButtonsAfterSimulation();
                         } else {
                             printUpdateMessage(army2.getName() + " won!");
+                            enableButtonsAfterSimulation();
                         }
                     });
-
                 }).start();
             } catch (BattleException exception){
                 printErrorMessage(exception.getMessage());
             }
-
         }
+    }
+
+    private void addListenerToTerrainTypeComboBoxAndAssignTerrain(){
+        terrainComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    switch (newValue){
+                        case "Forest" -> terrainType = TerrainType.FOREST;
+                        case "Plains" -> terrainType = TerrainType.PLAINS;
+                        case "Hill" -> terrainType = TerrainType.HILL;
+                        default -> terrainType = null;
+                    }
+                }
+        );
+    }
+
+    private void disableButtonsDuringSimulation(){
+        simulateButton.setDisable(true);
+        resetButton.setDisable(true);
+        terrainComboBox.setDisable(true);
+        chooseArmyComboBox1.setDisable(true);
+        chooseArmyComboBox2.setDisable(true);
+        loadFileButton1.setDisable(true);
+        loadFileButton2.setDisable(true);
+    }
+
+    private void enableButtonsAfterSimulation(){
+        resetButton.setDisable(false);
+        terrainComboBox.setDisable(false);
+        chooseArmyComboBox1.setDisable(false);
+        chooseArmyComboBox2.setDisable(false);
+        loadFileButton1.setDisable(false);
+        loadFileButton2.setDisable(false);
     }
 
     public void updateUnitNumbers(){
@@ -151,6 +182,8 @@ public class BattleSimulationController {
             fillArmy2WithInfo();
             simulateButton.setDisable(false);
             resetButton.setDisable(true);
+            removeUpdateMessage();
+            removeErrorMessage();
         } catch (IOException exception){
             printErrorMessage(exception.getMessage());
         }
@@ -166,6 +199,8 @@ public class BattleSimulationController {
             fillArmy1WithInfo();
             filePathTitle1.setVisible(true);
             filePath1.setText(fileArmy1.getAbsolutePath());
+            removeUpdateMessage();
+            removeErrorMessage();
         } catch (IOException exception){
             printErrorMessage(exception.getMessage());
         }
@@ -181,6 +216,8 @@ public class BattleSimulationController {
             fillArmy2WithInfo();
             filePathTitle2.setVisible(true);
             filePath2.setText(file.getAbsolutePath());
+            removeUpdateMessage();
+            removeErrorMessage();
         } catch (IOException exception){
             printErrorMessage(exception.getMessage());
         }
@@ -199,12 +236,14 @@ public class BattleSimulationController {
         chooseArmyComboBox1.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, newValue) -> {
                     try {
+                        clearArmy1Info();
                         army1 = ArmyReader.readArmyFromLocalFileWithNameOfFile(newValue);
                         fileArmy1 = Utilities.convertStringToArmyFile(newValue);
                         filePathTitle1.setVisible(true);
                         filePath1.setText(fileArmy1.getAbsolutePath());
                         fillArmy1WithInfo();
                         removeErrorMessage();
+                        removeUpdateMessage();
                     } catch (IOException exception) {
                         printErrorMessage(exception.getMessage());
                     }
@@ -217,12 +256,14 @@ public class BattleSimulationController {
         chooseArmyComboBox2.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, newValue) -> {
                     try {
+                        clearArmy2Info();
                         army2 = ArmyReader.readArmyFromLocalFileWithNameOfFile(newValue);
                         fileArmy2 = Utilities.convertStringToArmyFile(newValue);
                         filePathTitle2.setVisible(true);
                         filePath2.setText(fileArmy2.getAbsolutePath());
                         fillArmy2WithInfo();
                         removeErrorMessage();
+                        removeUpdateMessage();
                     } catch (IOException exception) {
                         printErrorMessage(exception.getMessage());
                     }
@@ -251,12 +292,40 @@ public class BattleSimulationController {
         paladin.setText(String.valueOf(army.getCommanderUnits().size()));
     }
 
+    private void clearArmy1Info(){
+        clearArmyInfo(army1Name, totalUnits1, spearFighter1, swordsman1, axeman1, archer1, lightCavalry1,
+                paladin1, filePathTitle1, filePath1);
+    }
+    private void clearArmy2Info(){
+        clearArmyInfo(army2Name, totalUnits2, spearFighter2, swordsman2, axeman2, archer2, lightCavalry2,
+                paladin2, filePathTitle2, filePath2);
+    }
+
+    private void clearArmyInfo(Text armyName, Text totalUnits, Text spearFighter, Text swordsman, Text axeman,
+                               Text archer, Text lightCavalry, Text paladin, Text filePathTitle, Text filePath) {
+        armyName.setText("");
+        totalUnits.setText("");
+        spearFighter.setText("");
+        swordsman.setText("");
+        axeman.setText("");
+        archer.setText("");
+        lightCavalry.setText("");
+        paladin.setText("");
+        filePathTitle.setVisible(false);
+        filePath.setText("");
+    }
+
+
     private void printErrorMessage(String errorMessage){
         warningText.setText(errorMessage);
     }
 
     private void printUpdateMessage(String updateMessage){
-        warningText.setText(updateMessage);
+        updateText.setText(updateMessage);
+    }
+
+    private void removeUpdateMessage(){
+        updateText.setText("");
     }
 
     private void removeErrorMessage(){
@@ -283,7 +352,6 @@ public class BattleSimulationController {
         tooltip.setStyle("-fx-background-color: #240000; -fx-text-fill: white; -fx-font: 16px Arial;" +
                 "-fx-font-weight: Bold;");
         tooltip.setText(str);
-
         Tooltip.install(imageView, tooltip);
     }
 }
