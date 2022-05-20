@@ -33,8 +33,11 @@ public class ArmyWriter {
         if (army == null){
             throw new IOException("Army cannot be null!");
         }
-        if (nameOfFile == null || Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile).isEmpty()){
+        if (nameOfFile == null || nameOfFile.trim().isEmpty()){
             throw new IOException("File name cannot be null or empty!");
+        }
+        if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(nameOfFile)){
+            throw new IOException("File name can only contain alpha-numeric symbols");
         }
         StringBuilder stringBuilder =  new StringBuilder();
         stringBuilder.append(army.getName()).append(NEWLINE);
@@ -82,7 +85,9 @@ public class ArmyWriter {
                 {
                     UnitType unitType = null;
                     switch (unit.getClass().getSimpleName()){
-                        case "InfantryUnit" -> unitType = UnitType.INFANTRY_UNIT;
+                        case "SpearFighterUnit" -> unitType = UnitType.SPEAR_FIGHTER_UNIT;
+                        case "SwordsmanUnit" -> unitType = UnitType.SWORDSMAN_UNIT;
+                        case "AxemanUnit" -> unitType = UnitType.AXEMAN_UNIT;
                         case "RangedUnit" -> unitType = UnitType.RANGED_UNIT;
                         case "CavalryUnit" -> unitType = UnitType.CAVALRY_UNIT;
                         case "CommanderUnit" -> unitType = UnitType.COMMANDER_UNIT;

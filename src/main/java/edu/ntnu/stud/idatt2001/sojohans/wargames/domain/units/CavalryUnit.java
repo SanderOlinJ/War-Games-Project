@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.OpponentTypeImpactsBonus;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsAttack;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsDefense;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
@@ -7,7 +9,7 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 /**
  * Class for describing a CavalryUnit.
  */
-public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense {
+public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense, OpponentTypeImpactsBonus {
 
     /**
      * chargedAttack is a variable that tells if the unit has used its charge attack (the first attack).
@@ -25,6 +27,7 @@ public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainIm
      */
     public CavalryUnit(String name, int health, int attack,int armor){
         super(name, health, attack, armor);
+        setUnitType(UnitType.CAVALRY_UNIT);
         chargedAttack = false;
     }
 
@@ -36,6 +39,7 @@ public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainIm
      */
     public CavalryUnit(String name, int health){
         super(name, health, 20, 12);
+        setUnitType(UnitType.CAVALRY_UNIT);
         chargedAttack = false;
     }
 
@@ -46,13 +50,13 @@ public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainIm
      * @return the Attack bonus for CavalryUnit, 6 and 2.
      */
     @Override
-    public int getAttackBonus(TerrainType terrainType) {
+    public int getAttackBonus(TerrainType terrainType, UnitType unitType) {
         int attackBonus = 2;
         if (!this.chargedAttack){
             chargedAttack = true;
             attackBonus = 6;
         }
-        return attackBonus + getTerrainAttackBonus(terrainType);
+        return attackBonus + getTerrainAttackBonus(terrainType) + getOpponentTypeBonus(unitType);
     }
     /**
      * Method for retrieving the CavalryUnit's resist bonus.
@@ -70,7 +74,7 @@ public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainIm
             throw new IllegalArgumentException("TerrainType cannot be null!");
         }
         if (terrainType.equals(TerrainType.PLAINS)){
-            return 3;
+            return 2;
         }
         return 0;
     }
@@ -84,6 +88,14 @@ public class CavalryUnit extends Unit implements TerrainImpactsAttack, TerrainIm
             return -1;
         }
         return 0;
+    }
+
+    @Override
+    public int getOpponentTypeBonus(UnitType unitType) {
+        return switch (unitType){
+            case AXEMAN_UNIT, CAVALRY_UNIT, COMMANDER_UNIT -> 1;
+            default -> 0;
+        };
     }
 
     /**

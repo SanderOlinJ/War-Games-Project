@@ -17,10 +17,12 @@ public class UnitFactory {
             throw new FactoryException("Unit name cannot be null");
         }
         return switch (unitType) {
-            case INFANTRY_UNIT -> new InfantryUnit(name, 100);
+            case SPEAR_FIGHTER_UNIT -> new SpearFighterUnit(name, 100);
+            case SWORDSMAN_UNIT -> new SwordsmanUnit(name, 100);
+            case AXEMAN_UNIT -> new AxemanUnit(name, 100);
             case RANGED_UNIT -> new RangedUnit(name, 100);
             case CAVALRY_UNIT -> new CavalryUnit(name, 100);
-            case COMMANDER_UNIT -> new CommanderUnit(name, 100);
+            case COMMANDER_UNIT -> new CommanderUnit(name, 150);
         };
     }
 

@@ -2,6 +2,7 @@ package edu.ntnu.stud.idatt2001.sojohans.wargames.view;
 
 import edu.ntnu.stud.idatt2001.sojohans.Utilities;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.writers.ArmyWriter;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
@@ -193,7 +194,12 @@ public class ViewArmiesController {
                 ArmyWriter.removeArmyFileNameFromOverviewFile(fileName);
                 if (file.delete()){
                     printErrorMessage("File was successfully deleted!");
-                    removeHBoxWithInfo(index);
+                    armyFileNamesInOverviewFile.remove(index);
+                    armiesInOverview.remove(index);
+                    for (int i = 0; i <= armiesInOverview.size() && i < hBoxes.size(); i++) {
+                        removeHBoxesWithInfo(i);
+                    }
+                    setArmyInfoToGUI();
                 } else {
                     printErrorMessage("File could not be deleted!");
                 }
@@ -213,7 +219,11 @@ public class ViewArmiesController {
         try {
             armyFileNamesInOverviewFile = ArmyReader.readArmyFileNamesFromOverviewFile();
         } catch (IOException exception){
-            printErrorMessage(exception.getMessage());
+            if (exception.getMessage().equals("File could not be read: File is empty!")){
+                printErrorMessage("Army overview is empty! Creating new armies is recommended!");
+            } else {
+                printErrorMessage(exception.getMessage());
+            }
         }
 
         armyFileNamesInOverviewFile.forEach(s -> {
@@ -265,9 +275,9 @@ public class ViewArmiesController {
 
         armyNames.get(index).setText(armiesInOverview.get(index).getName());
         totalUnits.get(index).setText(String.valueOf(armiesInOverview.get(index).getUnits().size()));
-        spearFighterNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getInfantryUnits().size()));
-        swordsmanNumbers.get(index).setText(String.valueOf(0));
-        axemanNumbers.get(index).setText(String.valueOf(0));
+        spearFighterNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getSpearFighterUnits().size()));
+        swordsmanNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getSwordsmanUnits().size()));
+        axemanNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getAxemanUnits().size()));
         archerNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getRangedUnits().size()));
         lightCavalryNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getCavalryUnits().size()));
         paladinNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getCommanderUnits().size()));
@@ -288,7 +298,7 @@ public class ViewArmiesController {
         };
     }
 
-    private void removeHBoxWithInfo(int index){
+    private void removeHBoxesWithInfo(int index){
         hBoxes.get(index).setVisible(false);
         hBoxes.get(index).setDisable(true);
         hBoxes.get(index).setPrefHeight(0);
@@ -296,6 +306,17 @@ public class ViewArmiesController {
         lines.get(index).setVisible(false);
         lines.get(index).setDisable(true);
         lines.get(index).setPrefHeight(0);
+
+        armyNames.get(index).setText("");
+        totalUnits.get(index).setText("");
+        spearFighterNumbers.get(index).setText("");
+        swordsmanNumbers.get(index).setText("");
+        axemanNumbers.get(index).setText("");
+        archerNumbers.get(index).setText("");
+        lightCavalryNumbers.get(index).setText("");
+        paladinNumbers.get(index).setText("");
+        armyIcons.get(index).setImage(null);
+
     }
 
     @FXML
@@ -308,6 +329,7 @@ public class ViewArmiesController {
     }
     @FXML
     public void onSimulateButtonClicked() {
+        Battle.startBattle();
         ViewSwitcher.switchTo(View.BATTLE_SIMULATION);
     }
 

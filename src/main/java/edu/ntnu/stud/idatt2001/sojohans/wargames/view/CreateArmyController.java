@@ -5,6 +5,7 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitFactory;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.writers.ArmyWriter;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
@@ -135,7 +136,9 @@ public class CreateArmyController {
         editNameTextSwap();
         enableButtons();
         armyName.setText(army.getName());
-        spearFighterNumber.setText(String.valueOf(army.getInfantryUnits().size()));
+        spearFighterNumber.setText(String.valueOf(army.getSpearFighterUnits().size()));
+        swordsmanNumber.setText(String.valueOf(army.getSwordsmanUnits().size()));
+        axemanNumber.setText(String.valueOf(army.getAxemanUnits().size()));
         archerNumber.setText(String.valueOf(army.getRangedUnits().size()));
         lightCavalryNumber.setText(String.valueOf(army.getCavalryUnits().size()));
         paladinNumber.setText(String.valueOf(army.getCommanderUnits().size()));
@@ -145,6 +148,18 @@ public class CreateArmyController {
         spearFighterNumber.textProperty().addListener(
                 (observableValue, oldValue, newValue) -> {
                     nrOfSpecificUnits[0] = Integer.parseInt(spearFighterNumber.getText());
+                    updateGold();
+                }
+        );
+        swordsmanNumber.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    nrOfSpecificUnits[1] = Integer.parseInt(swordsmanNumber.getText());
+                    updateGold();
+                }
+        );
+        axemanNumber.textProperty().addListener(
+                (observableValue, oldValue, newValue) -> {
+                    nrOfSpecificUnits[2] = Integer.parseInt(axemanNumber.getText());
                     updateGold();
                 }
         );
@@ -393,12 +408,12 @@ public class CreateArmyController {
      * Method for setting cost of each unit.
      */
     private void fillCostsPerUnit(){
-        costPerUnit[0] = 10; // Sets cost: 10 to spear fighter
-        costPerUnit[1] = 15; // Sets cost: 15 to swordsman
-        costPerUnit[2] = 20; // Sets cost: 20 to axeman
-        costPerUnit[3] = 15; // Sets cost: 15 to archer
-        costPerUnit[4] = 30; // Sets cost: 30 to light cavalry
-        costPerUnit[5] = 100; // Sets cost: 100 to paladin
+        costPerUnit[0] = 50; // Sets cost: 10 to spear fighter
+        costPerUnit[1] = 50; // Sets cost: 15 to swordsman
+        costPerUnit[2] = 60; // Sets cost: 20 to axeman
+        costPerUnit[3] = 120; // Sets cost: 15 to archer
+        costPerUnit[4] = 300; // Sets cost: 30 to light cavalry
+        costPerUnit[5] = 5000; // Sets cost: 100 to paladin
     }
 
 
@@ -428,7 +443,15 @@ public class CreateArmyController {
             // Method uses factory to create units of requested type to be added to list.
             if (nrOfSpecificUnits[0] > 0) {
                 units.addAll(UnitFactory
-                        .getCertainAmountUnits(UnitType.INFANTRY_UNIT, "Spear fighter", nrOfSpecificUnits[0]));
+                        .getCertainAmountUnits(UnitType.SPEAR_FIGHTER_UNIT, "Spear fighter", nrOfSpecificUnits[0]));
+            }
+            if (nrOfSpecificUnits[1] > 0){
+                units.addAll(UnitFactory
+                        .getCertainAmountUnits(UnitType.SWORDSMAN_UNIT, "Swordsman", nrOfSpecificUnits[1]));
+            }
+            if (nrOfSpecificUnits[2] > 0){
+                units.addAll(UnitFactory
+                        .getCertainAmountUnits(UnitType.AXEMAN_UNIT, "Axeman", nrOfSpecificUnits[2]));
             }
             if (nrOfSpecificUnits[3] > 0) {
                 units.addAll(UnitFactory
@@ -460,11 +483,26 @@ public class CreateArmyController {
             } catch (IOException exception){
                 exception.printStackTrace();
             } finally {
-                ViewSwitcher.switchTo(View.MENU);
+                wipeAllInfo();
+                printErrorMessage("Army was saved to file");
             }
         }
     }
 
+    private void wipeAllInfo(){
+        armyFile = null;
+        army = null;
+        newArmy = null;
+        armyName.setText("0");
+        setNameSwap();
+        spearFighterNumber.setText("0");
+        swordsmanNumber.setText("0");
+        axemanNumber.setText("0");
+        archerNumber.setText("0");
+        lightCavalryNumber.setText("0");
+        paladinNumber.setText("0");
+        disableButtons();
+    }
 
     /**
      * Method for removing error message in GUI.
@@ -506,16 +544,20 @@ public class CreateArmyController {
 
     @FXML
     public void onMenuButtonClicked(){
+        armyFile = null;
         ViewSwitcher.switchTo(View.MENU);
     }
 
     @FXML
     public void onSimulateButtonClicked(){
+        armyFile = null;
+        Battle.startBattle();
         ViewSwitcher.switchTo(View.BATTLE_SIMULATION);
     }
 
     @FXML
     public void onViewArmiesButtonClicked(){
+        armyFile = null;
         ViewSwitcher.switchTo(View.VIEW_ARMIES);
     }
 }

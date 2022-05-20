@@ -112,7 +112,11 @@ public class Army {
      */
     private Unit deepCopyUnit(Unit newUnit) throws IllegalArgumentException{
         return switch (newUnit.getClass().getSimpleName()) {
-            case "InfantryUnit" -> new InfantryUnit(newUnit.getName(), newUnit.getHealth(),
+            case "SpearFighterUnit" -> new SpearFighterUnit(newUnit.getName(), newUnit.getHealth(),
+                    newUnit.getAttack(), newUnit.getArmor());
+            case "SwordsmanUnit" -> new SwordsmanUnit(newUnit.getName(), newUnit.getHealth(),
+                    newUnit.getAttack(), newUnit.getArmor());
+            case "AxemanUnit" -> new AxemanUnit(newUnit.getName(), newUnit.getHealth(),
                     newUnit.getAttack(), newUnit.getArmor());
             case "RangedUnit" -> new RangedUnit(newUnit.getName(), newUnit.getHealth(),
                     newUnit.getAttack(), newUnit.getArmor());
@@ -215,6 +219,19 @@ public class Army {
         return units.stream().filter(unit -> unit instanceof InfantryUnit)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+    public List<Unit> getSpearFighterUnits(){
+        return units.stream().filter(unit -> unit instanceof SpearFighterUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public List<Unit> getSwordsmanUnits(){
+        return units.stream().filter(unit -> unit instanceof SwordsmanUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+    public List<Unit> getAxemanUnits(){
+        return units.stream().filter(unit -> unit instanceof AxemanUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
 
     /**
      * Method for getting a List of RangedUnits in Army.
@@ -230,11 +247,9 @@ public class Army {
      * @return A List of Units that are an instance of CavalryUnit
      */
     public List<Unit> getCavalryUnits(){
-        ArrayList<Unit> cavalryUnits = units.stream().filter(unit -> unit instanceof CavalryUnit)
+        return units.stream().filter(unit -> unit instanceof CavalryUnit)
+                .filter(unit -> !(unit instanceof CommanderUnit))
                 .collect(Collectors.toCollection(ArrayList::new));
-        cavalryUnits.removeIf(unit -> unit instanceof CommanderUnit);
-
-        return cavalryUnits;
     }
 
     /**

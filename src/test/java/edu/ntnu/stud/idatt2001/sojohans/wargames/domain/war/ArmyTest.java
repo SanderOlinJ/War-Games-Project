@@ -21,7 +21,7 @@ class ArmyTest {
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Garen",180));
             units.add(new CavalryUnit("Jarvan",100));
-            units.add(new InfantryUnit("Fiora",100));
+            units.add(new SpearFighterUnit("Fiora",100));
             Army demacians = new Army("Demacians",units);
 
             assertEquals(3, demacians.getUnits().size());
@@ -71,15 +71,15 @@ class ArmyTest {
                     "and Army's List of Units is not coupled to the List it was instantiated with")
             public void checkIfUnitsAreDeepCopiedAndArmysListIsNotCoupled(){
                 List<Unit> units = new ArrayList<>();
-                units.add(new InfantryUnit("Swordsman",100));
+                units.add(new SwordsmanUnit("Swordsman",100));
                 units.add(new CavalryUnit("Cavalry",100));
                 units.add(new RangedUnit("Archer",100));
                 units.add(new CommanderUnit("Commander",180));
                 Army army = new Army("Army", units);
 
                 //CHECKING IF THE LISTS SIZES CHANGES
-                InfantryUnit infantryUnit = new InfantryUnit("Swordsman",100);
-                army.addUnit(new InfantryUnit("Swordsman",100));
+                InfantryUnit infantryUnit = new SwordsmanUnit("Swordsman",100);
+                army.addUnit(new SwordsmanUnit("Swordsman",100));
                 assertEquals(5,army.getUnits().size());
                 assertEquals(4,units.size());
 
@@ -135,7 +135,7 @@ class ArmyTest {
             @Test
             @DisplayName("Remove Already Instantiated Unit From Army")
             public void removeAlreadyInstantiatedUnitFromArmy(){
-                InfantryUnit infantryUnit = new InfantryUnit("Swordsman",100);
+                InfantryUnit infantryUnit = new AxemanUnit("Axeman",100);
                 Army army = new Army("Army");
                 army.addUnit(infantryUnit);
                 assertTrue(army.hasUnits());
@@ -148,10 +148,10 @@ class ArmyTest {
             @DisplayName("Remove Unit that has not been instantiated first")
             public void removeUnitThatHasNotBeenInstantiatedFirst() {
                 Army army = new Army("Army");
-                army.addUnit(new InfantryUnit("Infantry", 100));
+                army.addUnit(new SpearFighterUnit("Spear fighter", 100));
                 assertTrue(army.hasUnits());
 
-                army.remove(new InfantryUnit("Infantry", 100));
+                army.remove(new SpearFighterUnit("Spear fighter", 100));
                 assertFalse(army.hasUnits());
             }
 
@@ -164,7 +164,7 @@ class ArmyTest {
             army.addUnit(new RangedUnit("Archer",100));
 
             assertThrows(IllegalArgumentException.class, () -> army.remove(
-                    new InfantryUnit("Swordsman",100)));
+                    new SwordsmanUnit("Swordsman",100)));
         }
     }
 
@@ -184,7 +184,7 @@ class ArmyTest {
     @DisplayName("Does the returned List from getUnits() let you change Unit attributes")
     public void doesReturnedListFromGetUnitsLetYouChangeUnitAttributes(){
         Army army = new Army("Army");
-        army.addUnit(new InfantryUnit("Swordsman",100));
+        army.addUnit(new AxemanUnit("Axeman",100));
 
         List<Unit> units = army.getUnits();
         units.get(0).setHealth(40);
@@ -197,7 +197,7 @@ class ArmyTest {
     @DisplayName("Does the returned List from getUnits() stay coupled to Army's private List")
     public void doesReturnedListFromGetUnitsStayCoupledToArmysPrivateList(){
         Army army = new Army("Army");
-        army.addUnit(new InfantryUnit("Swordsman",100));
+        army.addUnit(new SwordsmanUnit("Swordsman",100));
 
         List<Unit> units = army.getUnits();
         units.add(new RangedUnit("Archer",100));
@@ -219,10 +219,10 @@ class ArmyTest {
         @DisplayName("Does getInfantryUnits return all infantry units in list")
         public void doesGetInfantryUnitsReturnAllInfantryUnitsInList(){
             List<Unit> units = new ArrayList<>();
-            units.add(new InfantryUnit("Swordsman",100));
+            units.add(new SpearFighterUnit("Spear fighter",100));
             units.add(new CavalryUnit("Cavalry",100));
             units.add(new RangedUnit("Archer",100));
-            units.add(new InfantryUnit("Halberdier",100));
+            units.add(new AxemanUnit("Axeman",100));
             units.add(new CommanderUnit("Commander",180));
             Army army = new Army("Army",units);
 
@@ -234,7 +234,7 @@ class ArmyTest {
         public void doesGetCavalryUnitsReturnOnlyCavalryUnitsAndNotCommanderUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
-            units.add(new InfantryUnit("Swordsman",100));
+            units.add(new SwordsmanUnit("Swordsman",100));
             units.add(new CavalryUnit("Cavalry",100));
             units.add(new CavalryUnit("Cavalry",100));
             units.add(new RangedUnit("Archer",100));
@@ -266,15 +266,63 @@ class ArmyTest {
         public void doesGetCommanderUnitsReturnCorrectNumberOfCommanderUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
-            units.add(new InfantryUnit("Swordsman",100));
+            units.add(new SpearFighterUnit("Spear fighter",100));
             units.add(new CavalryUnit("Cavalry",100));
             units.add(new CavalryUnit("Cavalry",100));
             units.add(new RangedUnit("Archer",100));
             units.add(new CavalryUnit("Halberdier",100));
-            units.add(new InfantryUnit("Swordsman",180));
+            units.add(new SwordsmanUnit("Swordsman",180));
             Army army = new Army("Army",units);
 
             assertEquals(1, army.getCommanderUnits().size());
+        }
+
+        @Test
+        public void doesGetSpearFighterUnitsReturnCorrectNumberOfSpearFighterUnits(){
+            List<Unit> units = new ArrayList<>();
+            units.add(new CommanderUnit("Commander",100));
+            units.add(new SpearFighterUnit("Spear fighter",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Halberdier",100));
+            units.add(new SwordsmanUnit("Swordsman",100));
+            units.add(new AxemanUnit("Axeman", 100));
+            Army army = new Army("Army",units);
+
+            assertEquals(1, army.getSpearFighterUnits().size());
+        }
+
+        @Test
+        public void doesGetSwordsmanUnitsReturnCorrectNumberOfSwordsmanUnits(){
+            List<Unit> units = new ArrayList<>();
+            units.add(new CommanderUnit("Commander",100));
+            units.add(new SpearFighterUnit("Spear fighter",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Halberdier",100));
+            units.add(new SwordsmanUnit("Swordsman",100));
+            units.add(new SwordsmanUnit("Swordsman",100));
+            Army army = new Army("Army",units);
+
+            assertEquals(2, army.getSwordsmanUnits().size());
+        }
+
+        @Test
+        public void doesGetAxemanUnitsReturnCorrectNumberOfAxemanUnits(){
+            List<Unit> units = new ArrayList<>();
+            units.add(new CommanderUnit("Commander",100));
+            units.add(new AxemanUnit("Axeman",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new CavalryUnit("Cavalry",100));
+            units.add(new RangedUnit("Archer",100));
+            units.add(new CavalryUnit("Halberdier",100));
+            units.add(new SwordsmanUnit("Swordsman",100));
+            units.add(new SwordsmanUnit("Swordsman",100));
+            Army army = new Army("Army",units);
+
+            assertEquals(1, army.getAxemanUnits().size());
         }
     }
 }

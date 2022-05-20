@@ -1,12 +1,14 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.OpponentTypeImpactsBonus;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsAttack;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 
 /**
  * Class for describing a RangedUnit.
  */
-public class RangedUnit extends Unit implements TerrainImpactsAttack {
+public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTypeImpactsBonus {
 
     /**
      * numberOfAttacksWithstood is a variable that counts how many times this unit has been attacked
@@ -24,6 +26,7 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack {
      */
     public RangedUnit(String name, int health, int attack,int armor){
         super(name, health, attack, armor);
+        setUnitType(UnitType.RANGED_UNIT);
         numberOfAttacksWithstood = 0;
     }
 
@@ -35,6 +38,7 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack {
      */
     public RangedUnit(String name, int health){
         super(name, health, 15, 8);
+        setUnitType(UnitType.RANGED_UNIT);
         numberOfAttacksWithstood = 0;
     }
 
@@ -44,8 +48,8 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack {
      * @return Attack bonus of the RangedUnit.
      */
     @Override
-    public int getAttackBonus(TerrainType terrainType) {
-        return 3 + getTerrainAttackBonus(terrainType);
+    public int getAttackBonus(TerrainType terrainType, UnitType unitType) {
+        return 3 + getTerrainAttackBonus(terrainType) + getOpponentTypeBonus(unitType);
     }
 
     /**
@@ -67,13 +71,22 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack {
     }
 
     @Override
+    public int getOpponentTypeBonus(UnitType unitType) {
+        return switch (unitType){
+            case SWORDSMAN_UNIT, AXEMAN_UNIT, SPEAR_FIGHTER_UNIT -> 2;
+            case CAVALRY_UNIT, COMMANDER_UNIT -> 1;
+            default -> 0;
+        };
+    }
+
+    @Override
     public int getTerrainAttackBonus(TerrainType terrainType) {
         if (terrainType == null){
             throw new IllegalArgumentException("TerrainType cannot be null!");
         } if (terrainType.equals(TerrainType.HILL)){
-            return 3;
+            return 2;
         } else if (terrainType.equals(TerrainType.FOREST)){
-            return -2;
+            return -1;
         }
         return 0;
     }

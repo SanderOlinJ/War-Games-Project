@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.OpponentTypeImpactsBonus;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsAttack;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainImpactsDefense;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
@@ -7,7 +9,8 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 /**
  * Class for describing a InfantryUnit.
  */
-public class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense {
+public abstract class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense,
+        OpponentTypeImpactsBonus {
 
     /**
      * The default constructor for InfantryUnit.
@@ -20,12 +23,6 @@ public class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainI
         super(name, health, attack, armor);
     }
 
-    /**
-     * The simplified constructor for InfantryUnit.
-     * The InfantryUnit's attack and armor-stat are set to its default (15 and 10).
-     * @param name Name of the InfantryUnit.
-     * @param health Health of the InfantryUnit, cannot be less than or equal to 0.
-     */
     public InfantryUnit(String name, int health){
         super(name, health, 15, 10);
     }
@@ -36,8 +33,8 @@ public class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainI
      * @return Attack bonus of the InfantryUnit.
      */
     @Override
-    public int getAttackBonus(TerrainType terrainType) {
-        return 2 + getTerrainAttackBonus(terrainType);
+    public int getAttackBonus(TerrainType terrainType, UnitType unitType) {
+        return 2 + getTerrainAttackBonus(terrainType) + getOpponentTypeBonus(unitType);
     }
 
     /**
@@ -66,7 +63,7 @@ public class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainI
             throw new IllegalArgumentException("TerrainType cannot be null!");
         }
         if (terrainType.equals(TerrainType.FOREST)){
-            return 4;
+            return 3;
         }
         return 0;
     }
@@ -82,4 +79,7 @@ public class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainI
         }
         return 0;
     }
+
+    @Override
+    public abstract int getOpponentTypeBonus(UnitType unitType);
 }

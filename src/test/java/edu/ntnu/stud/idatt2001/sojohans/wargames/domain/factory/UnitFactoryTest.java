@@ -26,12 +26,12 @@ class UnitFactoryTest {
     @Test
     void doesGetUnitThrowExceptionIfUnitNameIsNull(){
 
-        assertThrows(FactoryException.class, () -> UnitFactory.getUnit(UnitType.INFANTRY_UNIT, null));
+        assertThrows(FactoryException.class, () -> UnitFactory.getUnit(UnitType.SPEAR_FIGHTER_UNIT, null));
     }
     @Test
     void getNumberOfUnitsReturnCorrectAmountOfSameUnit(){
 
-        List<Unit> units = UnitFactory.getCertainAmountUnits(UnitType.INFANTRY_UNIT,
+        List<Unit> units = UnitFactory.getCertainAmountUnits(UnitType.SPEAR_FIGHTER_UNIT,
                 "Swordsman", 100);
         assertEquals(100, units.size());
     }

@@ -43,6 +43,7 @@ public class BattleSimulationController {
     @FXML private Text paladin2;
     @FXML private Button resetButton;
     @FXML private Button simulateButton;
+    @FXML private Button pauseButton;
     @FXML private Text spearFighter1;
     @FXML private Text spearFighter2;
     @FXML private Text swordsman1;
@@ -68,6 +69,7 @@ public class BattleSimulationController {
 
 
 
+
     private File fileArmy1;
     private File fileArmy2;
     private Army army1;
@@ -82,7 +84,11 @@ public class BattleSimulationController {
         try {
             armiesInOverviewFile = ArmyReader.readArmyFileNamesFromOverviewFile();
         } catch (IOException exception) {
-            exception.printStackTrace();
+            if (exception.getMessage().equals("File could not be read: File is empty!")){
+                printErrorMessage("Army overview is empty! Creating new armies is recommended!");
+            } else {
+                printErrorMessage(exception.getMessage());
+            }
         }
         resetButton.setDisable(true);
         setItemsAndListenerToTerrainComboBox();
@@ -108,23 +114,30 @@ public class BattleSimulationController {
         }
         else {
             try {
+                removeErrorMessage();
+                Battle.startBattle();
                 battle = new Battle(army1, army2);
-                battle.setTerrainType(TerrainType.FOREST);
+                battle.setTerrainType(terrainType);
                 battle.addListener(this::updateUnitNumbers);
-                disableButtonsDuringSimulation();
+                buttonStatusDuringSimulation();
                 new Thread(() -> {
                     try {
+                        printUpdateMessage("Simulation ongoing!");
                         battle.simulate();
                     } catch (BattleException exception) {
                         printErrorMessage(exception.getMessage());
                     }
                     Platform.runLater(() -> {
-                        if (battle.getVictor().equals(army1)) {
+                        if (battle.getVictor() == null){
+                            printUpdateMessage("Battle paused");
+                            swapToSimulateButton();
+                            resetButton.setDisable(false);
+                        } else if (battle.getVictor().equals(army1)) {
                             printUpdateMessage(army1.getName() + " won!");
-                            enableButtonsAfterSimulation();
+                            buttonStatusAfterSimulation();
                         } else {
                             printUpdateMessage(army2.getName() + " won!");
-                            enableButtonsAfterSimulation();
+                            buttonStatusAfterSimulation();
                         }
                     });
                 }).start();
@@ -147,8 +160,8 @@ public class BattleSimulationController {
         );
     }
 
-    private void disableButtonsDuringSimulation(){
-        simulateButton.setDisable(true);
+    private void buttonStatusDuringSimulation(){
+        swapToPauseButton();
         resetButton.setDisable(true);
         terrainComboBox.setDisable(true);
         chooseArmyComboBox1.setDisable(true);
@@ -157,7 +170,9 @@ public class BattleSimulationController {
         loadFileButton2.setDisable(true);
     }
 
-    private void enableButtonsAfterSimulation(){
+    private void buttonStatusAfterSimulation(){
+        swapToSimulateButton();
+        simulateButton.setDisable(true);
         resetButton.setDisable(false);
         terrainComboBox.setDisable(false);
         chooseArmyComboBox1.setDisable(false);
@@ -165,6 +180,27 @@ public class BattleSimulationController {
         loadFileButton1.setDisable(false);
         loadFileButton2.setDisable(false);
     }
+
+    private void swapToPauseButton(){
+        simulateButton.setDisable(true);
+        simulateButton.setVisible(false);
+        simulateButton.setPrefWidth(0);
+
+        pauseButton.setDisable(false);
+        pauseButton.setVisible(true);
+        pauseButton.setPrefWidth(111);
+    }
+
+    private void swapToSimulateButton(){
+        simulateButton.setDisable(false);
+        simulateButton.setVisible(true);
+        simulateButton.setPrefWidth(111);
+
+        pauseButton.setDisable(true);
+        pauseButton.setVisible(false);
+        pauseButton.setPrefWidth(0);
+    }
+
 
     public void updateUnitNumbers(){
         Platform.runLater(() -> {
@@ -176,6 +212,7 @@ public class BattleSimulationController {
     @FXML
     public void onResetButtonClicked(){
         try {
+            buttonStatusAfterSimulation();
             army1 = ArmyReader.readArmyFileWithPath(fileArmy1);
             army2 = ArmyReader.readArmyFileWithPath(fileArmy2);
             fillArmy1WithInfo();
@@ -190,6 +227,13 @@ public class BattleSimulationController {
     }
 
     @FXML
+    public void onPauseButtonClicked(){
+        Battle.shutdownBattle();
+        buttonStatusDuringSimulation();
+    }
+
+
+    @FXML
     public void onLoadFileButton1Clicked(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
@@ -200,9 +244,9 @@ public class BattleSimulationController {
             filePathTitle1.setVisible(true);
             filePath1.setText(fileArmy1.getAbsolutePath());
             removeUpdateMessage();
-            removeErrorMessage();
+            printErrorMessage("Unregulated file, battle may not be fair!");
         } catch (IOException exception){
-            printErrorMessage(exception.getMessage());
+            printErrorMessage("Error: Wrong format in imported file: " + exception.getMessage());
         }
     }
 
@@ -217,9 +261,9 @@ public class BattleSimulationController {
             filePathTitle2.setVisible(true);
             filePath2.setText(file.getAbsolutePath());
             removeUpdateMessage();
-            removeErrorMessage();
+            printErrorMessage("Unregulated file, battle may not be fair!");
         } catch (IOException exception){
-            printErrorMessage(exception.getMessage());
+            printErrorMessage("Error: Wrong format in imported file: " + exception.getMessage());
         }
     }
 
@@ -290,18 +334,22 @@ public class BattleSimulationController {
     }
 
     private void fillArmy1WithInfo(){
-        setInfoToArmies(army1Name, totalUnits1, spearFighter1, archer1, lightCavalry1, paladin1, army1);
+        setInfoToArmies(army1Name, totalUnits1, spearFighter1, swordsman1, axeman1,
+                archer1, lightCavalry1, paladin1, army1);
     }
 
     private void fillArmy2WithInfo(){
-        setInfoToArmies(army2Name, totalUnits2, spearFighter2, archer2, lightCavalry2, paladin2, army2);
+        setInfoToArmies(army2Name, totalUnits2, spearFighter2, swordsman2, axeman2,
+                archer2, lightCavalry2, paladin2, army2);
     }
 
-    private void setInfoToArmies(Text armyName, Text totalUnits, Text spearFighter, Text archer,
-                                 Text lightCavalry, Text paladin, Army army) {
+    private void setInfoToArmies(Text armyName, Text totalUnits, Text spearFighter, Text swordsman, Text axeman,
+                                 Text archer, Text lightCavalry, Text paladin, Army army) {
         armyName.setText(String.valueOf(army.getName()));
         totalUnits.setText(String.valueOf(army.getUnits().size()));
-        spearFighter.setText(String.valueOf(army.getInfantryUnits().size()));
+        spearFighter.setText(String.valueOf(army.getSpearFighterUnits().size()));
+        swordsman.setText(String.valueOf(army.getSwordsmanUnits().size()));
+        axeman.setText(String.valueOf(army.getAxemanUnits().size()));
         archer.setText(String.valueOf(army.getRangedUnits().size()));
         lightCavalry.setText(String.valueOf(army.getCavalryUnits().size()));
         paladin.setText(String.valueOf(army.getCommanderUnits().size()));
@@ -372,16 +420,19 @@ public class BattleSimulationController {
 
     @FXML
     public void onMenuButtonClicked(){
+        Battle.shutdownBattle();
         ViewSwitcher.switchTo(View.MENU);
     }
 
     @FXML
     public void onCreateArmyButtonClicked(){
+        Battle.shutdownBattle();
         ViewSwitcher.switchTo(View.CREATE_ARMY);
     }
 
     @FXML
     public void onViewArmiesButtonClicked(){
+        Battle.shutdownBattle();
         ViewSwitcher.switchTo(View.VIEW_ARMIES);
     }
 

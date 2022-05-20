@@ -9,7 +9,7 @@ class UnitTypeTest {
     @Test
     void doesValueOfAStringReturnCorrectUnitType(){
 
-        UnitType unitType = UnitType.valueOf("INFANTRY_UNIT");
-        assertEquals(UnitType.INFANTRY_UNIT, unitType);
+        UnitType unitType = UnitType.valueOf("SPEAR_FIGHTER_UNIT");
+        assertEquals(UnitType.SPEAR_FIGHTER_UNIT, unitType);
     }
 }

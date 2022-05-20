@@ -12,7 +12,7 @@ class ArmyReaderTest {
 
     @Test
     void checkIfReadArmyFromFileReturnsAnArmyWithCorrectValues() throws IOException {
-        Army army = ArmyReader.readArmyFromLocalFileWithNameOfFile("army");
+        Army army = ArmyReader.readArmyFromLocalFileWithNameOfFile("armytest");
 
         assertEquals(7, army.getUnits().size());
     }

@@ -115,7 +115,6 @@ public class Battle{
                 throw new BattleException(exception.getMessage());
             }
         }
-        //Method return whichever Army has Units left.
         return getVictor();
     }
 
@@ -135,10 +134,12 @@ public class Battle{
      * @return the Army that won.
      */
     public Army getVictor(){
-        if (this.armyOne.hasUnits()){
+        if (this.armyOne.hasUnits() && !this.armyTwo.hasUnits()){
             return this.armyOne;
-        } else {
+        } else if (!this.armyOne.hasUnits() && this.armyTwo.hasUnits()){
             return this.armyTwo;
+        } else {
+            return null;
         }
     }
 
@@ -147,10 +148,12 @@ public class Battle{
      * @return the Army that lost.
      */
     public Army getLoser(){
-        if (!this.armyOne.hasUnits()){
+        if (this.armyOne.hasUnits() && !this.armyTwo.hasUnits()){
+            return this.armyTwo;
+        } else if (!this.armyOne.hasUnits() && this.armyTwo.hasUnits()){
             return this.armyOne;
         } else {
-            return this.armyTwo;
+            return null;
         }
     }
 
@@ -185,7 +188,11 @@ public class Battle{
         warListeners.add(warListener);
     }
 
-    public static void shutdown(){
+    public static void shutdownBattle(){
         stopRequested = true;
+    }
+
+    public static void startBattle(){
+        stopRequested = false;
     }
 }

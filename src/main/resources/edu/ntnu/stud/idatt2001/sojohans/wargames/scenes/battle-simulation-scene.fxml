@@ -365,6 +365,14 @@
                                           </StackPane>
                                           <HBox alignment="CENTER" prefHeight="128.0" prefWidth="570.0">
                                              <children>
+                                                <Button fx:id="pauseButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPauseButtonClicked" prefHeight="36.0" prefWidth="0.0" styleClass="add-or-remove-button" text="Pause" textAlignment="CENTER" visible="false">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="20.0" />
+                                                   </font>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
                                                 <Button fx:id="simulateButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSimulateButtonClicked" prefHeight="36.0" prefWidth="111.0" styleClass="add-or-remove-button" text="Simulate" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />

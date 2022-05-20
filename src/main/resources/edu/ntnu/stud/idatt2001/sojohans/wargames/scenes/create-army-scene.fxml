@@ -84,30 +84,30 @@
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1200.0" style="-fx-background-color: black;" />
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="1200.0" styleClass="HBox2" stylesheets="@../css/style.css">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="warningText" fill="#ffec3c" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="827.13671875">
+                        <Text fx:id="warningText" fill="#ffec3c" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="761.13671875">
                            <HBox.margin>
-                              <Insets right="60.0" />
+                              <Insets left="210.0" />
                            </HBox.margin>
                            <font>
                               <Font name="Arial Bold" size="21.0" />
                            </font>
                         </Text>
-                        <Text fx:id="numberOfGold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="numberOfGold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="77.0">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets left="40.0" />
                            </HBox.margin>
                         </Text>
-                        <ImageView fitHeight="41.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/coins.png" />
                            </image>
                            <HBox.margin>
-                              <Insets right="60.0" />
+                              <Insets />
                            </HBox.margin>
                         </ImageView>
                      </children>

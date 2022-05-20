@@ -4,11 +4,9 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class WarGamesApplication extends Application {
     @Override
@@ -18,7 +16,7 @@ public class WarGamesApplication extends Application {
         ViewSwitcher.switchTo(View.MENU);
         stage.setTitle("Start screen");
         stage.setScene(scene);
-        stage.setOnCloseRequest(windowEvent -> Battle.shutdown());
+        stage.setOnCloseRequest(windowEvent -> Battle.shutdownBattle());
         stage.show();
     }
 

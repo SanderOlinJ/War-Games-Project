@@ -1,6 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 
 import java.util.Objects;
@@ -10,6 +11,7 @@ import java.util.Objects;
  */
 public abstract class Unit {
 
+    private UnitType unitType;
     private final String name;
     private int health;
     private final int attack;
@@ -67,8 +69,13 @@ public abstract class Unit {
             Method gives the opponent new health, depending on attacker's attack and attack bonus,
             as well as the opponent's armor and resist bonus
              */
-            opponentUnit.health = opponentUnit.health - (this.attack + this.getAttackBonus(terrainType))
+            int healthBeforeAttack = opponentUnit.getHealth();
+            opponentUnit.health = opponentUnit.health -
+                    (this.attack + this.getAttackBonus(terrainType, opponentUnit.getUnitType()))
                     + (opponentUnit.armor + opponentUnit.getResistBonus(terrainType));
+            if (opponentUnit.health > healthBeforeAttack){
+                System.out.println("BRUH");
+            }
         }
     }
 
@@ -77,7 +84,7 @@ public abstract class Unit {
      * @param terrainType Terrain, each terrain affects certain bonuses per units.
      * @return Attack bonus of the Unit.
      */
-    public abstract int getAttackBonus(TerrainType terrainType);
+    public abstract int getAttackBonus(TerrainType terrainType, UnitType unitType);
 
     /**
      * Abstract method for getting the Unit's resist bonus.
@@ -165,5 +172,13 @@ public abstract class Unit {
     @Override
     public int hashCode() {
         return Objects.hash(name, health, attack, armor);
+    }
+
+    public UnitType getUnitType() {
+        return unitType;
+    }
+
+    public void setUnitType(UnitType unitType) {
+        this.unitType = unitType;
     }
 }

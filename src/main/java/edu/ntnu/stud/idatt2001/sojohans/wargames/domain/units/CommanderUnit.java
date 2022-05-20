@@ -1,6 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 
 /**
  * Class for describing a CommanderUnit.
@@ -16,6 +17,7 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health, int attack,int armor){
         super(name, health, attack, armor);
+        setUnitType(UnitType.COMMANDER_UNIT);
     }
 
     /**
@@ -26,6 +28,7 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health){
         super(name, health, 25, 15);
+        setUnitType(UnitType.COMMANDER_UNIT);
     }
 
 
