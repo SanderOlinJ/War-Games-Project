@@ -23,7 +23,7 @@
                     <children>
                         <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0" styleClass="TopMenuBar" stylesheets="@../css/style.css">
                             <children>
-                                <ImageView fx:id="menuButton" fitHeight="71.0" fitWidth="220.0" onMouseClicked="#onMenuButtonClicked" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="71.0" fitWidth="220.0" onMouseClicked="#onMenuButtonClicked" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/menu.png" />
                                     </image>
@@ -34,7 +34,7 @@
                                         <DropShadow />
                                     </effect>
                                 </ImageView>
-                                <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onCreateArmyButtonClicked" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/create-army.png" />
                                     </image>
@@ -53,9 +53,9 @@
                                         <DropShadow />
                                     </effect>
                                 </ImageView>
-                                <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onViewArmiesButtonClicked" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/battle-history.png" />
+                                        <Image url="@../images/view-armies.png" />
                                     </image>
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
@@ -64,7 +64,7 @@
                                         <DropShadow />
                                     </effect>
                                 </ImageView>
-                                <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
                                     <image>
                                         <Image url="@../images/simulate.png" />
                                     </image>

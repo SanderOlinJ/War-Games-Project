@@ -6,6 +6,8 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +39,6 @@ public class BattleSimulationController {
     @FXML private Text lightCavalry2;
     @FXML private Button loadFileButton1;
     @FXML private Button loadFileButton2;
-    @FXML private ImageView menuButton;
     @FXML private Text paladin1;
     @FXML private Text paladin2;
     @FXML private Button resetButton;
@@ -271,9 +271,6 @@ public class BattleSimulationController {
         );
     }
 
-    @FXML
-    public void onMenuButtonClicked(){}
-
     private void fillArmy1WithInfo(){
         setInfoToArmies(army1Name, totalUnits1, spearFighter1, archer1, lightCavalry1, paladin1, army1);
     }
@@ -353,5 +350,20 @@ public class BattleSimulationController {
                 "-fx-font-weight: Bold;");
         tooltip.setText(str);
         Tooltip.install(imageView, tooltip);
+    }
+
+    @FXML
+    public void onMenuButtonClicked(){
+        ViewSwitcher.switchTo(View.MENU);
+    }
+
+    @FXML
+    public void onCreateArmyButtonClicked(){
+        ViewSwitcher.switchTo(View.CREATE_ARMY);
+    }
+
+    @FXML
+    public void onViewArmiesButtonClicked(){
+        ViewSwitcher.switchTo(View.VIEW_ARMIES);
     }
 }

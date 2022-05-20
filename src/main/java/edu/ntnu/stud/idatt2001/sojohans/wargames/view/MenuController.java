@@ -2,10 +2,9 @@ package edu.ntnu.stud.idatt2001.sojohans.wargames.view;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class StartScreenController {
+public class MenuController {
 
     @FXML
     public void onBattleSimulationButtonClicked() {
@@ -18,8 +17,8 @@ public class StartScreenController {
     }
 
     @FXML
-    public void onViewLocalArmiesButtonClicked(){
-        ViewSwitcher.switchTo(View.VIEW_OR_EDIT_LOCAL_ARMIES);
+    public void onViewArmiesButtonClicked(){
+        ViewSwitcher.switchTo(View.VIEW_ARMIES);
     }
 
 }

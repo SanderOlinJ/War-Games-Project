@@ -7,14 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class WarGamesApplication extends Application {
     @Override
     public void start(Stage stage){
         Scene scene = new Scene(new Pane());
         ViewSwitcher.setScene(scene);
-        ViewSwitcher.switchTo(View.START);
+        ViewSwitcher.switchTo(View.MENU);
         stage.setTitle("Start screen");
         stage.setScene(scene);
         stage.show();

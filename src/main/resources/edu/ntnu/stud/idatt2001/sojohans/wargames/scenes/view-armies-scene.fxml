@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.ViewOrEditLocalArmiesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.ViewArmiesController">
    <center>
       <VBox style="-fx-background-color: BBA88D;">
          <children>
@@ -21,7 +21,7 @@
                <children>
                   <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="93.0" prefWidth="1200.0" styleClass="TopMenuBar" stylesheets="@../css/style.css">
                      <children>
-                        <ImageView fx:id="menuButton" fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onMenuButtonClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/menu.png" />
                            </image>
@@ -32,7 +32,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onCreateArmyButtonClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/create-army.png" />
                            </image>
@@ -51,9 +51,9 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="96.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
                            <image>
-                              <Image url="@../images/battle-history.png" />
+                              <Image url="@../images/view-armies.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -62,7 +62,7 @@
                               <DropShadow />
                            </effect>
                         </ImageView>
-                        <ImageView fx:id="simulateBattleButton" fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onSimulateButtonClicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="96.0" fitWidth="220.0" onMouseClicked="#onSimulateButtonClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/simulate.png" />
                            </image>
@@ -117,7 +117,7 @@
                                  <children>
                                     <ImageView fx:id="armyIcon1" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
@@ -372,7 +372,7 @@
                                  <children>
                                     <ImageView fx:id="armyIcon2" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
@@ -627,7 +627,7 @@
                                  <children>
                                     <ImageView fx:id="armyIcon3" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
@@ -882,7 +882,7 @@
                                  <children>
                                     <ImageView fx:id="armyIcon4" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
@@ -1137,7 +1137,7 @@
                                  <children>
                                     <ImageView fx:id="armyIcon5" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
@@ -1390,9 +1390,9 @@
                               <HBox fx:id="line5" alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0" prefWidth="1000.0" style="-fx-background-color: black;" visible="false" />
                               <HBox fx:id="hBox6" alignment="CENTER_LEFT" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="1000.0" visible="false">
                                  <children>
-                                    <ImageView fx:id="armyIcon15" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="armyIcon6" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">
@@ -1647,7 +1647,7 @@
                                  <children>
                                     <ImageView fx:id="armyIcon7" fitHeight="99.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="20.0" />
+                                          <Insets left="40.0" />
                                        </HBox.margin>
                                     </ImageView>
                                     <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="167.0" prefWidth="227.0">

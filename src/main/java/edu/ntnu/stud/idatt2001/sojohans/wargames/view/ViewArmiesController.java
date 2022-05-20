@@ -7,23 +7,23 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.io.writers.ArmyWriter;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Random;
 
-public class ViewOrEditLocalArmiesController {
+
+public class ViewArmiesController {
     @FXML private Text archers1;
     @FXML private Text archers2;
     @FXML private Text archers3;
@@ -73,7 +73,6 @@ public class ViewOrEditLocalArmiesController {
     @FXML private Text lightCavalry5;
     @FXML private Text lightCavalry6;
     @FXML private Text lightCavalry7;
-    @FXML private ImageView menuButton;
     @FXML private Text paladins1;
     @FXML private Text paladins2;
     @FXML private Text paladins3;
@@ -81,7 +80,6 @@ public class ViewOrEditLocalArmiesController {
     @FXML private Text paladins5;
     @FXML private Text paladins6;
     @FXML private Text paladins7;
-    @FXML private ImageView simulateBattleButton;
     @FXML private Text spearFighters1;
     @FXML private Text spearFighters2;
     @FXML private Text spearFighters3;
@@ -123,6 +121,7 @@ public class ViewOrEditLocalArmiesController {
     private List<Army> armiesInOverview;
     private List<HBox> hBoxes;
     private List<HBox> lines;
+    private List<ImageView> armyIcons;
     private List<Text> armyNames;
     private List<Text> totalUnits;
     private List<Text> spearFighterNumbers;
@@ -148,6 +147,8 @@ public class ViewOrEditLocalArmiesController {
         armyFileNamesInOverviewFile = new ArrayList<>();
         hBoxes = new ArrayList<>(Arrays.asList(hBox1, hBox2, hBox3, hBox4, hBox5, hBox6, hBox7));
         lines = new ArrayList<>(Arrays.asList(line1, line2, line3, line4, line5, line6, line7));
+        armyIcons = new ArrayList<>(Arrays.asList(armyIcon1, armyIcon2, armyIcon3, armyIcon4, armyIcon5, armyIcon6,
+                armyIcon7));
         armyNames = new ArrayList<>(Arrays.asList(armyName1, armyName2, armyName3, armyName4, armyName5,
                 armyName6, armyName7));
         totalUnits = new ArrayList<>(Arrays.asList(totalUnits1, totalUnits2, totalUnits3, totalUnits4,
@@ -205,7 +206,7 @@ public class ViewOrEditLocalArmiesController {
     private void editArmy(int index){
         String fileName = armyFileNamesInOverviewFile.get(index);
         File file = Utilities.convertStringToArmyFile(fileName);
-        CreateArmyControllerCopy.setArmyFile(file);
+        CreateArmyController.setArmyFile(file);
         ViewSwitcher.switchTo(View.CREATE_ARMY);
     }
     private void readAllArmiesFromOverviewFile(){
@@ -270,6 +271,21 @@ public class ViewOrEditLocalArmiesController {
         archerNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getRangedUnits().size()));
         lightCavalryNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getCavalryUnits().size()));
         paladinNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getCommanderUnits().size()));
+        armyIcons.get(index).setImage(getRandomArmyIconImage());
+    }
+
+    private Image getRandomArmyIconImage(){
+        Random random = new Random();
+        int randomInt = random.nextInt(5);
+
+        return switch (randomInt){
+            case 0 -> new Image("file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/images/shield1.png");
+            case 1 -> new Image("file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/images/shield2.png");
+            case 2 -> new Image("file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/images/shield3.png");
+            case 3 -> new Image("file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/images/shield4.png");
+            case 4 -> new Image("file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/images/shield5.png");
+            default -> throw new IllegalStateException("Unexpected value: " + randomInt);
+        };
     }
 
     private void removeHBoxWithInfo(int index){
@@ -282,10 +298,17 @@ public class ViewOrEditLocalArmiesController {
         lines.get(index).setPrefHeight(0);
     }
 
+    @FXML
+    public void onMenuButtonClicked(){
+        ViewSwitcher.switchTo(View.MENU);
+    }
 
+    public void onCreateArmyButtonClicked(){
+        ViewSwitcher.switchTo(View.CREATE_ARMY);
+    }
     @FXML
     public void onSimulateButtonClicked() {
-
+        ViewSwitcher.switchTo(View.BATTLE_SIMULATION);
     }
 
     private void printErrorMessage(String errorMessage){

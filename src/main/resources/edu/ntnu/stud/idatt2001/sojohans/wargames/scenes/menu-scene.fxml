@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.StartScreenController">
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.stud.idatt2001.sojohans.wargames.view.MenuController">
    <children>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: black;">
          <center>
@@ -29,7 +29,7 @@
             <Insets top="-300.0" />
          </StackPane.margin>
       </ImageView>
-      <Button fx:id="battleSimulationButton" mnemonicParsing="false" onAction="#onBattleSimulationButtonClicked" prefHeight="43.0" prefWidth="225.0" style="-fx-background-color: green;" styleClass="jfx-button" stylesheets="@../css/style.css" text="Battle Simulation" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onBattleSimulationButtonClicked" prefHeight="43.0" prefWidth="225.0" style="-fx-background-color: green;" styleClass="jfx-button" stylesheets="@../css/style.css" text="Battle Simulation" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="23.0" />
          </font>
@@ -40,7 +40,7 @@
             <DropShadow height="10.0" radius="4.5" width="10.0" />
          </effect>
       </Button>
-      <Button fx:id="createArmyButton" mnemonicParsing="false" onAction="#onCreateArmyButtonClicked" prefHeight="43.0" prefWidth="225.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Create Army" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onCreateArmyButtonClicked" prefHeight="43.0" prefWidth="225.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Create Army" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="23.0" />
          </font>
@@ -54,7 +54,7 @@
             <Insets top="120.0" />
          </StackPane.margin>
       </Button>
-      <Button fx:id="viewLocalArmiesButton" mnemonicParsing="false" onAction="#onViewLocalArmiesButtonClicked" prefHeight="43.0" prefWidth="225.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="View local armies" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onViewArmiesButtonClicked" prefHeight="43.0" prefWidth="225.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="View Armies" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="23.0" />
          </font>

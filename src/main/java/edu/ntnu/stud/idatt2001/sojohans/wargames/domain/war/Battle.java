@@ -89,8 +89,8 @@ public class Battle{
                     armyOneAttacks++;
                     if (unitFromArmyTwo.getHealth() <= 0){
                         this.armyTwo.remove(unitFromArmyTwo);
+                        warListeners.forEach(WarListener::update);
                         try{
-                            warListeners.forEach(WarListener::update);
                             Thread.sleep(30);
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
@@ -101,8 +101,8 @@ public class Battle{
                     armyTwoAttacks++;
                     if (unitFromArmyOne.getHealth() <= 0){
                         this.armyOne.remove(unitFromArmyOne);
+                        warListeners.forEach(WarListener::update);
                         try {
-                            warListeners.forEach(WarListener::update);
                             Thread.sleep(30);
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
