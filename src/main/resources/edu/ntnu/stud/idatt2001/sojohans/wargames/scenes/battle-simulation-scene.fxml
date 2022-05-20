@@ -352,11 +352,7 @@
                                        <children>
                                           <StackPane>
                                              <children>
-                                                <ImageView fx:id="terrainImageView" fitHeight="320.0" fitWidth="569.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/forest.png" />
-                                                   </image>
-                                                </ImageView>
+                                                <ImageView fx:id="terrainImageView" fitHeight="320.0" fitWidth="569.0" pickOnBounds="true" preserveRatio="true" />
                                                 <Text fx:id="updateText" fill="#0cff14" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="567.13671875">
                                                    <font>
                                                       <Font name="Arial Bold" size="35.0" />

@@ -32,6 +32,8 @@ public class Battle{
 
     private final List<WarListener> warListeners = new ArrayList<>();
 
+    private static boolean stopRequested = false;
+
 
     /**
      * Constructor for Battle.
@@ -67,7 +69,7 @@ public class Battle{
      */
     public Army simulate(){
         //As long as both Armies have Units left, the fight will continue. It will stop when one Army perishes.
-        while (this.armyOne.hasUnits() && this.armyTwo.hasUnits()){
+        while (this.armyOne.hasUnits() && this.armyTwo.hasUnits() && !stopRequested){
             /*
             The simulation is RNG-based (Random Number Generator), not turn-based.
             So which Army's turn it is to strike is purely decided on luck,
@@ -91,7 +93,7 @@ public class Battle{
                         this.armyTwo.remove(unitFromArmyTwo);
                         warListeners.forEach(WarListener::update);
                         try{
-                            Thread.sleep(30);
+                            Thread.sleep(10);
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
                         }
@@ -103,7 +105,7 @@ public class Battle{
                         this.armyOne.remove(unitFromArmyOne);
                         warListeners.forEach(WarListener::update);
                         try {
-                            Thread.sleep(30);
+                            Thread.sleep(10);
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
                         }
@@ -181,5 +183,9 @@ public class Battle{
             throw new IllegalArgumentException("New WarListener cannot be null");
         }
         warListeners.add(warListener);
+    }
+
+    public static void shutdown(){
+        stopRequested = true;
     }
 }

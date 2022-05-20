@@ -42,12 +42,4 @@ public class Utilities {
         String newStr = str.replaceAll("[^0-9]", "");
         return str.length() != newStr.length();
     }
-
-    public static String getPathToTerrainImageFile(String terrainAsString){
-        terrainAsString = convertStringToFileName(terrainAsString);
-        return String.format("file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/wargames/images/" +
-                terrainAsString + ".png");
-    }
-
-
 }

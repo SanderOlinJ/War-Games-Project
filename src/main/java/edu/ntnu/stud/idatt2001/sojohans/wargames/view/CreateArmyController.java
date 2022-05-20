@@ -25,7 +25,6 @@ import java.util.List;
 public class CreateArmyController {
 
     @FXML private Text numberOfGold;
-    @FXML private Text numberOfGold1;
     @FXML private TextField textFieldArmyName;
     @FXML private TextField textFieldSpearFighter;
     @FXML private TextField textFieldSwordsman;
@@ -84,9 +83,8 @@ public class CreateArmyController {
     @FXML
     public void initialize(){
         addListenerToAddedUnitsAndUpdateGold();
-        gold = 1000;  // Sets the amount of gold the user to 1000. In the future this would be an option.
+        gold = 100000;  // Sets the amount of gold the user to 100000. In the future this would be an option.
         numberOfGold.setText(String.valueOf(gold));
-        numberOfGold1.setVisible(true);
         nrOfSpecificUnits = new int[6];  // Array of the number of each unit.
         costPerUnit = new int[6];   // Array of the cost of each unit.
 
@@ -179,7 +177,7 @@ public class CreateArmyController {
         int totalCostOfPaladin = costPerUnit[5]*nrOfSpecificUnits[5];
         int totalCost = totalCostOfSpearFighter + totalCostOfSwordsman + totalCostOfAxeman + totalCostOfArcher
                 + totalCostOfLightCavalry + totalCostOfPaladin;
-        gold = 1000 - totalCost;
+        gold = 100000 - totalCost;
         numberOfGold.setText(String.valueOf(gold));
     }
 
@@ -452,10 +450,11 @@ public class CreateArmyController {
             newArmy.addAllUnits(units);
             try {
                 if (army != null){
-                    armyFile.delete();
-                    ArmyWriter.removeArmyFileNameFromOverviewFile(Utilities.convertStringToFileName(army.getName()));
-                    armyFile = null;
-                    army = null;
+                    if (armyFile.delete()) {
+                        ArmyWriter.removeArmyFileNameFromOverviewFile(Utilities.convertStringToFileName(army.getName()));
+                        armyFile = null;
+                        army = null;
+                    }
                 }
                 ArmyWriter.writeArmyToFile(newArmy, newArmy.getName());
             } catch (IOException exception){

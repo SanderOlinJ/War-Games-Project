@@ -226,9 +226,27 @@ public class BattleSimulationController {
     private void setItemsAndListenerToTerrainComboBox(){
         terrainComboBox.getItems().addAll("Forest", "Hill", "Plains");
         terrainComboBox.getSelectionModel().selectedItemProperty().addListener(
-                (observableValue, oldValue, newValue) -> terrainImageView.setImage(
-                        new Image(Utilities.getPathToTerrainImageFile(newValue))
-                ));
+                (observableValue, oldValue, newValue) -> {
+                    try {
+                        terrainImageView.setImage(
+                                new Image(geTerrainImageFilePath(newValue))
+                        );
+                    } catch (IOException exception) {
+                        printErrorMessage(exception.getMessage());
+                    }
+                });
+    }
+
+    private String geTerrainImageFilePath(String terrainType) throws IOException {
+        return switch (terrainType){
+            case "Forest" -> "file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
+                    "wargames/images/forest.png";
+            case "Plains" -> "file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
+                    "wargames/images/plains.png";
+            case "Hill" -> "file:src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
+                    "wargames/images/hills.png";
+            default -> throw new IOException("Terrain input not expected, could not find image file!");
+        };
     }
 
     private void setItemsListenerAndAddActionToChooseArmyComboBox1(List<String> list){
@@ -366,4 +384,5 @@ public class BattleSimulationController {
     public void onViewArmiesButtonClicked(){
         ViewSwitcher.switchTo(View.VIEW_ARMIES);
     }
+
 }

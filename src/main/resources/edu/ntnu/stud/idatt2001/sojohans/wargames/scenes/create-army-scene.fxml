@@ -94,15 +94,7 @@
                               <Font name="Arial Bold" size="21.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Resources:" wrappingWidth="123.13671875">
-                           <font>
-                              <Font name="Arial Bold" size="22.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="numberOfGold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <Text fx:id="numberOfGold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
@@ -110,14 +102,14 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fx:id="numberOfGold1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                           <font>
-                              <Font name="System Bold" size="22.0" />
-                           </font>
+                        <ImageView fitHeight="41.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/coins.png" />
+                           </image>
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin>
-                        </Text>
+                        </ImageView>
                      </children>
                   </HBox>
                </children>
