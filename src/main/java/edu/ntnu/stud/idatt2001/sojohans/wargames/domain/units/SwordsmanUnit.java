@@ -31,7 +31,7 @@ public class SwordsmanUnit extends InfantryUnit{
     @Override
     public int getOpponentTypeBonus(UnitType unitType) {
         return switch (unitType){
-            case SPEAR_FIGHTER_UNIT, SWORDSMAN_UNIT -> 1;
+            case SPEAR_FIGHTER_UNIT, SWORDSMAN_UNIT, RANGED_UNIT -> 1;
             default -> 0;
         };
     }

@@ -175,11 +175,33 @@
                                                       <Font name="Arial" size="27.0" />
                                                    </font>
                                                 </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(Hover on icon for info):">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(Hover on unit icon for info)">
                                                    <font>
                                                       <Font name="Arial Italic" size="19.0" />
                                                    </font>
                                                 </Text>
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="or click ">
+                                                         <font>
+                                                            <Font name="Arial Italic" size="19.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text onMouseClicked="#onHereTextClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="here" underline="true">
+                                                         <font>
+                                                            <Font name="Arial Italic" size="19.0" />
+                                                         </font>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")">
+                                                         <font>
+                                                            <Font name="Arial Italic" size="19.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </VBox>
                                           <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="315.0">
@@ -429,11 +451,33 @@
                                                       <Font name="Arial" size="27.0" />
                                                    </font>
                                                 </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(Hover on icon for info):">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(Hover on unit icon for info)">
                                                    <font>
                                                       <Font name="Arial Italic" size="19.0" />
                                                    </font>
                                                 </Text>
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="or click ">
+                                                         <font>
+                                                            <Font name="Arial Italic" size="19.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text onMouseClicked="#onHereTextClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="here" underline="true">
+                                                         <font>
+                                                            <Font name="Arial Italic" size="19.0" />
+                                                         </font>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")">
+                                                         <font>
+                                                            <Font name="Arial Italic" size="19.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </VBox>
                                           <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="315.0">

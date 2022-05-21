@@ -13,6 +13,8 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
@@ -63,6 +65,12 @@ public class CreateArmyController {
     @FXML private Button removeLightCavalryButton;
     @FXML private Button addPaladinButton;
     @FXML private Button removePaladinButton;
+    @FXML private ImageView spearFighterIcon;
+    @FXML private ImageView swordsmanIcon;
+    @FXML private ImageView axemanIcon;
+    @FXML private ImageView archerIcon;
+    @FXML private ImageView lightCavalryIcon;
+    @FXML private ImageView paladinIcon;
 
     private List<TextField> nrOfUnitsToBeAddedOrRemovedTextFields;
     private List<Text> nrOfUnitsAddedTexts;
@@ -121,6 +129,7 @@ public class CreateArmyController {
         fillCostsPerUnit();  // Sets cost to the array with the costs of each unit.
         showCostOfUnitInGUI();  // Shows cost of each unit in GUI
         disableButtons();  // Disables all add and remove buttons, as well as the "instantiate army" button.
+        setToolTipToUnitLogos();
         if (armyFile != null){
             try {
                 army = ArmyReader.readArmyFileWithPath(armyFile);
@@ -196,6 +205,10 @@ public class CreateArmyController {
         numberOfGold.setText(String.valueOf(gold));
     }
 
+    @FXML
+    public void onHereTextClicked(){
+        ViewSwitcher.switchTo(View.UNIT_INFO);
+    }
     /**
      Method for setting army name in GUI.
      Checks if army name is valid and if there already is an army file under the name.
@@ -487,6 +500,23 @@ public class CreateArmyController {
                 printErrorMessage("Army was saved to file");
             }
         }
+    }
+
+    private void setToolTipToUnitLogos(){
+        setToolTipToImageView(spearFighterIcon, "Spear fighter; Attack: 15, Armor: 10");
+        setToolTipToImageView(swordsmanIcon, "Swordsman; Attack: 15, Armor: 10");
+        setToolTipToImageView(axemanIcon, "Axeman; Attack: 15, Armor: 10");
+        setToolTipToImageView(archerIcon, "Archer; Attack: 15, Armor: 8");
+        setToolTipToImageView(lightCavalryIcon,"Light Cavalry; Attack: 20, Armor: 12");
+        setToolTipToImageView(paladinIcon, "Paladin; Attack: 25, Armor: 15");
+
+    }
+    private void setToolTipToImageView(ImageView imageView, String str){
+        Tooltip tooltip = new Tooltip();
+        tooltip.setStyle("-fx-background-color: #240000; -fx-text-fill: white; -fx-font: 16px Arial;" +
+                "-fx-font-weight: Bold;");
+        tooltip.setText(str);
+        Tooltip.install(imageView, tooltip);
     }
 
     private void wipeAllInfo(){

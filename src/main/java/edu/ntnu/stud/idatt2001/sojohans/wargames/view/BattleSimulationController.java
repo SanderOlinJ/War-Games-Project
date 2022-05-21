@@ -232,7 +232,10 @@ public class BattleSimulationController {
         buttonStatusDuringSimulation();
     }
 
-
+    @FXML
+    public void onHereTextClicked(){
+        ViewSwitcher.switchTo(View.UNIT_INFO);
+    }
     @FXML
     public void onLoadFileButton1Clicked(){
         FileChooser fileChooser = new FileChooser();

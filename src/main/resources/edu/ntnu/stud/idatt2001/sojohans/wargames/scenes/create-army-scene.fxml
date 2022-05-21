@@ -133,56 +133,88 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="1270.0" prefWidth="1000.0" style="-fx-background-color: D4C49C;">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="112.0" prefWidth="1000.0">
+                              <VBox alignment="CENTER">
                                  <children>
-                                    <Text fx:id="armyName" strokeType="OUTSIDE" strokeWidth="0.0">
-                                       <font>
-                                          <Font name="Arial Bold" size="35.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fx:id="armyNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Army name: ">
-                                       <font>
-                                          <Font name="Arial Bold" size="35.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Text>
-                                    <TextField fx:id="textFieldArmyName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="325.0" styleClass="text-field" stylesheets="@../css/style.css">
-                                       <font>
-                                          <Font name="Arial Bold" size="21.0" />
-                                       </font>
-                                       <effect>
-                                          <DropShadow height="10.0" radius="4.5" width="10.0" />
-                                       </effect>
-                                    </TextField>
-                                    <Button fx:id="setArmyNameButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSetArmyNameButtonClicked" prefHeight="34.0" prefWidth="173.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Set Army Name">
-                                       <font>
-                                          <Font name="Arial Bold" size="19.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <effect>
-                                          <DropShadow />
-                                       </effect>
-                                    </Button>
-                                    <Button fx:id="editArmyNameButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEditArmyNameButtonClicked" prefHeight="34.0" prefWidth="0.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Edit Army Name" visible="false">
-                                       <font>
-                                          <Font name="Arial Bold" size="19.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <effect>
-                                          <DropShadow />
-                                       </effect>
-                                    </Button>
+                                    <HBox alignment="CENTER" prefHeight="112.0" prefWidth="1000.0">
+                                       <children>
+                                          <Text fx:id="armyName" strokeType="OUTSIDE" strokeWidth="0.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="35.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="armyNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Army name: ">
+                                             <font>
+                                                <Font name="Arial Bold" size="35.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Text>
+                                          <TextField fx:id="textFieldArmyName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="325.0" styleClass="text-field" stylesheets="@../css/style.css">
+                                             <font>
+                                                <Font name="Arial Bold" size="21.0" />
+                                             </font>
+                                             <effect>
+                                                <DropShadow height="10.0" radius="4.5" width="10.0" />
+                                             </effect>
+                                          </TextField>
+                                          <Button fx:id="setArmyNameButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSetArmyNameButtonClicked" prefHeight="34.0" prefWidth="173.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Set Army Name">
+                                             <font>
+                                                <Font name="Arial Bold" size="19.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                          </Button>
+                                          <Button fx:id="editArmyNameButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEditArmyNameButtonClicked" prefHeight="34.0" prefWidth="0.0" styleClass="jfx-button" stylesheets="@../css/style.css" text="Edit Army Name" visible="false">
+                                             <font>
+                                                <Font name="Arial Bold" size="19.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets top="-20.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(Hover on unit icon for info or click " textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Arial Italic" size="19.0" />
+                                             </font>
+                                          </Text>
+                                          <Text onMouseClicked="#onHereTextClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="here" textAlignment="CENTER" underline="true">
+                                             <font>
+                                                <Font name="Arial Italic" size="19.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text=")" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Arial Italic" size="19.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Text>
+                                       </children>
+                                    </HBox>
                                  </children>
-                              </HBox>
+                              </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="263.0" prefWidth="757.0">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="757.0" style="-fx-background-color: CCAC6C;">
@@ -221,10 +253,13 @@
                                           <DropShadow />
                                        </effect>
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="spearFighterIcon" fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/spear.png" />
                                              </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spear fighter">
                                              <font>
@@ -239,20 +274,17 @@
                                                 <Font name="Arial Bold" size="23.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets left="95.0" />
+                                                <Insets left="94.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text fx:id="costOfSpearFighter1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                                             <font>
-                                                <Font name="Arial Bold" size="23.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/coins.png" />
+                                             </image>
+                                          </ImageView>
                                           <TextField fx:id="textFieldSpearFighter" alignment="CENTER" prefHeight="30.0" prefWidth="79.0" styleClass="text-field" stylesheets="@../css/style.css">
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets left="21.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -314,10 +346,13 @@
                                           <DropShadow />
                                        </effect>
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="swordsmanIcon" fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/sword.png" />
                                              </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Swordsman">
                                              <font>
@@ -335,17 +370,14 @@
                                                 <Insets left="105.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text fx:id="costOfSwordsman1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                                             <font>
-                                                <Font name="Arial Bold" size="23.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/coins.png" />
+                                             </image>
+                                          </ImageView>
                                           <TextField fx:id="textFieldSwordsman" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets left="21.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -407,10 +439,13 @@
                                           <DropShadow />
                                        </effect>
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="axemanIcon" fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/axe.png" />
                                              </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Axeman">
                                              <font>
@@ -428,17 +463,14 @@
                                                 <Insets left="146.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text fx:id="costOfAxeman1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                                             <font>
-                                                <Font name="Arial Bold" size="23.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/coins.png" />
+                                             </image>
+                                          </ImageView>
                                           <TextField fx:id="textFieldAxeman" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets left="21.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -530,10 +562,13 @@
                                           <DropShadow />
                                        </effect>
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="archerIcon" fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/bowandarrow.png" />
                                              </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Archer">
                                              <font>
@@ -551,17 +586,14 @@
                                                 <Insets left="161.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text fx:id="costOfArcher1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                                             <font>
-                                                <Font name="Arial Bold" size="23.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/coins.png" />
+                                             </image>
+                                          </ImageView>
                                           <TextField fx:id="textFieldArcher" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets left="21.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -653,10 +685,13 @@
                                           <DropShadow />
                                        </effect>
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="lightCavalryIcon" fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/light-cavalry.png" />
                                              </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Light Cavalry">
                                              <font>
@@ -674,17 +709,14 @@
                                                 <Insets left="90.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text fx:id="costOfLightCavalry1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                                             <font>
-                                                <Font name="Arial Bold" size="23.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/coins.png" />
+                                             </image>
+                                          </ImageView>
                                           <TextField fx:id="textFieldLightCavalry" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets left="21.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />
@@ -773,10 +805,13 @@
                                           <DropShadow />
                                        </effect>
                                        <children>
-                                          <ImageView fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="paladinIcon" fitHeight="76.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/commander.png" />
                                              </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paladin">
                                              <font>
@@ -794,17 +829,14 @@
                                                 <Insets left="154.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <Text fx:id="costOfPaladin1" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
-                                             <font>
-                                                <Font name="Arial Bold" size="23.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Text>
+                                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/coins.png" />
+                                             </image>
+                                          </ImageView>
                                           <TextField fx:id="textFieldPaladin" alignment="CENTER" prefHeight="30.0" prefWidth="79.0">
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets left="21.0" />
                                              </HBox.margin>
                                              <font>
                                                 <Font name="Arial Bold" size="21.0" />

@@ -74,7 +74,6 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTy
     public int getOpponentTypeBonus(UnitType unitType) {
         return switch (unitType){
             case SWORDSMAN_UNIT, AXEMAN_UNIT, SPEAR_FIGHTER_UNIT -> 2;
-            case CAVALRY_UNIT, COMMANDER_UNIT -> 1;
             default -> 0;
         };
     }
