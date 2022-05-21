@@ -18,121 +18,32 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class ViewArmiesController {
-    @FXML private Text archers1;
-    @FXML private Text archers2;
-    @FXML private Text archers3;
-    @FXML private Text archers4;
-    @FXML private Text archers5;
-    @FXML private Text archers6;
-    @FXML private Text archers7;
-    @FXML private ImageView armyIcon1;
-    @FXML private ImageView armyIcon2;
-    @FXML private ImageView armyIcon3;
-    @FXML private ImageView armyIcon4;
-    @FXML private ImageView armyIcon5;
-    @FXML private ImageView armyIcon6;
-    @FXML private ImageView armyIcon7;
-    @FXML private Text armyName1;
-    @FXML private Text armyName2;
-    @FXML private Text armyName3;
-    @FXML private Text armyName4;
-    @FXML private Text armyName5;
-    @FXML private Text armyName6;
-    @FXML private Text armyName7;
-    @FXML private Text axemen1;
-    @FXML private Text axemen2;
-    @FXML private Text axemen3;
-    @FXML private Text axemen4;
-    @FXML private Text axemen5;
-    @FXML private Text axemen6;
-    @FXML private Text axemen7;
-    @FXML private ImageView delete1;
-    @FXML private ImageView delete2;
-    @FXML private ImageView delete3;
-    @FXML private ImageView delete4;
-    @FXML private ImageView delete5;
-    @FXML private ImageView delete6;
-    @FXML private ImageView delete7;
-    @FXML private Button editArmyButton1;
-    @FXML private Button editArmyButton2;
-    @FXML private Button editArmyButton3;
-    @FXML private Button editArmyButton4;
-    @FXML private Button editArmyButton5;
-    @FXML private Button editArmyButton6;
-    @FXML private Button editArmyButton7;
-    @FXML private Text lightCavalry1;
-    @FXML private Text lightCavalry2;
-    @FXML private Text lightCavalry3;
-    @FXML private Text lightCavalry4;
-    @FXML private Text lightCavalry5;
-    @FXML private Text lightCavalry6;
-    @FXML private Text lightCavalry7;
-    @FXML private Text paladins1;
-    @FXML private Text paladins2;
-    @FXML private Text paladins3;
-    @FXML private Text paladins4;
-    @FXML private Text paladins5;
-    @FXML private Text paladins6;
-    @FXML private Text paladins7;
-    @FXML private Text spearFighters1;
-    @FXML private Text spearFighters2;
-    @FXML private Text spearFighters3;
-    @FXML private Text spearFighters4;
-    @FXML private Text spearFighters5;
-    @FXML private Text spearFighters6;
-    @FXML private Text spearFighters7;
-    @FXML private Text swordsmen1;
-    @FXML private Text swordsmen2;
-    @FXML private Text swordsmen3;
-    @FXML private Text swordsmen4;
-    @FXML private Text swordsmen5;
-    @FXML private Text swordsmen6;
-    @FXML private Text swordsmen7;
-    @FXML private Text totalUnits1;
-    @FXML private Text totalUnits2;
-    @FXML private Text totalUnits3;
-    @FXML private Text totalUnits4;
-    @FXML private Text totalUnits5;
-    @FXML private Text totalUnits6;
-    @FXML private Text totalUnits7;
-    @FXML private Text warningText;
-    @FXML private HBox hBox1;
-    @FXML private HBox hBox2;
-    @FXML private HBox hBox3;
-    @FXML private HBox hBox4;
-    @FXML private HBox hBox5;
-    @FXML private HBox hBox6;
-    @FXML private HBox hBox7;
-    @FXML private HBox line1;
-    @FXML private HBox line2;
-    @FXML private HBox line3;
-    @FXML private HBox line4;
-    @FXML private HBox line5;
-    @FXML private HBox line6;
-    @FXML private HBox line7;
+    @FXML private Text archers1, archers2, archers3, archers4, archers5, archers6, archers7, armyName1,
+            armyName2, armyName3, armyName4, armyName5, armyName6, armyName7, axemen1, axemen2, axemen3,
+            axemen4, axemen5, axemen6, axemen7, lightCavalry1, lightCavalry2, lightCavalry3, lightCavalry4,
+            lightCavalry5, lightCavalry6, lightCavalry7, paladins1, paladins2, paladins3, paladins4, paladins5,
+            paladins6, paladins7, spearFighters1, spearFighters2, spearFighters3, spearFighters4, spearFighters5,
+            spearFighters6, spearFighters7, swordsmen1, swordsmen2, swordsmen3, swordsmen4, swordsmen5, swordsmen6,
+            swordsmen7, totalUnits1, totalUnits2, totalUnits3, totalUnits4, totalUnits5, totalUnits6, totalUnits7,
+            warningText;
+    @FXML private ImageView armyIcon1, armyIcon2, armyIcon3, armyIcon4, armyIcon5, armyIcon6, armyIcon7, delete1,
+            delete2, delete3, delete4, delete5, delete6, delete7;
+    @FXML private Button editArmyButton1, editArmyButton2, editArmyButton3, editArmyButton4, editArmyButton5,
+            editArmyButton6, editArmyButton7;
+    @FXML private HBox hBox1, hBox2, hBox3, hBox4, hBox5, hBox6, hBox7, line1, line2, line3, line4, line5, line6,
+            line7;
 
     private List<String> armyFileNamesInOverviewFile;
     private List<Army> armiesInOverview;
-    private List<HBox> hBoxes;
-    private List<HBox> lines;
-    private List<ImageView> armyIcons;
-    private List<Text> armyNames;
-    private List<Text> totalUnits;
-    private List<Text> spearFighterNumbers;
-    private List<Text> swordsmanNumbers;
-    private List<Text> axemanNumbers;
-    private List<Text> archerNumbers;
-    private List<Text> lightCavalryNumbers;
-    private List<Text> paladinNumbers;
+    private List<HBox> hBoxes, lines;
+    private List<ImageView> armyIcons, deleteButtons;
+    private List<Text> armyNames, totalUnits, spearFighterNumbers, swordsmanNumbers, axemanNumbers, archerNumbers,
+            lightCavalryNumbers, paladinNumbers;
     private List<Button> editButtons;
-    private List<ImageView> deleteButtons;
 
 
     @FXML
@@ -184,6 +95,8 @@ public class ViewArmiesController {
         alert.setHeaderText("Deleting: " + armiesInOverview.get(index).getName());
         alert.setContentText("Are you sure you want to delete this army?");
         DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass()
+                .getResource("/edu/ntnu/stud/idatt2001/sojohans/wargames/css/style.css")).toString());
         dialogPane.getStyleClass().add("dialog-pane");
         alert.showAndWait();
 

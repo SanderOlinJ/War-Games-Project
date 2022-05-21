@@ -119,7 +119,7 @@
                                       </children>
                                   </VBox>
                               <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="2.0" prefWidth="200.0" style="-fx-background-color: black;" />
-                                        <HBox alignment="CENTER" prefHeight="92.0" prefWidth="1201.0">
+                                        <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1200.0">
                                             <children>
                                                 <Text fx:id="army1Name" strokeType="OUTSIDE" strokeWidth="0.0" text="Army 1" wrappingWidth="370.0">
                                                     <font>
@@ -167,7 +167,27 @@
                                                 </Text>
                                              </children>
                                           </HBox>
-                                          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="270.0" style="-fx-background-color: black;" />
+                                          <HBox alignment="CENTER" prefHeight="61.0" prefWidth="315.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of attacks:">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="nrOfAttacks1" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="22.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="270.0" style="-fx-background-color: black;">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </VBox.margin></HBox>
                                           <VBox alignment="CENTER" prefHeight="62.0" prefWidth="315.0">
                                              <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specific units">
@@ -443,7 +463,27 @@
                                                 </Text>
                                              </children>
                                           </HBox>
-                                          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="270.0" style="-fx-background-color: black;" />
+                                          <HBox alignment="CENTER" prefHeight="61.0" prefWidth="315.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of attacks:">
+                                                   <font>
+                                                      <Font name="Arial" size="20.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fx:id="nrOfAttacks2" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="22.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Text>
+                                             </children>
+                                          </HBox>
+                                          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="270.0" style="-fx-background-color: black;">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </VBox.margin></HBox>
                                           <VBox alignment="CENTER" prefHeight="62.0" prefWidth="315.0">
                                              <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specific units">
@@ -733,7 +773,7 @@
                                     </VBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </HBox>
                                     </children>

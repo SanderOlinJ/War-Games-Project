@@ -27,60 +27,24 @@ import java.util.List;
  */
 public class CreateArmyController {
 
-    @FXML private Text numberOfGold;
-    @FXML private TextField textFieldArmyName;
-    @FXML private TextField textFieldSpearFighter;
-    @FXML private TextField textFieldSwordsman;
-    @FXML private TextField textFieldAxeman;
-    @FXML private TextField textFieldArcher;
-    @FXML private TextField textFieldLightCavalry;
-    @FXML private TextField textFieldPaladin;
-    @FXML private Text costOfSpearFighter;
-    @FXML private Text costOfSwordsman;
-    @FXML private Text costOfAxeman;
-    @FXML private Text costOfArcher;
-    @FXML private Text costOfLightCavalry;
-    @FXML private Text costOfPaladin;
-    @FXML private Text spearFighterNumber;
-    @FXML private Text swordsmanNumber;
-    @FXML private Text axemanNumber;
-    @FXML private Text archerNumber;
-    @FXML private Text lightCavalryNumber;
-    @FXML private Text paladinNumber;
-    @FXML private Text warningText;
-    @FXML private Button instantiateArmy;
-    @FXML private Text armyNameText;
-    @FXML private Text armyName;
-    @FXML private Button setArmyNameButton;
-    @FXML private Button editArmyNameButton;
-    @FXML private Button addSpearFighterButton;
-    @FXML private Button removeSpearFighterButton;
-    @FXML private Button addSwordsmanButton;
-    @FXML private Button removeSwordsmanButton;
-    @FXML private Button addAxemanButton;
-    @FXML private Button removeAxemanButton;
-    @FXML private Button addArcherButton;
-    @FXML private Button removeArcherButton;
-    @FXML private Button addLightCavalryButton;
-    @FXML private Button removeLightCavalryButton;
-    @FXML private Button addPaladinButton;
-    @FXML private Button removePaladinButton;
-    @FXML private ImageView spearFighterIcon;
-    @FXML private ImageView swordsmanIcon;
-    @FXML private ImageView axemanIcon;
-    @FXML private ImageView archerIcon;
-    @FXML private ImageView lightCavalryIcon;
-    @FXML private ImageView paladinIcon;
+    @FXML private Text numberOfGold, costOfSpearFighter, costOfSwordsman, costOfAxeman, costOfArcher,
+            costOfLightCavalry, costOfPaladin, spearFighterNumber, swordsmanNumber, axemanNumber,
+            archerNumber, lightCavalryNumber, paladinNumber, warningText, armyNameText, armyName;
+    @FXML private TextField textFieldArmyName, textFieldSpearFighter, textFieldSwordsman,textFieldAxeman,
+            textFieldArcher, textFieldLightCavalry, textFieldPaladin;
+    @FXML private Button instantiateArmy, setArmyNameButton, editArmyNameButton, addSpearFighterButton,
+            removeSpearFighterButton, addSwordsmanButton, removeSwordsmanButton, addAxemanButton,
+            removeAxemanButton, addArcherButton, removeArcherButton, addLightCavalryButton,
+            removeLightCavalryButton, addPaladinButton, removePaladinButton;
+    @FXML private ImageView spearFighterIcon, swordsmanIcon, axemanIcon, archerIcon, lightCavalryIcon,
+            paladinIcon;
 
     private List<TextField> nrOfUnitsToBeAddedOrRemovedTextFields;
     private List<Text> nrOfUnitsAddedTexts;
-    private List<Button> addUnitButtons;
-    private List<Button> removeUnitButtons;
-    private int[] costPerUnit;
-    private int[] nrOfSpecificUnits;
+    private List<Button> addUnitButtons, removeUnitButtons;
+    private int[] costPerUnit, nrOfSpecificUnits;
     private int gold;
-    private Army army;
-    private Army newArmy;
+    private Army army, newArmy;
     private static File armyFile;
 
     /**

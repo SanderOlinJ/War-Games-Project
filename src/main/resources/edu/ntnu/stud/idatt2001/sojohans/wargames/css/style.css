@@ -111,22 +111,22 @@ styling for combobox prompt text and text field
 }
 
 .dialog-pane {
-    -fx-background-color:  #13161d;
+    -fx-background-color:  #CCAC6C;
     -fx-font: 18px "Arial";
     -fx-padding: 0;
 }
 
 .dialog-pane *.header-panel{
-    -fx-background-color:  #13161d;
+    -fx-background-color:  #CCAC6C;
 }
 
 .dialog-pane *.header-panel *.label{
     -fx-font: 18px "Arial";
-    -fx-fill: white;
+    -fx-fill: black;
     -fx-alignment: center;
 }
 .dialog-pane *.header-panel *.text{
-    -fx-fill: white;
+    -fx-fill: black;
     -fx-font: 20px "Arial";
     -fx-font-weight: Bold;
     -fx-alignment: center;
@@ -134,23 +134,23 @@ styling for combobox prompt text and text field
 
 .dialog-pane > *.content.label {
     -fx-alignment: center;
-    -fx-fill: white;
+    -fx-fill: black;
     -fx-padding: 1.333em 0.833em 0 0.833em;
 }
 
 .dialog-pane > .content *.text {
-    -fx-fill: white;
-    -fx-font: 14px "Arial";
+    -fx-fill: black;
+    -fx-font: 18px "Arial";
     -fx-alignment: center;
 }
 
 .dialog-pane .button{
-    -fx-background-color: linear-gradient(#fa8f31,#ff5400);
+    -fx-font-weight: Bold;
+    -fx-cursor:hand;
+    -fx-background-color: linear-gradient(#7C0707,#4F0000);
     -fx-background-radius: 30;
     -fx-background-insets: 0;
     -fx-text-fill: white;
-    -fx-font-weight: Bold;
-    -fx-cursor:hand;
 }
 
 .TopMenuBar {

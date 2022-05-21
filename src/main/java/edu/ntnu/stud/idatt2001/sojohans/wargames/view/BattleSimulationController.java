@@ -23,59 +23,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BattleSimulationController {
-    @FXML private Text archer1;
-    @FXML private Text archer2;
-    @FXML private Text army1Name;
-    @FXML private Text army2Name;
-    @FXML private Text axeman1;
-    @FXML private Text axeman2;
-    @FXML private ComboBox<String> chooseArmyComboBox1;
-    @FXML private ComboBox<String> chooseArmyComboBox2;
-    @FXML private Text filePath1;
-    @FXML private Text filePath2;
-    @FXML private Text filePathTitle1;
-    @FXML private Text filePathTitle2;
-    @FXML private Text lightCavalry1;
-    @FXML private Text lightCavalry2;
-    @FXML private Button loadFileButton1;
-    @FXML private Button loadFileButton2;
-    @FXML private Text paladin1;
-    @FXML private Text paladin2;
-    @FXML private Button resetButton;
-    @FXML private Button simulateButton;
-    @FXML private Button pauseButton;
-    @FXML private Text spearFighter1;
-    @FXML private Text spearFighter2;
-    @FXML private Text swordsman1;
-    @FXML private Text swordsman2;
-    @FXML private ComboBox<String> terrainComboBox;
-    @FXML private ImageView terrainImageView;
-    @FXML private Text totalUnits1;
-    @FXML private Text totalUnits2;
-    @FXML private Text warningText;
-    @FXML private Text updateText;
-    @FXML private ImageView spearFighterLogo1;
-    @FXML private ImageView spearFighterLogo2;
-    @FXML private ImageView swordsmanLogo1;
-    @FXML private ImageView swordsmanLogo2;
-    @FXML private ImageView axemanLogo1;
-    @FXML private ImageView axemanLogo2;
-    @FXML private ImageView archerLogo1;
-    @FXML private ImageView archerLogo2;
-    @FXML private ImageView lightCavalryLogo1;
-    @FXML private ImageView lightCavalryLogo2;
-    @FXML private ImageView paladinLogo1;
-    @FXML private ImageView paladinLogo2;
+    @FXML private Text archer1, archer2, army1Name, army2Name, axeman1, axeman2, filePath1, filePath2,
+            filePathTitle1, filePathTitle2, lightCavalry1, lightCavalry2, paladin1, paladin2, spearFighter1,
+            spearFighter2, swordsman1, swordsman2, totalUnits1, totalUnits2, warningText, updateText,
+            nrOfAttacks1, nrOfAttacks2;
+    @FXML private ComboBox<String> chooseArmyComboBox1, chooseArmyComboBox2, terrainComboBox;
+    @FXML private Button loadFileButton1, loadFileButton2, resetButton, simulateButton, pauseButton;
+    @FXML private ImageView terrainImageView, spearFighterLogo1, spearFighterLogo2, swordsmanLogo1,
+            swordsmanLogo2, axemanLogo1, axemanLogo2, archerLogo1, archerLogo2, lightCavalryLogo1,
+            lightCavalryLogo2, paladinLogo1, paladinLogo2;
 
-
-
-
-    private File fileArmy1;
-    private File fileArmy2;
-    private Army army1;
-    private Army army2;
+    private File fileArmy1, fileArmy2;
+    private Army army1, army2;
     private Battle battle;
-
     private TerrainType terrainType;
 
     @FXML
@@ -116,9 +76,11 @@ public class BattleSimulationController {
             try {
                 removeErrorMessage();
                 Battle.startBattle();
-                battle = new Battle(army1, army2);
-                battle.setTerrainType(terrainType);
-                battle.addListener(this::updateUnitNumbers);
+                if (battle == null || battle.getVictor() != null) {
+                    battle = new Battle(army1, army2);
+                    battle.setTerrainType(terrainType);
+                    battle.addListener(this::updateUnitNumbers);
+                }
                 buttonStatusDuringSimulation();
                 new Thread(() -> {
                     try {
@@ -219,6 +181,9 @@ public class BattleSimulationController {
             fillArmy2WithInfo();
             simulateButton.setDisable(false);
             resetButton.setDisable(true);
+            nrOfAttacks1.setText("");
+            nrOfAttacks2.setText("");
+            battle = null;
             removeUpdateMessage();
             removeErrorMessage();
         } catch (IOException exception){
@@ -356,6 +321,10 @@ public class BattleSimulationController {
         archer.setText(String.valueOf(army.getRangedUnits().size()));
         lightCavalry.setText(String.valueOf(army.getCavalryUnits().size()));
         paladin.setText(String.valueOf(army.getCommanderUnits().size()));
+        if (battle != null) {
+            nrOfAttacks1.setText(String.valueOf(battle.getArmyOneAttacks()));
+            nrOfAttacks2.setText(String.valueOf(battle.getArmyTwoAttacks()));
+        }
     }
 
     private void clearArmy1Info(){
