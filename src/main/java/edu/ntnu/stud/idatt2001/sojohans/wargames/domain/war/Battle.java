@@ -117,22 +117,22 @@ public class Battle{
                         warListeners.forEach(WarListener::update);
                         try{
                             /*
-                            Thread.sleep for 30 milliseconds, used for slowing down the Battle
-                            Simulation in GUI,
+                            Thread.sleep() calls on calculateSleepTime() for getting how long Thread is to sleep,
+                            used for slowing down the Battle Simulation in GUI.
                              */
-                            Thread.sleep(30);
+                            Thread.sleep(calculateSleepTime());
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
                         }
                     }
-                } else{
+                } else {
                     unitFromArmyTwo.attack(unitFromArmyOne, terrainType);
                     armyTwoAttacks++;
                     if (unitFromArmyOne.getHealth() <= 0){
                         this.armyOne.remove(unitFromArmyOne);
                         warListeners.forEach(WarListener::update);
                         try {
-                            Thread.sleep(30);
+                            Thread.sleep(calculateSleepTime());
                         } catch (InterruptedException exception){
                             throw new BattleException(exception.getMessage());
                         }
@@ -143,6 +143,27 @@ public class Battle{
             }
         }
         return getVictor();
+    }
+
+    /**
+     * Method for calculating Thread.sleep() time in milliseconds based on both armies number of units combined.
+     * @return Sleep time in milliseconds.
+     */
+    private int calculateSleepTime(){
+        int numberOfTotalUnits = armyOne.getUnits().size() + armyTwo.getUnits().size();
+        if (numberOfTotalUnits > 1000){
+            return 15;
+        } else if (numberOfTotalUnits > 500){
+            return 20;
+        } else if (numberOfTotalUnits > 250){
+            return 30;
+        } else if (numberOfTotalUnits > 100){
+            return 40;
+        } else if (numberOfTotalUnits > 50){
+            return 50;
+        } else {
+            return 100;
+        }
     }
 
     /**
