@@ -29,7 +29,7 @@ public class Utilities {
             return "";
         }
         str = str.replaceAll("\\s","");
-        str = str.replaceAll("[^A-Za-z0-9]","");
+        str = str.replaceAll("[^A-Za-z\\d]","");
         return str;
     }
 

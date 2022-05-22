@@ -3,16 +3,18 @@ package edu.ntnu.stud.idatt2001.sojohans.wargames.view;
 import edu.ntnu.stud.idatt2001.sojohans.Utilities;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.BattleException;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.TerrainType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -35,7 +37,9 @@ public class BattleSimulationController {
     @FXML private ImageView terrainImageView, spearFighterLogo1, spearFighterLogo2, swordsmanLogo1,
             swordsmanLogo2, axemanLogo1, axemanLogo2, archerLogo1, archerLogo2, lightCavalryLogo1,
             lightCavalryLogo2, paladinLogo1, paladinLogo2;
-
+    @FXML private TableView<Unit> tableViewArmy1, tableViewArmy2;
+    @FXML private TableColumn<Unit, String> unitTypeArmy1, unitTypeArmy2;
+    @FXML private TableColumn<Unit, Integer> unitHealthArmy1, unitHealthArmy2;
     private File fileArmy1, fileArmy2;
     private Army army1, army2;
     private Battle battle;
@@ -49,7 +53,7 @@ public class BattleSimulationController {
      */
     @FXML
     public void initialize(){
-        //  Method reads all army file NAMES from Army overview file.
+        //  Method reads all army file names from Army overview file.
         List<String> armiesInOverviewFile = new ArrayList<>();
         try {
             armiesInOverviewFile = ArmyReader.readArmyFileNamesFromOverviewFile();
@@ -67,6 +71,24 @@ public class BattleSimulationController {
         setItemsAndListenerToChooseArmyComboBox2(armiesInOverviewFile);
         //  ToolTip is installed to each Unit icon.
         setToolTipToUnitLogos();
+        initializeTableView();
+    }
+
+    /**
+     * Method sets the TableColumns in the TableViews with informative values from units.
+     */
+    private void initializeTableView(){
+        unitTypeArmy1.setCellValueFactory((TableColumn.CellDataFeatures<Unit, String> unitInfo) ->
+                new SimpleObjectProperty<>(unitInfo.getValue().getName()));
+
+        unitTypeArmy2.setCellValueFactory((TableColumn.CellDataFeatures<Unit, String> unitInfo) ->
+                new SimpleObjectProperty<>(unitInfo.getValue().getName()));
+
+        unitHealthArmy1.setCellValueFactory((TableColumn.CellDataFeatures<Unit, Integer> unitInfo) ->
+                new SimpleObjectProperty<>(unitInfo.getValue().getHealth()));
+
+        unitHealthArmy2.setCellValueFactory((TableColumn.CellDataFeatures<Unit, Integer> unitInfo) ->
+                new SimpleObjectProperty<>(unitInfo.getValue().getHealth()));
     }
 
     /**
@@ -151,7 +173,7 @@ public class BattleSimulationController {
      */
     private void fillArmy1WithInfo(){
         setInfoToArmies(army1Name, totalUnits1, spearFighter1, swordsman1, axeman1,
-                archer1, lightCavalry1, paladin1, army1);
+                archer1, lightCavalry1, paladin1, tableViewArmy1, army1);
     }
 
     /**
@@ -159,7 +181,7 @@ public class BattleSimulationController {
      */
     private void fillArmy2WithInfo(){
         setInfoToArmies(army2Name, totalUnits2, spearFighter2, swordsman2, axeman2,
-                archer2, lightCavalry2, paladin2, army2);
+                archer2, lightCavalry2, paladin2, tableViewArmy2, army2);
     }
 
     /**
@@ -172,12 +194,14 @@ public class BattleSimulationController {
      * @param archer Text containing total number of RangedUnits in the Army.
      * @param lightCavalry Text containing total number of CavalryUnits in the Army.
      * @param paladin Text containing total number of CommanderUnits in the Army.
+     * @param armyTableView TableView containing information about individual units in Army
      * @param army Army which information is to be set from.
      */
     private void setInfoToArmies(Text armyName, Text totalUnits, Text spearFighter, Text swordsman, Text axeman,
-                                 Text archer, Text lightCavalry, Text paladin, Army army) {
+                                 Text archer, Text lightCavalry, Text paladin, TableView<Unit> armyTableView,
+                                 Army army) {
         armyName.setText(String.valueOf(army.getName()));
-        totalUnits.setText(String.valueOf(army.getUnits().size()));
+        totalUnits.setText(String.valueOf(army.getAllUnits().size()));
         spearFighter.setText(String.valueOf(army.getSpearFighterUnits().size()));
         swordsman.setText(String.valueOf(army.getSwordsmanUnits().size()));
         axeman.setText(String.valueOf(army.getAxemanUnits().size()));
@@ -188,6 +212,10 @@ public class BattleSimulationController {
             nrOfAttacks1.setText(String.valueOf(battle.getArmyOneAttacks()));
             nrOfAttacks2.setText(String.valueOf(battle.getArmyTwoAttacks()));
         }
+        // Sets information about each individual Unit in Army to the TableView.
+        ObservableList<Unit> unitData = FXCollections.observableList(army.getAllUnits());
+        armyTableView.setItems(unitData);
+
     }
 
     /**

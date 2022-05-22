@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -104,7 +106,7 @@
                     <children>
                         <ScrollPane hbarPolicy="NEVER" maxWidth="1500.0" prefHeight="582.0" prefWidth="1200.0" stylesheets="@../css/style.css">
                             <content>
-                                <VBox alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="1200.0" style="-fx-background-color: D4C49C;">
+                                <VBox alignment="TOP_CENTER" prefHeight="994.0" prefWidth="1200.0" style="-fx-background-color: D4C49C;">
                                     <children>
                                   <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="109.0" prefWidth="1200.0">
                                       <children>
@@ -685,14 +687,15 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="176.0" prefWidth="1200.0">
+                              <HBox prefHeight="221.0" prefWidth="1200.0">
                                  <children>
-                                    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="470.0">
+                                    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="330.0">
                                        <children>
                                           <ComboBox fx:id="chooseArmyComboBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
-                                             </cursor></ComboBox>
+                                             </cursor>
+                                          </ComboBox>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="or">
                                              <font>
                                                 <Font name="Arial" size="22.0" />
@@ -716,18 +719,41 @@
                                              <font>
                                                 <Font name="Arial" size="22.0" />
                                              </font>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
                                           </Text>
-                                          <Text fx:id="filePath1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="434.66778564453125">
+                                          <Text fx:id="filePath1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="287.66778564453125">
                                              <font>
                                                 <Font name="Arial" size="20.0" />
                                              </font>
                                           </Text>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="470.0">
+                                    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
+                                       <children>
+                                          <TableView fx:id="tableViewArmy1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
+                                            <columns>
+                                              <TableColumn fx:id="unitTypeArmy1" prefWidth="110.0" text="Unit Type" />
+                                              <TableColumn fx:id="unitHealthArmy1" prefWidth="110.0" text="Health" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets right="100.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
+                                       <children>
+                                          <TableView fx:id="tableViewArmy2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
+                                             <columns>
+                                                <TableColumn fx:id="unitTypeArmy2" editable="false" prefWidth="110.0" text="Unit Type" />
+                                                <TableColumn fx:id="unitHealthArmy2" prefWidth="110.0" text="Health" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="330.0">
                                        <children>
                                           <ComboBox fx:id="chooseArmyComboBox2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                              <cursor>
@@ -757,18 +783,15 @@
                                              <font>
                                                 <Font name="Arial" size="22.0" />
                                              </font>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
                                           </Text>
-                                          <Text fx:id="filePath2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="434.66778564453125">
+                                          <Text fx:id="filePath2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="287.66778564453125">
                                              <font>
                                                 <Font name="Arial" size="20.0" />
                                              </font>
                                           </Text>
                                        </children>
                                        <HBox.margin>
-                                          <Insets left="260.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </VBox>
                                  </children>

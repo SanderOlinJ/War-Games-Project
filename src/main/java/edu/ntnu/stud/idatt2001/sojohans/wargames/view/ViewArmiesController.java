@@ -161,7 +161,7 @@ public class ViewArmiesController {
         lines.get(index).setPrefHeight(2);
 
         armyNames.get(index).setText(armiesInOverview.get(index).getName());
-        totalUnits.get(index).setText(String.valueOf(armiesInOverview.get(index).getUnits().size()));
+        totalUnits.get(index).setText(String.valueOf(armiesInOverview.get(index).getAllUnits().size()));
         spearFighterNumbers.get(index).setText
                 (String.valueOf(armiesInOverview.get(index).getSpearFighterUnits().size()));
         swordsmanNumbers.get(index).setText(String.valueOf(armiesInOverview.get(index).getSwordsmanUnits().size()));

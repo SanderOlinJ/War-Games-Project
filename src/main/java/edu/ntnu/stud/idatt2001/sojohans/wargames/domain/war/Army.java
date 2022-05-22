@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * Class for describing an Army consisting of Units.
  */
 public class Army {
-    private String name;
+    private final String name;
     private final List<Unit> units;
 
     /**
@@ -46,20 +46,7 @@ public class Army {
         }
         this.name = name;
         this.units = new ArrayList<>();
-        addAllUnits(newUnits);
-    }
-
-    /**
-     * Method for setting the name of the Army.
-     * @param name Name of the Army.
-     * @throws IllegalArgumentException If the name argument is null or empty.
-     */
-    public void setName(String name)
-    throws IllegalArgumentException{
-        if (name == null || name.isBlank()){
-            throw new IllegalArgumentException("Name of Army cannot be null or empty!");
-        }
-        this.name = name;
+        newUnits.forEach(this::addUnit);
     }
 
     /**
@@ -69,7 +56,7 @@ public class Army {
      */
     public void addAllUnits(List<Unit> newUnits)
     throws IllegalArgumentException{
-        if (newUnits == null || newUnits.size() == 0){
+        if (newUnits == null || newUnits.isEmpty()){
             throw new IllegalArgumentException("Unit list cannot be null or empty!");
         }
         newUnits.forEach(this::addUnit);
@@ -117,14 +104,14 @@ public class Army {
      * @return True if the Army has Units, false if not.
      */
     public boolean hasUnits(){
-        return this.units != null && this.units.size() != 0;
+        return this.units != null && !this.units.isEmpty();
     }
 
     /**
      * Method returns a List of Units that are in the Army.
      * @return List of Units in the Army.
      */
-    public List<Unit> getUnits() {
+    public List<Unit> getAllUnits() {
         return new ArrayList<>(this.units);
     }
 

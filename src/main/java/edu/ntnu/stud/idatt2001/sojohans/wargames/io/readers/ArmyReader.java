@@ -4,7 +4,6 @@ import edu.ntnu.stud.idatt2001.sojohans.Utilities;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitFactory;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

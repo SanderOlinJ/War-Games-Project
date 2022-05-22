@@ -1,6 +1,5 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.view;
 
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Battle;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.View;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.scenes.ViewSwitcher;
 import javafx.fxml.FXML;

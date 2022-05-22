@@ -4,7 +4,6 @@ import edu.ntnu.stud.idatt2001.sojohans.Utilities;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -48,7 +47,7 @@ public class ArmyWriter {
         StringBuilder stringBuilder =  new StringBuilder();
         stringBuilder.append(army.getName()).append(NEWLINE);
 
-        String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(army.getUnits());
+        String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(army.getAllUnits());
         stringBuilder.append(unitsToFile);
 
         boolean alreadyExists = ArmyReader.doesArmyFileExist(nameOfFile);

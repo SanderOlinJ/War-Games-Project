@@ -2,7 +2,6 @@ package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.FactoryException;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

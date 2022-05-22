@@ -269,6 +269,8 @@ public class CreateArmyController {
         // Checks if there already exists an army file under the name that was typed.
         else if (ArmyReader.doesArmyFileExist(textFieldArmyName.getText().trim())){
             printErrorMessage("Error: There already exists an army under this name!");
+        } else if(textFieldArmyName.getText().length() > 20){
+            printErrorMessage("Error: Army name cannot be longer than 20 characters");
         }
         /*
         If none of the checks were positive, then army name is set to the Army object.

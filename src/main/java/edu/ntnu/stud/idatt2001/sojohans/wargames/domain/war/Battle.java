@@ -75,11 +75,11 @@ public class Battle{
 
     /**
      * Method for simulating a battle between two Armies in a Terrain.
-     * Method runs as long as both Armies have Units left or and 'stopRequested' is false.
+     * Method runs as long as both Armies have Units left and 'stopRequested' is false.
      * Simulate uses Random to determine which Army's turn it is to attack the other.
      * A random Unit from one of the Armies then attacks another random Unit from the other Army.
      * When a Unit's health is less than or equal to 0, it is removed from its respective Army.
-     * Every WarListener in the list is updated and Thread.sleep() is set to 30 milliseconds
+     * Every WarListener in the list is updated and Thread.sleep() is set to a calculated sleep time
      * every time a Unit is removed from each Army.
      * @return The victor of the Battle.
      * @throws BattleException If exceptions were thrown from either Unit's getRandom(),
@@ -150,7 +150,7 @@ public class Battle{
      * @return Sleep time in milliseconds.
      */
     private int calculateSleepTime(){
-        int numberOfTotalUnits = armyOne.getUnits().size() + armyTwo.getUnits().size();
+        int numberOfTotalUnits = armyOne.getAllUnits().size() + armyTwo.getAllUnits().size();
         if (numberOfTotalUnits > 1000){
             return 15;
         } else if (numberOfTotalUnits > 500){

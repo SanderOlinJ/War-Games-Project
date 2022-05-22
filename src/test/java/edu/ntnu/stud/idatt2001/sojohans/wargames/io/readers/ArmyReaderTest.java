@@ -16,7 +16,7 @@ class ArmyReaderTest {
     void checkIfReadArmyFromFileReturnsAnArmyWithCorrectValues() throws IOException {
         Army army = ArmyReader.readArmyFromLocalFileWithNameOfFile("armytest2");
 
-        assertEquals(7, army.getUnits().size());
+        assertEquals(7, army.getAllUnits().size());
     }
 
     @Nested
@@ -47,7 +47,8 @@ class ArmyReaderTest {
         @DisplayName("Exception is thrown when reading from a file that has no units")
         void exceptionThrownWhenReadingFromAFileThatHasNoUnits(){
 
-            assertThrows(IOException.class, () -> ArmyReader.readArmyFromLocalFileWithNameOfFile("armyFileWithNoUnits"));
+            assertThrows(IOException.class, () ->
+                    ArmyReader.readArmyFromLocalFileWithNameOfFile("armyFileWithNoUnits"));
         }
 
         @Test

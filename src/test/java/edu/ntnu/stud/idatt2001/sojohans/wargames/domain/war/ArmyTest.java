@@ -24,7 +24,7 @@ class ArmyTest {
             units.add(new SpearFighterUnit("Fiora",100));
             Army demacians = new Army("Demacians",units);
 
-            assertEquals(3, demacians.getUnits().size());
+            assertEquals(3, demacians.getAllUnits().size());
         }
 
         @Test
@@ -148,7 +148,7 @@ class ArmyTest {
         Army army = new Army("Army", units);
 
         Unit randomUnit = army.getRandom();
-        assertTrue(army.getUnits().contains(randomUnit));
+        assertTrue(army.getAllUnits().contains(randomUnit));
     }
 
     @Test
@@ -157,10 +157,10 @@ class ArmyTest {
         Army army = new Army("Army");
         army.addUnit(new AxemanUnit("Axeman",100));
 
-        List<Unit> units = army.getUnits();
+        List<Unit> units = army.getAllUnits();
         units.get(0).setHealth(40);
 
-        assertEquals(40, army.getUnits().get(0).getHealth());
+        assertEquals(40, army.getAllUnits().get(0).getHealth());
         assertEquals(40, units.get(0).getHealth());
     }
 
@@ -170,10 +170,10 @@ class ArmyTest {
         Army army = new Army("Army");
         army.addUnit(new SwordsmanUnit("Swordsman",100));
 
-        List<Unit> units = army.getUnits();
+        List<Unit> units = army.getAllUnits();
         units.add(new RangedUnit("Archer",100));
 
-        assertEquals(1, army.getUnits().size());
+        assertEquals(1, army.getAllUnits().size());
         assertEquals(2, units.size());
     }
 
