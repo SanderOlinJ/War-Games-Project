@@ -8,12 +8,8 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 public class SwordsmanUnit extends InfantryUnit{
 
     /**
-     * <p>
-     *     The default constructor for instantiating a SwordsmanUnit.
-     * </p>
-     * <p>
-     *     Sets the UnitType attribute of the SwordsmanUnit to 'SWORDSMAN_UNIT'.
-     * </p>
+     * The default constructor for instantiating a SwordsmanUnit.
+     * Sets the UnitType attribute of the SwordsmanUnit to 'SWORDSMAN_UNIT'.
      * @param name Name of the SwordsmanUnit.
      * @param health Health of the SwordsmanUnit, cannot be less than or equal to zero.
      * @param attack Attack-stat of the SwordsmanUnit, cannot be less than or equal to zero.
@@ -25,15 +21,9 @@ public class SwordsmanUnit extends InfantryUnit{
     }
 
     /**
-     * <p>
-     *     The simplified constructor for instantiating a SwordsmanUnit.
-     * </p>
-     * <p>
-     *     The SwordsmanUnit's attack and armor-stat are set to its default (15 and 10).
-     * </p>
-     * <p>
-     *     Sets the UnitType attribute of the SwordsmanUnit to 'SWORDSMAN_UNIT'.
-     * </p>
+     * The simplified constructor for instantiating a SwordsmanUnit.
+     * The SwordsmanUnit's attack and armor-stat are set to its default (15 and 10).
+     * Sets the UnitType attribute of the SwordsmanUnit to 'SWORDSMAN_UNIT'.
      * @param name Name of the SwordsmanUnit.
      * @param health Health of the SwordsmanUnit, cannot be less than or equal to zero.
      */
@@ -43,13 +33,9 @@ public class SwordsmanUnit extends InfantryUnit{
     }
 
     /**
-     * <p>
-     *     Method for retrieving the SwordsmanUnit's bonus against certain UnitTypes.
-     * </p>
-     * <p>
-     *     SwordsmanUnit has increased attack bonus against SpearFighterUnits, RangedUnits
-     *     and other SwordsmanUnits.
-     * </p>
+     * Method for retrieving the SwordsmanUnit's bonus against certain UnitTypes.
+     * SwordsmanUnit has increased attack bonus against SpearFighterUnits, RangedUnits
+     * and other SwordsmanUnits.
      * @param unitType UnitType, determines the bonus outcome.
      * @return Bonus of the SwordsmanUnit impacted by the UnitType argument.
      */

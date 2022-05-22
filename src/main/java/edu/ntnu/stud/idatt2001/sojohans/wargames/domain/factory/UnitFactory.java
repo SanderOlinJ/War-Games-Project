@@ -12,15 +12,9 @@ import java.util.List;
 public class UnitFactory {
 
     /**
-     * <p>
-     *     Method for producing a single Unit.
-     * </p>
-     * <p>
-     *     Produces the Unit using the Unit class' simplified constructor.
-     * </p>
-     * <p>
-     *     This means the Unit is set with its default attack and armor stats.
-     * </p>
+     * Method for producing a single Unit.
+     * Produces the Unit using the Unit class' simplified constructor.
+     * This means the Unit is set with its default attack and armor stats.
      * @param unitType Type of Unit to be produced.
      * @param name Name of the Unit to be produced.
      * @param health Health of the Unit to be produced.
@@ -50,12 +44,8 @@ public class UnitFactory {
     }
 
     /**
-     * <p>
-     *     Method for producing a multiple Units.
-     * </p>
-     * <p>
-     *     Produces a List of Units using UnitFactory's getUnits()-method.
-     * </p>
+     * Method for producing multiple Units.
+     * Produces a List of Units using UnitFactory's getUnits()-method.
      * @param unitType Type of Units to be produced.
      * @param name Name of the Units to be produced.
      * @param health Health of the Units to be produced.

@@ -1,13 +1,9 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions;
 
 /**
- * <p>
- *     Class for describing a FactoryException.
- * </p>
- * <p>
- *     This Exception extends from RunTimeException and is thrown if Factory is unable to produce a Unit,
- *     if invalid parameters were given.
- * </p>
+ * Class for describing a FactoryException.
+ * This Exception extends from RunTimeException and is thrown if Factory is unable to produce a Unit,
+ * if invalid parameters were given.
  */
 public class FactoryException extends RuntimeException{
 

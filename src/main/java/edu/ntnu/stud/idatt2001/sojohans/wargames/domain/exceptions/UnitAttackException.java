@@ -1,12 +1,8 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions;
 
 /**
- * <p>
- *     Class for describing a UnitAttackException.
- * </p>
- * <p>
- *     This Exception extends from RunTimeException and is thrown during Unit's attack()-method.
- * </p>
+ * Class for describing a UnitAttackException.
+ * This Exception extends from RunTimeException and is thrown during Unit's attack()-method.
  */
 public class UnitAttackException extends RuntimeException{
 

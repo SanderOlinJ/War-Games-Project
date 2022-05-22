@@ -1,12 +1,10 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory;
 
 /**
- * <p>
- *     Enum class for UnitType.
- * </p>
- * <p>
- *     UnitTypes describe what Type of Unit the Unit is.
- * </p>
+ * Enum class for UnitType.
+ * UnitTypes describe what Type of Unit the Unit is.
+ * Mainly used for the Factory design pattern,
+ * but also for easier identification of Units.
  */
 public enum UnitType {
     SPEAR_FIGHTER_UNIT,

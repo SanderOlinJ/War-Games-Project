@@ -39,8 +39,6 @@ public class UnitInfoController {
      */
     @FXML
     public void onSimulateButtonClicked(){
-        //Method tells Battle that simulate should be able to run.
-        Battle.enableSimulate();
         ViewSwitcher.switchTo(View.BATTLE_SIMULATION);
     }
 }

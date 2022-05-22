@@ -1,13 +1,9 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions;
 
 /**
- * <p>
- *     Class for describing a TerrainException.
- * </p>
- * <p>
- *     This Exception extends from RunTimeException and is thrown if a Terrain is not given
- *     when it is required.
- * </p>
+ * Class for describing a TerrainException.
+ * This Exception extends from RunTimeException and is thrown if a Terrain is not given
+ * when it is required.
  */
 public class TerrainException extends RuntimeException{
 

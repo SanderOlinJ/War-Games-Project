@@ -1,12 +1,8 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.scenes;
 
 /**
- * <p>
- *     Enum class View, used for easier switching between scenes.
- * </p>
- * <p>
- *     Stores a fxml file (each scene) in every enum constant.
- * </p>
+ * Enum class View, used for easier switching between scenes.
+ * Stores a fxml file (each scene) in every enum constant.
  */
 public enum View {
     MENU("menu-scene.fxml"),

@@ -20,15 +20,9 @@ public abstract class Unit {
 
 
     /**
-     * <p>
-     *     The constructor method for instantiating a Unit object.
-     * </p>
-     * <p>
-     *     Neither Health nor Attack can be zero or lower.
-     * </p>
-     * <p>
-     *     Armor can however be zero, as full offensive Unit might be developed later on.
-     * </p>
+     * The constructor method for instantiating a Unit object.
+     * Neither Health nor Attack can be zero or lower.
+     * Armor can however be zero, as full offensive Unit might be developed later on.
      * @param name Name of the Unit.
      * @param health Health of the Unit.
      * @param attack Attack-points of the Unit.

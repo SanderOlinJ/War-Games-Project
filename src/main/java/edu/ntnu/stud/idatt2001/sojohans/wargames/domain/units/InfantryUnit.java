@@ -9,17 +9,11 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.T
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.TerrainType;
 
 /**
- * <p>
- *     Class for describing an abstract InfantryUnit.
- * </p>
- * <p>
- *     InfantryUnit extends from Unit and implements multiple interfaces:
- *     TerrainTypeImpactsAttack, TerrainTypeImpactsDefense, OpponentTypeImpactsBonus
- * </p>
- * <p>
- *     These interfaces impacts the unit's bonuses during an attack, whether it's the Unit
- *     attacking, or the Unit defending.
- * </p>
+ * Class for describing an abstract InfantryUnit.
+ * InfantryUnit extends from Unit and implements multiple interfaces:
+ * TerrainTypeImpactsAttack, TerrainTypeImpactsDefense, OpponentTypeImpactsBonus
+ * These interfaces impacts the unit's bonuses during an attack, whether it's the Unit
+ * attacking, or the Unit defending.
  */
 public abstract class InfantryUnit extends Unit implements TerrainImpactsAttack, TerrainImpactsDefense,
         OpponentTypeImpactsBonus {
@@ -36,12 +30,8 @@ public abstract class InfantryUnit extends Unit implements TerrainImpactsAttack,
     }
 
     /**
-     * <p>
-     *     The simplified constructor for instantiating an InfantryUnit.
-     * </p>
-     * <p>
-     *     The InfantryUnit's attack and armor-stat are set to its default (15 and 10).
-     * </p>
+     * The simplified constructor for instantiating an InfantryUnit.
+     * The InfantryUnit's attack and armor-stat are set to its default (15 and 10).
      * @param name Name of the InfantryUnit.
      * @param health Health of the InfantryUnit, cannot be less than or equal to zero.
      */
@@ -85,12 +75,8 @@ public abstract class InfantryUnit extends Unit implements TerrainImpactsAttack,
     }
 
     /**
-     * <p>
-     *     Method for retrieving the InfantryUnit's terrain bonus during attack.
-     * </p>
-     * <p>
-     *     InfantryUnit only get Terrain attack bonus in the TerrainType 'FOREST'.
-     * </p>
+     * Method for retrieving the InfantryUnit's terrain bonus during attack.
+     * InfantryUnit only get Terrain attack bonus in the TerrainType 'FOREST'.
      * @param terrainType Terrain, determines the attack bonus outcome.
      * @return Terrain attack bonus of the InfantryUnit.
      * @throws TerrainException If the TerrainType argument is null.
@@ -108,12 +94,8 @@ public abstract class InfantryUnit extends Unit implements TerrainImpactsAttack,
     }
 
     /**
-     * <p>
-     *     Method for retrieving the InfantryUnit's terrain bonus during defense.
-     * </p>
-     * <p>
-     *     InfantryUnit only get Terrain defense bonus in the TerrainType 'FOREST'.
-     * </p>
+     * Method for retrieving the InfantryUnit's terrain bonus during defense.
+     * InfantryUnit only get Terrain defense bonus in the TerrainType 'FOREST'.
      * @param terrainType Terrain, determines the defense bonus outcome.
      * @return Terrain defense bonus of the InfantryUnit.
      * @throws TerrainException If the TerrainType argument is null.

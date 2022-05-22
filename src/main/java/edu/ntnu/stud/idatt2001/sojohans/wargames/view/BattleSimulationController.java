@@ -533,7 +533,7 @@ public class BattleSimulationController {
 
     /**
      * Redirects to the 'Main Menu' page.
-     * Method tells Battle to stop simulating.
+     * Method also tells Battle to stop simulating.
      */
     @FXML
     public void onMenuButtonClicked(){
@@ -543,7 +543,7 @@ public class BattleSimulationController {
 
     /**
      * Redirects to the 'Create Army' page.
-     * Method tells Battle to stop simulating.
+     * Method also tells Battle to stop simulating.
      */
     @FXML
     public void onCreateArmyButtonClicked(){
@@ -553,7 +553,7 @@ public class BattleSimulationController {
 
     /**
      * Redirects to the 'View Armies' page.
-     * Method tells Battle to stop simulating.
+     * Method also tells Battle to stop simulating.
      */
     @FXML
     public void onViewArmiesButtonClicked(){

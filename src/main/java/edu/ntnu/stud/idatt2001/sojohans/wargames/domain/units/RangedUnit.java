@@ -8,17 +8,11 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.T
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.TerrainType;
 
 /**
- * <p>
- *     Class for describing a RangedUnit.
- * </p>
- * <p>
- *     RangedUnit extends from Unit and implements multiple interfaces:
- *     TerrainImpactsAttack, OpponentTypeImpactsBonus
- * </p>
- * <p>
- *     These interfaces impacts the unit's bonuses during an attack, but only
- *     when it's the attacker.
- * </p>
+ * Class for describing a RangedUnit.
+ * RangedUnit extends from Unit and implements multiple interfaces:
+ * TerrainImpactsAttack, OpponentTypeImpactsBonus
+ * These interfaces impacts the unit's bonuses during an attack, but only
+ * when it's the attacker.
  */
 public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTypeImpactsBonus {
 
@@ -30,13 +24,9 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTy
     private int numberOfAttacksWithstood;
 
     /**
-     * <p>
-     *     The default constructor for instantiating a RangedUnit.
-     * </p>
-     * <p>
-     *     Sets the UnitType attribute of the RangedUnit to 'RANGED_UNIT',
-     *     and the property 'numberOfAttacksWithstood' to zero.
-     * </p>
+     * The default constructor for instantiating a RangedUnit.
+     * Sets the UnitType attribute of the RangedUnit to 'RANGED_UNIT',
+     * and the property 'numberOfAttacksWithstood' to zero.
      * @param name Name of the RangedUnit.
      * @param health Health of the RangedUnit, cannot be less than or equal to zero.
      * @param attack Attack-stat of the RangedUnit, cannot be less than or equal to zero.
@@ -49,16 +39,10 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTy
     }
 
     /**
-     * <p>
-     *     The simplified constructor for instantiating a RangedUnit.
-     * </p>
-     * <p>
-     *     The RangedUnit's attack and armor-stat are set to its default (15 and 8).
-     * </p>
-     * <p>
-     *     Sets the UnitType attribute of the RangedUnit to 'RANGED_UNIT',
-     *     and the property 'numberOfAttacksWithstood' to zero.
-     * </p>
+     * The simplified constructor for instantiating a RangedUnit.
+     * The RangedUnit's attack and armor-stat are set to its default (15 and 8).
+     * Sets the UnitType attribute of the RangedUnit to 'RANGED_UNIT',
+     * and the property 'numberOfAttacksWithstood' to zero.
      * @param name Name of the RangedUnit.
      * @param health Health of the RangedUnit, cannot be less than or equal to zero.
      */
@@ -89,12 +73,8 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTy
     }
 
     /**
-     * <p>
-     *     Method for retrieving the RangedUnit's resist bonus.
-     * </p>
-     * <p>
-     *     Resist bonus varies depending on how many times it has been attacked.
-     * </p>
+     * Method for retrieving the RangedUnit's resist bonus.
+     * Resist bonus varies depending on how many times it has been attacked.
      * @param terrainType Terrain, doesn't affect resist bonus outcome for RangedUnit.
      * @return Resist bonus of the RangedUnit.
      */
@@ -112,15 +92,9 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTy
     }
 
     /**
-     * <p>
-     *     Method for retrieving the RangedUnit's terrain bonus during attack.
-     * </p>
-     * <p>
-     *     RangedUnit only get Terrain attack bonus on the TerrainType 'HILL'.
-     * </p>
-     * <p>
-     *     It however gets a decreased bonus in the TerrainType 'FOREST'.
-     * </p>
+     * Method for retrieving the RangedUnit's terrain bonus during attack.
+     * RangedUnit only get Terrain attack bonus on the TerrainType 'HILL'.
+     * It however gets a decreased bonus in the TerrainType 'FOREST'.
      * @param terrainType Terrain, determines the attack bonus outcome.
      * @return Terrain attack bonus of the RangedUnit.
      * @throws TerrainException If the TerrainType argument is null.
@@ -139,13 +113,9 @@ public class RangedUnit extends Unit implements TerrainImpactsAttack, OpponentTy
     }
 
     /**
-     * <p>
-     *     Method for retrieving the RangedUnit's bonus against certain UnitTypes.
-     * </p>
-     * <p>
-     *     RangedUnit has increased attack bonus against SwordsmanUnits, AxemanUnits
-     *     and SpearFighterUnits.
-     * </p>
+     * Method for retrieving the RangedUnit's bonus against certain UnitTypes.
+     * RangedUnit has increased attack bonus against SwordsmanUnits, AxemanUnits
+     * and SpearFighterUnits.
      * @param unitType UnitType, determines the bonus outcome.
      * @return Bonus of the RangedUnit impacted by the UnitType argument.
      */

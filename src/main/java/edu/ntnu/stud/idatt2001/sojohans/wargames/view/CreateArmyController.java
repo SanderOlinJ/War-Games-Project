@@ -57,7 +57,7 @@ public class CreateArmyController {
     @FXML
     public void initialize(){
         addListenerToAddedUnitsAndUpdateGold();
-        gold = 100000;  // Sets the amount of gold the user to 100000. In the future this will be changable.
+        gold = 100000;  // Sets the amount of gold the user to 100000. In the future this will be changeable.
         numberOfGold.setText(String.valueOf(gold));
         initializeLists();
         setActionsToButtons();
@@ -65,7 +65,7 @@ public class CreateArmyController {
         showCostOfUnitInGUI();  // Shows cost of each unit in GUI
         disableButtons();  // Disables all add and remove buttons, as well as the "instantiate army" button.
         setToolTipToUnitLogos();
-        if (armyFile != null){
+        if (armyFile != null){ //   Fills GUI with Army info if an Army File was sent to the controller (to be edited).
             try {
                 army = ArmyReader.readArmyFileWithPath(armyFile);
                 fillWithInfoIfArmyIsToBeEdited();

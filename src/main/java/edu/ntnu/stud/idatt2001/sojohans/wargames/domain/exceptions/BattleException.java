@@ -1,12 +1,8 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions;
 
 /**
- * <p>
- *     Class for describing a BattleException.
- * </p>
- * <p>
- *     This Exception extends from RunTimeException and is thrown during Battle's simulation()-method.
- * </p>
+ * Class for describing a BattleException.
+ * This Exception extends from RunTimeException and is thrown during Battle's simulation()-method.
  */
 public class BattleException extends RuntimeException{
 

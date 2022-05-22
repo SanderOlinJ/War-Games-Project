@@ -28,12 +28,8 @@ public class ArmyReader {
         return file.exists();
     }
     /**
-     * <p>
-     *     Method for reading a local Army from file.
-     * </p>
-     * <p>
-     *     Local in this case meaning stored under the 'armyFiles' folder in resources.
-     * </p>
+     * Method for reading a local Army from file.
+     * Local in this case meaning stored under the 'armyFiles' folder in resources.
      * @param nameOfFile Name of the file to be read from.
      * @return Army that was stored in the file
      * @throws IOException If file does not exist, empty or file name is not supported.
@@ -73,18 +69,14 @@ public class ArmyReader {
     }
 
     /**
+     * Method for reading an Army from file.
+     * Method instantiates an Army from file only if this format is followed:
      * <p>
-     *     Method for reading an Army from file.
+     *     "Army name\n"
+     *     "UnitType, Name, Health, Number of occurrences\n"
+     *     "UnitType, Name, Health, Number of occurrences\n"
      * </p>
-     * <p>
-     *     Method instantiates an Army from file only if this format is followed:
-     * </p>
-     * <p>
-     *     Army name.
-     * </p>
-     * <p>
-     *     UnitType, Name, Health, Number of occurrences.
-     * </p>
+     * and so on.
      * @param file File to be read from
      * @return Army that was stored in the file
      * @throws IOException if file does not contain units, army name is empty or contains unsupported character,

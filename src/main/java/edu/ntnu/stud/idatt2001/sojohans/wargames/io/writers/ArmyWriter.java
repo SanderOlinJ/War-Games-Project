@@ -24,8 +24,12 @@ public class ArmyWriter {
      * Method for writing an Army to a .csv file.
      * Method also writes the army file name to the army overview file.
      * Method writes an Army to file in the format of:
-     * Army name.
-     * UnitType, Name, Health, Number of occurrences.
+     * <p>
+     *     "Army name\n"
+     *     "UnitType, Name, Health, Number of occurrences\n"
+     *     "UnitType, Name, Health, Number of occurrences\n"
+     * </p>
+     * and so on.
      * @param army The Army being written to file.
      * @param nameOfFile Name of file where Army is to be written.
      * @throws IOException If Army is null, file name is null or empty, file name contain unsupported characters
@@ -61,15 +65,9 @@ public class ArmyWriter {
     }
 
     /**
-     * <p>
-     *     Method for writing a List of Units to String.
-     * </p>
-     * <p>
-     *     Method for getting Units with number of occurrences as a String.
-     * </p>
-     * <p>
-     *     Format: UnitType, Name, Health, Number of occurrences.
-     * </p>
+     * Method for writing a List of Units to String.
+     * Method for getting Units with number of occurrences as a String.
+     * Output format: "UnitType, Name, Health, Number of occurrences\n".
      * @param units List of Units to be written to String.
      * @return String of Units to be written to File.
      * @throws IOException If List of Unit is null or empty.

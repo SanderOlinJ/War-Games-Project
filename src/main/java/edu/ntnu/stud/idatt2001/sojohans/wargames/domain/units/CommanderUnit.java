@@ -9,13 +9,9 @@ import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 public class CommanderUnit extends CavalryUnit{
 
     /**
-     * <p>
-     *     The default constructor for instantiating a CommanderUnit.
-     * </p>
-     * <p>
-     *     Sets the UnitType attribute of the CommanderUnit to 'COMMANDER_UNIT',
-     *     as well as the property 'chargedAttack' (inherited from CavalryUnit) to false.
-     * </p>
+     * The default constructor for instantiating a CommanderUnit.
+     * Sets the UnitType attribute of the CommanderUnit to 'COMMANDER_UNIT',
+     * as well as the property 'chargedAttack' (inherited from CavalryUnit) to false.
      * @param name Name of the CommanderUnit.
      * @param health Health of the CommanderUnit, cannot be less than or equal to zero.
      * @param attack Attack-stat of the CommanderUnit, cannot be less than or equal to zero.
@@ -27,16 +23,10 @@ public class CommanderUnit extends CavalryUnit{
     }
 
     /**
-     * <p>
-     *     The simplified constructor for instantiating a CommanderUnit.
-     * </p>
-     * <p>
-     *     The CommanderUnit's attack and armor-stat are set to its default (25 and 15).
-     * </p>
-     * <p>
-     *     Sets the UnitType attribute of the CommanderUnit to 'COMMANDER_UNIT',
-     *     as well as the property 'chargedAttack' (inherited from CavalryUnit) to false.
-     * </p>
+     * The simplified constructor for instantiating a CommanderUnit.
+     * The CommanderUnit's attack and armor-stat are set to its default (25 and 15).
+     * Sets the UnitType attribute of the CommanderUnit to 'COMMANDER_UNIT',
+     * as well as the property 'chargedAttack' (inherited from CavalryUnit) to false.
      * @param name Name of the CommanderUnit.
      * @param health Health of the CommanderUnit, cannot be less than or equal to zero.
      */
