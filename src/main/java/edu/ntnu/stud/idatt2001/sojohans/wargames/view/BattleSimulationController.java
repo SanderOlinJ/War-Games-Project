@@ -102,13 +102,13 @@ public class BattleSimulationController {
         if (army1 == null || army2 == null){
             printErrorMessage("Error: Battle cannot be started until both Armies have been chosen!");
         }
-        if (!army1.hasUnits() || !army2.hasUnits()){
+        else if (!army1.hasUnits() || !army2.hasUnits()){
             printErrorMessage("Error: Armies need units to fight!");
         }
-        if (army1.equals(army2)){
+        else if (army1.equals(army2)){
             printErrorMessage("Error: Battle cannot be fought between the same Army!");
         }
-        if (terrainType == null){
+        else if (terrainType == null){
             printErrorMessage("Error: Terrain must be chosen!");
         }
         else {

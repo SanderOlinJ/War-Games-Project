@@ -11,7 +11,9 @@ public enum View {
     VIEW_ARMIES("view-armies-scene.fxml"),
     UNIT_INFO("unit-info-scene.fxml");
 
-
+    /**
+     * Name of File that is stored, and later used to load said file.
+     */
     private final String fileName;
 
     /**

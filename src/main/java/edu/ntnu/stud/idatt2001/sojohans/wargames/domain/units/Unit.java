@@ -12,11 +12,32 @@ import java.util.Objects;
  * Class for describing an abstract Unit.
  */
 public abstract class Unit {
-    private UnitType unitType;
+
+    /**
+     * The name of the Unit.
+     */
     private final String name;
+
+    /**
+     * The health of the Unit.
+     */
     private int health;
+
+    /**
+     * The attack 'stat' of the Unit.
+     */
     private final int attack;
+
+    /**
+     * The armor 'stat' of the Unit.
+     */
     private final int armor;
+
+    /**
+     * The type of Unit that the Unit is an instance of.
+     * Used for easier identification of Unit.
+     */
+    private UnitType unitType;
 
 
     /**

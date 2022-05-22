@@ -22,6 +22,10 @@ public class Battle{
      */
     private int armyOneAttacks, armyTwoAttacks;
 
+    /**
+     * Terrain in which a Battle takes place. The Terrain determines a Units attack or resist bonus,
+     * depending on what type of advantage/disadvantage they have in different Terrains.
+     */
     private final TerrainType terrainType;
 
     /**
