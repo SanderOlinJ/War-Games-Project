@@ -1,5 +1,13 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.scenes;
 
+/**
+ * <p>
+ *     Enum class View, used for easier switching between scenes.
+ * </p>
+ * <p>
+ *     Stores a fxml file (each scene) in every enum constant.
+ * </p>
+ */
 public enum View {
     MENU("menu-scene.fxml"),
     CREATE_ARMY("create-army-scene.fxml"),
@@ -10,10 +18,18 @@ public enum View {
 
     private final String fileName;
 
+    /**
+     * Method stores the fxml file the application is to switch to.
+     * @param fileName fxml file application is to switch to.
+     */
     View(String fileName) {
         this.fileName = fileName;
     }
 
+    /**
+     * Method for getting the fxml file the application is to switch to.
+     * @return file path of the fxml file.
+     */
     public String getFileName() {
         return fileName;
     }

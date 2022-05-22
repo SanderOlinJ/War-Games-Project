@@ -1,7 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.UnitAttackException;
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.TerrainType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -52,8 +52,8 @@ class UnitTest {
         @DisplayName("Opponent has invalid health during attack," +
                 "throws UnitAttackException")
         public void opponentHasInvalidHealthDuringAttack(){
-            InfantryUnit infantryUnit1 = new SpearFighterUnit("Swordsman",100);
-            InfantryUnit infantryUnit2 = new SpearFighterUnit("Spear fighter",1);
+            InfantryUnit infantryUnit1 = new SpearFighterUnit("Swordsman",100, 30, 100);
+            InfantryUnit infantryUnit2 = new AxemanUnit("Spear fighter",1, 2, 1);
             infantryUnit1.attack(infantryUnit2,TerrainType.PLAINS);
 
             assertThrows(UnitAttackException.class, () -> infantryUnit1.attack(infantryUnit2,TerrainType.PLAINS));
@@ -71,15 +71,22 @@ class UnitTest {
         }
 
         @Test
-        @DisplayName("does attack() return correct health value when CommanderUnit attacks CommanderUnit on HILL")
+        @DisplayName("Does attack() return correct health value when CommanderUnit attacks CommanderUnit on HILL")
         public void doesAttackReturnCorrectHealthValueWhenCommanderAttackCommanderOnHill(){
             CommanderUnit guardian = new CommanderUnit("Guardian",180);
             CommanderUnit savathun = new CommanderUnit("Savathun",180);
             guardian.attack(savathun, TerrainType.HILL);
 
-            // Health = 180 - (25 + 6 + 2) + (15 + 1)
-            assertEquals(163,savathun.getHealth());
+            assertEquals(164,savathun.getHealth());
         }
 
+        @Test
+        @DisplayName("Does attack return correct health value when CavalryUnit attacks AxemanUnit")
+        public void doesAttackReturnCorrectHealthValueWhenCavalryAttacksAxemanInForest(){
+            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            AxemanUnit axemanUnit = new AxemanUnit("Axeman",100);
+            cavalryUnit.attack(axemanUnit, TerrainType.FOREST);
+            assertEquals(86, axemanUnit.getHealth());
+        }
     }
 }

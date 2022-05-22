@@ -1,7 +1,6 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.io.writers;
 
 import edu.ntnu.stud.idatt2001.sojohans.Utilities;
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.Unit;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war.Army;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.io.readers.ArmyReader;
@@ -21,22 +20,25 @@ public class ArmyWriter {
     private static final String NEWLINE = "\n";
     private static final String DELIMITER = ",";
 
-    public ArmyWriter(){}
-
     /**
      * Method for writing an Army to a .csv file.
+     * Method also writes the army file name to the army overview file.
+     * Method writes an Army to file in the format of:
+     * Army name.
+     * UnitType, Name, Health, Number of occurrences.
      * @param army The Army being written to file.
      * @param nameOfFile Name of file where Army is to be written.
-     * @throws IOException If Army is null or file name is empty.
+     * @throws IOException If Army is null, file name is null or empty, file name contain unsupported characters
+     * or if file could not be written to.
      */
     public static void writeArmyToFile(Army army, String nameOfFile) throws IOException{
         if (army == null){
             throw new IOException("Army cannot be null!");
         }
-        if (nameOfFile == null || nameOfFile.trim().isEmpty()){
+        if (nameOfFile == null || nameOfFile.isBlank()){
             throw new IOException("File name cannot be null or empty!");
         }
-        if (Utilities.checkIfStringContainsAnyNonAlphaNumericSymbols(nameOfFile)){
+        if (Utilities.checkIfStringContainsAnyNonAlphaNumericCharacters(nameOfFile)){
             throw new IOException("File name can only contain alpha-numeric symbols");
         }
         StringBuilder stringBuilder =  new StringBuilder();
@@ -45,10 +47,10 @@ public class ArmyWriter {
         String unitsToFile = getUnitsWithNumberOfOccurrencesToBeWrittenToFile(army.getUnits());
         stringBuilder.append(unitsToFile);
 
-        boolean alreadyExists = Utilities.doesArmyFileExist(nameOfFile);
+        boolean alreadyExists = ArmyReader.doesArmyFileExist(nameOfFile);
 
         try(FileWriter fileWriter = new FileWriter(Utilities.convertStringToArmyFile
-                (Utilities.shortenAndReplaceNonAlphaNumericSymbolsInString(nameOfFile)))){
+                (Utilities.shortenAndReplaceNonAlphaNumericCharactersInString(nameOfFile)))){
             fileWriter.write(stringBuilder.toString());
             if (!alreadyExists){
                 writeArmyFileNameToOverviewFile(army.getName());
@@ -58,11 +60,16 @@ public class ArmyWriter {
         }
     }
 
-
-
     /**
-     * Method for getting Units with number of occurrences as a String.
-     * Format: Class Name, Name, Number of occurrence.
+     * <p>
+     *     Method for writing a List of Units to String.
+     * </p>
+     * <p>
+     *     Method for getting Units with number of occurrences as a String.
+     * </p>
+     * <p>
+     *     Format: UnitType, Name, Health, Number of occurrences.
+     * </p>
      * @param units List of Units to be written to String.
      * @return String of Units to be written to File.
      * @throws IOException If List of Unit is null or empty.
@@ -81,26 +88,28 @@ public class ArmyWriter {
             }
         }
         StringBuilder stringBuilder = new StringBuilder();
-        unitsAndNumberOfOccurrences.forEach((unit, integer) ->
-                {
-                    UnitType unitType = null;
-                    switch (unit.getClass().getSimpleName()){
-                        case "SpearFighterUnit" -> unitType = UnitType.SPEAR_FIGHTER_UNIT;
-                        case "SwordsmanUnit" -> unitType = UnitType.SWORDSMAN_UNIT;
-                        case "AxemanUnit" -> unitType = UnitType.AXEMAN_UNIT;
-                        case "RangedUnit" -> unitType = UnitType.RANGED_UNIT;
-                        case "CavalryUnit" -> unitType = UnitType.CAVALRY_UNIT;
-                        case "CommanderUnit" -> unitType = UnitType.COMMANDER_UNIT;
-                    }
-                stringBuilder.append(unitType).append(DELIMITER)
-                        .append(unit.getName()).append(DELIMITER)
-                        .append(integer).append(NEWLINE);
-                });
+        unitsAndNumberOfOccurrences.forEach(((unit, integer) ->
+                stringBuilder.append(unit.getUnitType()).append(DELIMITER)
+                .append(unit.getName()).append(DELIMITER)
+                .append(unit.getHealth()).append(DELIMITER)
+                .append(integer).append(NEWLINE)));
 
         return stringBuilder.toString();
     }
 
+    /**
+     * Method for writing Army file name to Army overview File.
+     * @param armyFileName Name of Army file to be written to Army overview file.
+     * @throws IOException If file name is null, empty, contains unsupported characters
+     * or if file could not be written to.
+     */
     public static void writeArmyFileNameToOverviewFile(String armyFileName) throws IOException{
+        if (armyFileName == null || armyFileName.isBlank()){
+            throw new IOException("File name cannot be null or empty!");
+        }
+        if (Utilities.checkIfStringContainsAnyNonAlphaNumericCharacters(armyFileName)){
+            throw new IOException("File name can only contain alpha-numeric symbols");
+        }
         armyFileName = Utilities.convertStringToFileName(armyFileName);
         File file = new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +
                 "wargames/armyFiles/armyFilesOverview.csv");
@@ -112,7 +121,19 @@ public class ArmyWriter {
         }
     }
 
+    /**
+     * Method for removing Army file name from Army overview File.
+     * @param armyFileName Name of Army file to be removed from Army overview file.
+     * @throws IOException If file name is null, empty, contains unsupported characters
+     * or if file could not be written to.
+     */
     public static void removeArmyFileNameFromOverviewFile(String armyFileName) throws IOException{
+        if (armyFileName == null || armyFileName.isBlank()){
+            throw new IOException("File name cannot be null or empty!");
+        }
+        if (Utilities.checkIfStringContainsAnyNonAlphaNumericCharacters(armyFileName)){
+            throw new IOException("File name can only contain alpha-numeric symbols");
+        }
         try {
             List<String> armyFileNamesInOverview = ArmyReader.readArmyFileNamesFromOverviewFile();
             File file = new File("src/main/resources/edu/ntnu/stud/idatt2001/sojohans/" +

@@ -65,35 +65,6 @@ class ArmyTest {
                 guardians.addAllUnits(units);
                 assertTrue(guardians.hasUnits());
             }
-
-            @Test
-            @DisplayName("Check if Units added or instantiated with are in fact deep copied," +
-                    "and Army's List of Units is not coupled to the List it was instantiated with")
-            public void checkIfUnitsAreDeepCopiedAndArmysListIsNotCoupled(){
-                List<Unit> units = new ArrayList<>();
-                units.add(new SwordsmanUnit("Swordsman",100));
-                units.add(new CavalryUnit("Cavalry",100));
-                units.add(new RangedUnit("Archer",100));
-                units.add(new CommanderUnit("Commander",180));
-                Army army = new Army("Army", units);
-
-                //CHECKING IF THE LISTS SIZES CHANGES
-                InfantryUnit infantryUnit = new SwordsmanUnit("Swordsman",100);
-                army.addUnit(new SwordsmanUnit("Swordsman",100));
-                assertEquals(5,army.getUnits().size());
-                assertEquals(4,units.size());
-
-                //CHECKING IF OBJECTS FROM LIST ARE DEEP COPIED
-                army.getUnits().get(0).setHealth(40);
-                assertEquals(40, army.getUnits().get(0).getHealth());
-                assertEquals(100, units.get(0).getHealth());
-
-                //CHECKING IF SINGLE ADDED UNIT IS DEEP COPIED
-                army.getUnits().get(4).setHealth(50);
-                assertEquals(50, army.getUnits().get(4).getHealth());
-                assertEquals(100, infantryUnit.getHealth());
-
-            }
         }
         @Nested
         class AddingInvalidUnitsToArmy{
@@ -216,7 +187,7 @@ class ArmyTest {
     class lambdaReturnMethodsForSpecificUnitsTests{
 
         @Test
-        @DisplayName("Does getInfantryUnits return all infantry units in list")
+        @DisplayName("Does getInfantryUnits return all InfantryUnits in list")
         public void doesGetInfantryUnitsReturnAllInfantryUnitsInList(){
             List<Unit> units = new ArrayList<>();
             units.add(new SpearFighterUnit("Spear fighter",100));
@@ -230,7 +201,7 @@ class ArmyTest {
         }
 
         @Test
-        @DisplayName("Does getCavalryUnits return only cavalry units and not CommanderUnits")
+        @DisplayName("Does getCavalryUnits return only CavalryUnits and not CommanderUnits")
         public void doesGetCavalryUnitsReturnOnlyCavalryUnitsAndNotCommanderUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
@@ -246,7 +217,7 @@ class ArmyTest {
         }
 
         @Test
-        @DisplayName("Does getRangedUnits return correct number of ranged units")
+        @DisplayName("Does getRangedUnits return correct number of RangedUnits")
         public void doesGetRangedUnitsReturnCorrectNumberOfRangedUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
@@ -262,7 +233,7 @@ class ArmyTest {
         }
 
         @Test
-        @DisplayName("Does getCommanderUnits return correct number of commander units")
+        @DisplayName("Does getCommanderUnits return correct number of CommanderUnits")
         public void doesGetCommanderUnitsReturnCorrectNumberOfCommanderUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
@@ -278,6 +249,7 @@ class ArmyTest {
         }
 
         @Test
+        @DisplayName("Does getSpearFighterUnits return correct number of SpearFighterUnits")
         public void doesGetSpearFighterUnitsReturnCorrectNumberOfSpearFighterUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
@@ -294,6 +266,7 @@ class ArmyTest {
         }
 
         @Test
+        @DisplayName("Does getSwordsmanUnits return correct number of SwordsmanUnits")
         public void doesGetSwordsmanUnitsReturnCorrectNumberOfSwordsmanUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));
@@ -310,6 +283,7 @@ class ArmyTest {
         }
 
         @Test
+        @DisplayName("Does getAxemanUnits return correct number of AxemanUnits")
         public void doesGetAxemanUnitsReturnCorrectNumberOfAxemanUnits(){
             List<Unit> units = new ArrayList<>();
             units.add(new CommanderUnit("Commander",100));

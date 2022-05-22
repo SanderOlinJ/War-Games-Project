@@ -1,7 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units;
 
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.factory.UnitType;
-import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrain.TerrainType;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.TerrainType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,17 +29,36 @@ class RangedUnitTest {
         assertTrue(correct);
     }
 
+
     @Test
-    void doesRangedUnitGetIncreasedAttackBonusOnHill() {
+    @DisplayName("Does RangedUnit get increased Terrain attack bonus on Hill")
+    void doesRangedUnitGetIncreasedTerrainAttackBonusOnHill() {
         RangedUnit rangedUnit = new RangedUnit("Ranged",100);
 
-        assertEquals(6, rangedUnit.getAttackBonus(TerrainType.HILL, UnitType.SPEAR_FIGHTER_UNIT));
+        assertEquals(2, rangedUnit.getTerrainAttackBonus(TerrainType.HILL));
     }
 
     @Test
-    void doesRangedUnitGetDecreasedAttackBonusInForest() {
+    @DisplayName("Does RangedUnit get decreased Terrain attack bonus in Forest")
+    void doesRangedUnitGetDecreasedTerrainAttackBonusInForest() {
         RangedUnit rangedUnit = new RangedUnit("Ranged",100);
 
-        assertEquals(1, rangedUnit.getAttackBonus(TerrainType.FOREST, UnitType.SPEAR_FIGHTER_UNIT));
+        assertEquals(-1, rangedUnit.getTerrainAttackBonus(TerrainType.FOREST));
+    }
+
+    @Test
+    @DisplayName("Does RangedUnit get increased damage bonus when attacking a SpearFighterUnit")
+    void doesRangedUnitGetIncreasedDamageBonusWhenAttackingASpearFighterUnit(){
+        RangedUnit rangedUnit = new RangedUnit("Ranged",100);
+
+        assertEquals(2, rangedUnit.getOpponentTypeBonus(UnitType.SPEAR_FIGHTER_UNIT));
+    }
+
+    @Test
+    @DisplayName("Does RangedUnit get increased total attack bonus on Hill against AxeManUnit")
+    void doesRangedUnitGetIncreasedTotalAttackBonusOnHillAgainstAxeMan(){
+        RangedUnit rangedUnit = new RangedUnit("Ranged", 100);
+
+        assertEquals(7, rangedUnit.getAttackBonus(TerrainType.HILL, UnitType.AXEMAN_UNIT));
     }
 }

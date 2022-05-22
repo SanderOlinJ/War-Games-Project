@@ -1,4 +1,4 @@
 Army file with wrong unit data formatting
-Infantry.Unit,Swordsman,2
-RangedUnit,Archer,1
-CommanderUnit,Commander,1
+SPEAR_FIGHTER_UNIT,Swordsman,100,2
+RANGED_UNIT,Archer,100,3
+COMMANDER_UNIT,Commander,1,

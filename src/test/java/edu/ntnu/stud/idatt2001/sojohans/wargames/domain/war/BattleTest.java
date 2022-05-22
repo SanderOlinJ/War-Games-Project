@@ -1,5 +1,7 @@
 package edu.ntnu.stud.idatt2001.sojohans.wargames.domain.war;
 
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.exceptions.TerrainException;
+import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.terrainAndOtherBonuses.TerrainType;
 import edu.ntnu.stud.idatt2001.sojohans.wargames.domain.units.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -17,7 +19,7 @@ class BattleTest {
         public void instantiateBattleWhenArmyIsNull(){
             Army armyOne = new Army("Army One");
 
-            assertThrows(IllegalArgumentException.class, () -> new Battle(armyOne, null));
+            assertThrows(IllegalArgumentException.class, () -> new Battle(armyOne, null, TerrainType.FOREST));
         }
 
         @Test
@@ -26,7 +28,18 @@ class BattleTest {
             Army armyOne = new Army("Army One");
             Army armyTwo = new Army("Army Two");
 
-            assertThrows(IllegalArgumentException.class, () -> new Battle(armyOne, armyTwo));
+            assertThrows(IllegalArgumentException.class, () -> new Battle(armyOne, armyTwo, TerrainType.FOREST));
+        }
+
+        @Test
+        @DisplayName("Instantiate Battle when TerrainType is null")
+        public void instantiateBattleWhenTerrainTypeIsNull(){
+            Army armyOne = new Army("Army One");
+            Army armyTwo = new Army("Army Two");
+            armyOne.addUnit(new SpearFighterUnit("Spear fighter",100));
+            armyTwo.addUnit(new SpearFighterUnit("Spear fighter",100));
+
+            assertThrows(TerrainException.class, () -> new Battle(armyOne, armyTwo, null));
         }
     }
 
@@ -42,7 +55,7 @@ class BattleTest {
 
             Army armyOne = new Army("Army One", units);
             Army armyTwo = new Army("Army Two", units);
-            Battle battle = new Battle(armyOne, armyTwo);
+            Battle battle = new Battle(armyOne, armyTwo, TerrainType.FOREST);
 
             for (Unit unit : units){
                 armyOne.remove(unit);
