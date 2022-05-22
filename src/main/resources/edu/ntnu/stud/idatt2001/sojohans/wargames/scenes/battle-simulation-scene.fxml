@@ -689,7 +689,7 @@
                                  <children>
                                     <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="470.0">
                                        <children>
-                                          <ComboBox fx:id="chooseArmyComboBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="208.0" promptText="Choose army" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
+                                          <ComboBox fx:id="chooseArmyComboBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></ComboBox>
@@ -729,7 +729,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="470.0">
                                        <children>
-                                          <ComboBox fx:id="chooseArmyComboBox2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="208.0" promptText="Choose army" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
+                                          <ComboBox fx:id="chooseArmyComboBox2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>

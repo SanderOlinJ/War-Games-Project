@@ -113,10 +113,13 @@ public class BattleSimulationController {
                         printErrorMessage(exception.getMessage());
                     }
                     Platform.runLater(() -> {
+                        //  If Battle is paused, then a message will be displayed
                         if (battle.getVictor() == null){
                             printUpdateMessage("Battle paused");
                             swapToSimulateButton();
                             resetButton.setDisable(false);
+
+                            //  Or if the Battle is finished, the victor will be displayed
                         } else if (battle.getVictor().equals(army1)) {
                             printUpdateMessage(army1.getName() + " won!");
                             buttonStatusAfterSimulation();

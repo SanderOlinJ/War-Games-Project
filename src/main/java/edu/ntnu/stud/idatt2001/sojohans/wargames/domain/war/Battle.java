@@ -13,6 +13,7 @@ import java.util.Random;
  * Class for describing a Battle, which takes place between two Armies
  * in a TerrainType.
  */
+@SuppressWarnings("BusyWait")
 public class Battle{
     private final Army armyOne, armyTwo;
 
@@ -35,7 +36,6 @@ public class Battle{
      * has closed the application.
      */
     private static boolean stopRequested = false;
-
 
     /**
      * The default constructor for instantiating a Battle between two Armies in a TerrainType.

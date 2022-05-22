@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  * Class for describing an Army consisting of Units.
  */
 public class Army {
-
     private String name;
     private final List<Unit> units;
 

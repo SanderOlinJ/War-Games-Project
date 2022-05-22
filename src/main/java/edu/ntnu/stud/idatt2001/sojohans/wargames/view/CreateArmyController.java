@@ -57,7 +57,7 @@ public class CreateArmyController {
     @FXML
     public void initialize(){
         addListenerToAddedUnitsAndUpdateGold();
-        gold = 100000;  // Sets the amount of gold the user to 100000. In the future this will be changeable.
+        gold = 50000;  // Sets the amount of gold the user to 50000. In the future this will be changeable.
         numberOfGold.setText(String.valueOf(gold));
         initializeLists();
         setActionsToButtons();
@@ -156,12 +156,12 @@ public class CreateArmyController {
      * other lists in the Controller.
      */
     private void fillCostsPerUnit(){
-        costPerUnit[0] = 50; // Sets cost: 10 to SpearFighterUnit
-        costPerUnit[1] = 50; // Sets cost: 15 to SwordsmanUnit
-        costPerUnit[2] = 60; // Sets cost: 20 to AxemanUnit
-        costPerUnit[3] = 120; // Sets cost: 15 to RangedUnit
-        costPerUnit[4] = 300; // Sets cost: 30 to CavalryUnit
-        costPerUnit[5] = 5000; // Sets cost: 100 to CommanderUnit
+        costPerUnit[0] = 50; // Sets cost: 50 to SpearFighterUnit
+        costPerUnit[1] = 50; // Sets cost: 50 to SwordsmanUnit
+        costPerUnit[2] = 60; // Sets cost: 60 to AxemanUnit
+        costPerUnit[3] = 120; // Sets cost: 120 to RangedUnit
+        costPerUnit[4] = 300; // Sets cost: 300 to CavalryUnit
+        costPerUnit[5] = 5000; // Sets cost: 5000 to CommanderUnit
     }
 
     /**
@@ -239,7 +239,7 @@ public class CreateArmyController {
         int totalCostOfPaladin = costPerUnit[5]*nrOfSpecificUnits[5];
         int totalCost = totalCostOfSpearFighter + totalCostOfSwordsman + totalCostOfAxeman + totalCostOfArcher
                 + totalCostOfLightCavalry + totalCostOfPaladin;
-        gold = 100000 - totalCost;
+        gold = 50000 - totalCost;
         numberOfGold.setText(String.valueOf(gold));
     }
 

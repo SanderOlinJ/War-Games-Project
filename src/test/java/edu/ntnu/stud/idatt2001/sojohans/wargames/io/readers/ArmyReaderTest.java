@@ -14,7 +14,7 @@ class ArmyReaderTest {
     @Test
     @DisplayName("Check if ReadArmyFromFile returns an Army with correct values")
     void checkIfReadArmyFromFileReturnsAnArmyWithCorrectValues() throws IOException {
-        Army army = ArmyReader.readArmyFromLocalFileWithNameOfFile("armytest");
+        Army army = ArmyReader.readArmyFromLocalFileWithNameOfFile("armytest2");
 
         assertEquals(7, army.getUnits().size());
     }
