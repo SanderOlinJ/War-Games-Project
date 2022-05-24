@@ -55,23 +55,8 @@ styling for combobox prompt text and text field
     -fx-background-color: #282c34;
 }
 
-.my-list-cell {
-    -fx-text-fill: white;
-    -fx-font: 16px "Arial";
-    -fx-background-color:  #282c34;
-
-}
-
 .text-field{
     -fx-text-fill: black;
-}
-
-* {
-    -fx-primary-color: #fa8f31;
-    -fx-secondary-color: #4B6EAF;
-    -fx-light-grey-color: #d1d1d1;
-
-    -fx-focus-color: -fx-secondary-color;
 }
 
 .text-area .content {

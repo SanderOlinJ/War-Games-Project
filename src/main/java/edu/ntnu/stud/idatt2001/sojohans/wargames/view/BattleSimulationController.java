@@ -200,22 +200,23 @@ public class BattleSimulationController {
     private void setInfoToArmies(Text armyName, Text totalUnits, Text spearFighter, Text swordsman, Text axeman,
                                  Text archer, Text lightCavalry, Text paladin, TableView<Unit> armyTableView,
                                  Army army) {
-        armyName.setText(String.valueOf(army.getName()));
-        totalUnits.setText(String.valueOf(army.getAllUnits().size()));
-        spearFighter.setText(String.valueOf(army.getSpearFighterUnits().size()));
-        swordsman.setText(String.valueOf(army.getSwordsmanUnits().size()));
-        axeman.setText(String.valueOf(army.getAxemanUnits().size()));
-        archer.setText(String.valueOf(army.getRangedUnits().size()));
-        lightCavalry.setText(String.valueOf(army.getCavalryUnits().size()));
-        paladin.setText(String.valueOf(army.getCommanderUnits().size()));
-        if (battle != null) {
-            nrOfAttacks1.setText(String.valueOf(battle.getArmyOneAttacks()));
-            nrOfAttacks2.setText(String.valueOf(battle.getArmyTwoAttacks()));
-        }
         // Sets information about each individual Unit in Army to the TableView.
         ObservableList<Unit> unitData = FXCollections.observableList(army.getAllUnits());
         armyTableView.setItems(unitData);
 
+        paladin.setText(String.valueOf(army.getCommanderUnits().size()));
+        lightCavalry.setText(String.valueOf(army.getCavalryUnits().size()));
+        archer.setText(String.valueOf(army.getRangedUnits().size()));
+        axeman.setText(String.valueOf(army.getAxemanUnits().size()));
+        swordsman.setText(String.valueOf(army.getSwordsmanUnits().size()));
+        spearFighter.setText(String.valueOf(army.getSpearFighterUnits().size()));
+        totalUnits.setText(String.valueOf(army.getAllUnits().size()));
+        armyName.setText(String.valueOf(army.getName()));
+
+        if (battle != null) {
+            nrOfAttacks1.setText(String.valueOf(battle.getArmyOneAttacks()));
+            nrOfAttacks2.setText(String.valueOf(battle.getArmyTwoAttacks()));
+        }
     }
 
     /**
@@ -229,6 +230,7 @@ public class BattleSimulationController {
         terrainComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, newValue) -> {
                     try {
+                        removeErrorMessage();
                         //  When a value is chosen, an image is set
                         terrainImageView.setImage(new Image(geTerrainImageFilePath(newValue)));
                         //  The Terrain value is then stored in the 'terrainType' property as a TerrainType enum.
@@ -441,27 +443,27 @@ public class BattleSimulationController {
      * Method for enabling and disabling certain buttons when a Simulation is ongoing.
      */
     private void buttonStatusDuringSimulation(){
+        loadFileButton1.setDisable(true);
+        loadFileButton2.setDisable(true);
+        chooseArmyComboBox1.setDisable(true);
+        chooseArmyComboBox2.setDisable(true);
         swapToPauseButton();
         resetButton.setDisable(true);
         terrainComboBox.setDisable(true);
-        chooseArmyComboBox1.setDisable(true);
-        chooseArmyComboBox2.setDisable(true);
-        loadFileButton1.setDisable(true);
-        loadFileButton2.setDisable(true);
     }
 
     /**
      * Method for enabling and disabling certain buttons when a Simulation is finished.
      */
     private void buttonStatusAfterSimulation(){
+        loadFileButton1.setDisable(false);
+        loadFileButton2.setDisable(false);
+        chooseArmyComboBox1.setDisable(false);
+        chooseArmyComboBox2.setDisable(false);
         swapToSimulateButton();
         simulateButton.setDisable(true);
         resetButton.setDisable(false);
         terrainComboBox.setDisable(false);
-        chooseArmyComboBox1.setDisable(false);
-        chooseArmyComboBox2.setDisable(false);
-        loadFileButton1.setDisable(false);
-        loadFileButton2.setDisable(false);
     }
 
     /**

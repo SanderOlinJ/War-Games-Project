@@ -417,7 +417,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Button>
-                                                <Button fx:id="simulateButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSimulateButtonClicked" prefHeight="36.0" prefWidth="111.0" styleClass="add-or-remove-button" text="Simulate" textAlignment="CENTER">
+                                                <Button fx:id="simulateButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSimulateButtonClicked" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: green;" styleClass="add-or-remove-button" text="Simulate" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>

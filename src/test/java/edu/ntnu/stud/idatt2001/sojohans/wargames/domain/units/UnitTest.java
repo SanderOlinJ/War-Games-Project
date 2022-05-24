@@ -73,7 +73,7 @@ class UnitTest {
         @Test
         @DisplayName("Does attack() return correct health value when CommanderUnit attacks CommanderUnit on HILL")
         public void doesAttackReturnCorrectHealthValueWhenCommanderAttackCommanderOnHill(){
-            CommanderUnit guardian = new CommanderUnit("Guardian",180);
+            CommanderUnit guardian = new CommanderUnit("Guardian",180, 25, 15);
             CommanderUnit savathun = new CommanderUnit("Savathun",180);
             guardian.attack(savathun, TerrainType.HILL);
 

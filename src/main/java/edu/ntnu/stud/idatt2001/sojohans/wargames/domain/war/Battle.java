@@ -156,15 +156,15 @@ public class Battle{
     private int calculateSleepTime(){
         int numberOfTotalUnits = armyOne.getAllUnits().size() + armyTwo.getAllUnits().size();
         if (numberOfTotalUnits > 1000){
-            return 15;
+            return 25;
         } else if (numberOfTotalUnits > 500){
-            return 20;
-        } else if (numberOfTotalUnits > 250){
             return 30;
-        } else if (numberOfTotalUnits > 100){
+        } else if (numberOfTotalUnits > 250){
             return 40;
-        } else if (numberOfTotalUnits > 50){
+        } else if (numberOfTotalUnits > 100){
             return 50;
+        } else if (numberOfTotalUnits > 50){
+            return 70;
         } else {
             return 100;
         }
