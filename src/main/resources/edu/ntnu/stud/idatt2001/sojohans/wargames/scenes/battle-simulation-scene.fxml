@@ -131,7 +131,7 @@
                                                         <Insets />
                                                     </HBox.margin>
                                                 </Text>
-                                    <ComboBox fx:id="terrainComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Choose terrain" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
+                                    <ComboBox fx:id="terrainComboBox" focusTraversable="false" prefHeight="34.0" prefWidth="229.0" promptText="Choose terrain" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                        <HBox.margin>
                                           <Insets left="40.0" right="40.0" />
                                        </HBox.margin>
@@ -409,7 +409,7 @@
                                           </StackPane>
                                           <HBox alignment="CENTER" prefHeight="128.0" prefWidth="570.0">
                                              <children>
-                                                <Button fx:id="pauseButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPauseButtonClicked" prefHeight="36.0" prefWidth="0.0" styleClass="add-or-remove-button" text="Pause" textAlignment="CENTER" visible="false">
+                                                <Button fx:id="pauseButton" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPauseButtonClicked" prefHeight="36.0" prefWidth="0.0" styleClass="add-or-remove-button" text="Pause" textAlignment="CENTER" visible="false">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -417,7 +417,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Button>
-                                                <Button fx:id="simulateButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSimulateButtonClicked" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: green;" styleClass="add-or-remove-button" text="Simulate" textAlignment="CENTER">
+                                                <Button fx:id="simulateButton" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSimulateButtonClicked" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: green;" styleClass="add-or-remove-button" text="Simulate" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -428,7 +428,7 @@
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
                                                 </Button>
-                                                <Button fx:id="resetButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onResetButtonClicked" prefHeight="36.0" prefWidth="111.0" styleClass="add-or-remove-button" text="Reset" textAlignment="CENTER">
+                                                <Button fx:id="resetButton" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onResetButtonClicked" prefHeight="36.0" prefWidth="111.0" styleClass="add-or-remove-button" text="Reset" textAlignment="CENTER">
                                                    <font>
                                                       <Font name="Arial Bold" size="20.0" />
                                                    </font>
@@ -691,7 +691,7 @@
                                  <children>
                                     <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="330.0">
                                        <children>
-                                          <ComboBox fx:id="chooseArmyComboBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
+                                          <ComboBox fx:id="chooseArmyComboBox1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -704,7 +704,7 @@
                                                 <Insets top="5.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Button fx:id="loadFileButton1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoadFileButton1Clicked" prefHeight="36.0" prefWidth="119.0" text="Load file">
+                                          <Button fx:id="loadFileButton1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoadFileButton1Clicked" prefHeight="36.0" prefWidth="119.0" text="Load file">
                                              <font>
                                                 <Font name="Arial Bold" size="20.0" />
                                              </font>
@@ -729,10 +729,10 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
                                        <children>
-                                          <TableView fx:id="tableViewArmy1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
+                                          <TableView fx:id="tableViewArmy1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="186.0" prefWidth="220.0">
                                             <columns>
-                                              <TableColumn fx:id="unitTypeArmy1" prefWidth="110.0" text="Unit Type" />
-                                              <TableColumn fx:id="unitHealthArmy1" prefWidth="110.0" text="Health" />
+                                              <TableColumn fx:id="unitTypeArmy1" editable="false" prefWidth="110.0" sortable="false" text="Unit Type" />
+                                              <TableColumn fx:id="unitHealthArmy1" editable="false" prefWidth="110.0" sortable="false" text="Health" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -742,10 +742,10 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
                                        <children>
-                                          <TableView fx:id="tableViewArmy2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="220.0">
+                                          <TableView fx:id="tableViewArmy2" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="186.0" prefWidth="220.0">
                                              <columns>
-                                                <TableColumn fx:id="unitTypeArmy2" editable="false" prefWidth="110.0" text="Unit Type" />
-                                                <TableColumn fx:id="unitHealthArmy2" prefWidth="110.0" text="Health" />
+                                                <TableColumn fx:id="unitTypeArmy2" editable="false" prefWidth="110.0" sortable="false" text="Unit Type" />
+                                                <TableColumn fx:id="unitHealthArmy2" editable="false" prefWidth="110.0" sortable="false" text="Health" />
                                              </columns>
                                           </TableView>
                                        </children>
@@ -755,7 +755,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="330.0">
                                        <children>
-                                          <ComboBox fx:id="chooseArmyComboBox2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
+                                          <ComboBox fx:id="chooseArmyComboBox2" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="241.0" promptText="Choose Army File" styleClass="jfx-combo-box" stylesheets="@../css/style.css">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -768,7 +768,7 @@
                                                 <Insets top="5.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Button fx:id="loadFileButton2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoadFileButton2Clicked" prefHeight="36.0" prefWidth="119.0" text="Load file">
+                                          <Button fx:id="loadFileButton2" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLoadFileButton2Clicked" prefHeight="36.0" prefWidth="119.0" text="Load file">
                                              <font>
                                                 <Font name="Arial Bold" size="20.0" />
                                              </font>
